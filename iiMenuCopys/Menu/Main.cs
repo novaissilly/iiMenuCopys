@@ -301,20 +301,6 @@ namespace iiMenu.Menu
                         SetupAdminPanel(GetAdminName(PhotonNetwork.LocalPlayer.UserId));
                     }
 
-                    try
-                    {
-                        if (!Admins.ContainsKey(PhotonNetwork.LocalPlayer.UserId))
-                        {
-                            for (int i = 0; i < Buttons.buttons.Count(); i++)
-                            {
-                                List<ButtonInfo> buttonList = Buttons.buttons[i].ToList();
-                                buttonList.RemoveAll(v => v.buttonText.Contains("Admin"));
-                                Buttons.buttons[i] = buttonList.ToArray();
-                            }
-                        }
-                    }
-                    catch { }
-
                     if (PhotonNetwork.InRoom)
                     {
                         try
