@@ -15,12 +15,12 @@ namespace iiMenu.Mods
     {
         public static void NightTime()
         {
-            BetterDayNightManager.instance.SetOverrideIndex(0);
+            BetterDayNightManager.instance.timeOfDay = 0;
         }
 
         public static void DayTime()
         {
-            BetterDayNightManager.instance.SetOverrideIndex(1);
+            BetterDayNightManager.instance.timeOfDay = 1;
         }
 
         public static void FixHead()

@@ -2014,7 +2014,6 @@ banned while using this, please report it to the discord server.";
                 }
                 else
                 {
-                    GorillaNot.instance.rpcErrorMax = int.MaxValue;
                     GorillaNot.instance.rpcCallLimit = int.MaxValue;
                     GorillaNot.instance.logErrorMax = int.MaxValue;
                     // GorillaGameManager.instance.maxProjectilesToKeepTrackOfPerPlayer = int.MaxValue;

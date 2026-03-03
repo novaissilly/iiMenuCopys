@@ -1854,13 +1854,13 @@ namespace iiMenu.Mods
             {
                 sizeScale = 0.05f;
             }
-            GorillaLocomotion.Player.Instance.scale = sizeScale;
+            //GorillaLocomotion.Player.Instance.scale = sizeScale;
         }
 
         public static void EnableSizeChanger()
         {
             sizeScale = 1f;
-            GorillaLocomotion.Player.Instance.scale = 1f;
+            //GorillaLocomotion.Player.Instance.scale = 1f;
         }
 
         public static void EnableSlipperyHands()

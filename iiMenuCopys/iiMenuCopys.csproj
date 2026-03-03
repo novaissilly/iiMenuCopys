@@ -64,7 +64,7 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.10.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -72,537 +72,537 @@
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="AssetRipper.VersionUtilities, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\AssetRipper.VersionUtilities.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\AssetRipper.VersionUtilities.dll</HintPath>
     </Reference>
     <Reference Include="AssetsTools.NET, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\AssetsTools.NET.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\AssetsTools.NET.dll</HintPath>
     </Reference>
     <Reference Include="bHapticsLib, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\bHapticsLib.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\bHapticsLib.dll</HintPath>
     </Reference>
     <Reference Include="I18N, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.dll</HintPath>
     </Reference>
     <Reference Include="I18N.CJK, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.CJK.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.CJK.dll</HintPath>
     </Reference>
     <Reference Include="I18N.MidEast, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.MidEast.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.MidEast.dll</HintPath>
     </Reference>
     <Reference Include="I18N.Other, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.Other.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.Other.dll</HintPath>
     </Reference>
     <Reference Include="I18N.Rare, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.Rare.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.Rare.dll</HintPath>
     </Reference>
     <Reference Include="I18N.West, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\I18N.West.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\I18N.West.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppMono.Security, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppMono.Security.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppMono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2Cppmscorlib.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppSystem.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppSystem.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Configuration, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppSystem.Configuration.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppSystem.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppSystem.Core.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Numerics, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppSystem.Numerics.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppSystem.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Xml, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Il2CppSystem.Xml.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Il2CppSystem.Xml.dll</HintPath>
     </Reference>
     <Reference Include="IndexRange, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\IndexRange.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\IndexRange.dll</HintPath>
     </Reference>
     <Reference Include="JNISharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\JNISharp.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\JNISharp.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader, Version=0.5.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\MelonLoader.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Btls.Interface, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.Btls.Interface.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.Btls.Interface.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\Mono.Cecil.Mdb.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CompilerServices.SymbolWriter, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.CompilerServices.SymbolWriter.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.CompilerServices.SymbolWriter.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CSharp, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.CSharp.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Sqlite, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.Data.Sqlite.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Tds, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.Data.Tds.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.Data.Tds.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.Posix.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Mono.Security.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour, Version=22.3.23.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\MonoMod.RuntimeDetour.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils, Version=22.3.23.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\MonoMod.Utils.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunitlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\nunitlite.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\nunitlite.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D, Version=4.1.6.11, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Photon3Unity3D.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="PhotonChat, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonChat.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonChat.dll</HintPath>
     </Reference>
     <Reference Include="PhotonRealtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonRealtime.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonRealtime.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking.Utilities, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonUnityNetworking.Utilities.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonUnityNetworking.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonVoice.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonVoice.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice.API, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonVoice.API.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonVoice.API.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice.PUN, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PhotonVoice.PUN.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PhotonVoice.PUN.dll</HintPath>
     </Reference>
     <Reference Include="PlayFab, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\PlayFab.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\PlayFab.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Tomlet, Version=5.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\Tomlet.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\Tomlet.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerBaseLib, Version=0.4.18.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnhollowerBaseLib.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnhollowerRuntimeLib.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.Animation.Rigging.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.Burst.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.InputSystem.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.Mathematics.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.CoreUtils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.CoreUtils.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.CoreUtils.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.Interaction.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.Interaction.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.Management.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.Management.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Oculus, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.Oculus.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.Oculus.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.Features.MetaQuestSupport.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.Features.MetaQuestSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MockRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.Features.MockRuntime.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.Features.MockRuntime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\Unity.XR.OpenXR.Features.RuntimeDebugger.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\Unity.XR.OpenXR.Features.RuntimeDebugger.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AIModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ARModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.CrashReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.GIModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.GIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.GridModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.GridModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Il2CppAssetBundleManager, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Il2CppImageConversionManager, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ProfilerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SpriteShapeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.StreamingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubsystemsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.SubsystemsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreFontEngineModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreTextEngineModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TLSModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsNativeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UIElementsNativeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UNETModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UNETModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsCommonModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityCurlModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityCurlModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityCurlModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VFXModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.VRModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.VRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.WindModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.WindModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\managed\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\managed\UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="ValueTupleBridge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\ValueTupleBridge.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\ValueTupleBridge.dll</HintPath>
     </Reference>
     <Reference Include="WebSocketDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\melonloader\etc\WebSocketDotNet.dll</HintPath>
+      <HintPath>..\..\..\Desktop\QolossalStuff\Refrences\WebSocketDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
