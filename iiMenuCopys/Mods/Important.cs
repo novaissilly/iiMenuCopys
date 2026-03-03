@@ -148,7 +148,7 @@ namespace iiMenu.Mods
 
         public static void JoinDiscord()
         {
-            Application.OpenURL("https://discord.gg/PeTVxBVvaj");
+            Application.OpenURL("https://discord.gg/dtQdz59FJG");
         }
 
         public static void EnableAntiAFK()

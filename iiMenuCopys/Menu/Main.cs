@@ -255,9 +255,10 @@ namespace iiMenu.Menu
                         reference.GetComponent<Renderer>().material.color = menuBackground.GetComponent<Renderer>().material.color;
                     }
 
-                    if (disorganized && buttonsType != 0)
+                    // Fix for disorganized
+                    if (disorganized && currentCategoryName != "Main")
                     {
-                        buttonsType = 0;
+                        currentCategoryName = "Main";
                         ReloadMenu();
                     }
 
@@ -682,8 +683,6 @@ namespace iiMenu.Menu
         }
 
         // the variable warehouse
-        public static int buttonsType = 0;
-
         public static float buttonCooldown = 0f;
 
         public static GameObject menu = null;
@@ -748,7 +747,28 @@ namespace iiMenu.Menu
 
         public static int pageNumber = 0;
 
+        public static int GetCategory(string categoryName) =>
+            Buttons.categoryNames.ToList().IndexOf(categoryName);
+
         public static int pageButtonType = 1;
+
+        public static int _currentCategoryIndex;
+        public static int currentCategoryIndex
+        {
+            get => _currentCategoryIndex;
+            set
+            {
+                _currentCategoryIndex = value;
+                pageNumber = 0;
+            }
+        }
+
+        public static string currentCategoryName
+        {
+            get => Buttons.categoryNames[currentCategoryIndex];
+            set =>
+                currentCategoryIndex = GetCategory(value);
+        }
 
         public static float buttonOffset = 2;
 
@@ -1508,38 +1528,49 @@ namespace iiMenu.Menu
 
             AddPageButtons();
 
+            // Button render code
+            int buttonIndexOffset = 0;
+            ButtonInfo[] renderButtons = new ButtonInfo[] { };
+
             if (annoyingMode && UnityEngine.Random.Range(1, 5) == 3)
             {
-                ButtonInfo disconnect = GetIndex("Disconnect");
-                ButtonInfo[] array2 = new ButtonInfo[] { disconnect, disconnect, disconnect, disconnect, disconnect, disconnect, disconnect, disconnect, disconnect, disconnect };
-                array2 = array2.Take(pageSize).ToArray();
-                for (int i = 0; i < array2.Length; i++)
+                ButtonInfo disconnectButton = GetIndex("Disconnect");
+                renderButtons = Enumerable.Repeat(disconnectButton, 1000).ToArray();
+            }
+            else if (currentCategoryName == "Favorite Mods")
+            {
+                foreach (string favoriteMod in favorites)
                 {
-                    AddButton(i * 0.1f + (buttonOffset / 10), i, array2[i]);
+                    if (GetIndex(favoriteMod) == null)
+                        favorites.Remove(favoriteMod);
                 }
+
+                renderButtons = StringsToInfos(favorites.ToArray());
+            }
+            else if (currentCategoryName == "Enabled Mods")
+            {
+                List<ButtonInfo> enabledMods = new List<ButtonInfo>() { GetIndex("Exit Enabled Mods") };
+                enabledMods.AddRange(Buttons.buttons.SelectMany(buttonlist => buttonlist).Where(v => v.enabled));
+
+                renderButtons = enabledMods.ToArray();
             }
             else
-            {
-                if (buttonsType != 19)
-                {
-                    ButtonInfo[] array2 = Buttons.buttons[buttonsType].Skip(pageNumber * pageSize).Take(pageSize).ToArray();
-                    for (int i = 0; i < array2.Length; i++)
-                    {
-                        AddButton(i * 0.1f + (buttonOffset / 10), i, array2[i]);
-                    }
-                }
-                else
-                {
-                    string[] array2 = favorites.Skip(pageNumber * pageSize).Take(pageSize).ToArray();
-                    for (int i = 0; i < array2.Length; i++)
-                    {
-                        AddButton(i * 0.1f + (buttonOffset / 10), i, GetIndex(array2[i]));
-                    }
-                }
-            }
+                renderButtons = Buttons.buttons[currentCategoryIndex];
+
+            renderButtons = renderButtons
+                        .Skip(pageNumber * (pageSize - buttonIndexOffset))
+                        .Take(pageSize - buttonIndexOffset)
+                        .ToArray();
+
+            for (int i = 0; i < renderButtons.Length; i++)
+                AddButton((i + buttonIndexOffset) * 0.1f + (buttonOffset / 10), i, renderButtons[i]);
+
             RecenterMenu();
         }
 
+
+        public static ButtonInfo[] StringsToInfos(string[] array) =>
+           array.Select(GetIndex).ToArray();
 
         public static Texture2D returnIcon;
         public static Material returnMat;
@@ -2090,9 +2121,9 @@ namespace iiMenu.Menu
             }
         }
 
-        public static void Toggle(string buttonText, bool fromMenu = false)
+        public static void Toggle(string buttonText, bool fromMenu = false, bool ignoreForce = false)
         {
-            if (annoyingMode)
+            if (annoyingMode && fromMenu)
             {
                 if (UnityEngine.Random.Range(1, 5) == 2)
                 {
@@ -2100,18 +2131,30 @@ namespace iiMenu.Menu
                     return;
                 }
             }
-            int lastPage = ((Buttons.buttons[buttonsType].Length + pageSize - 1) / pageSize) - 1;
-            if (buttonsType == 19)
-            {
+
+            int lastPage = ((Buttons.buttons[currentCategoryIndex].Length + pageSize - 1) / pageSize) - 1;
+            if (currentCategoryName == "Favorite Mods")
                 lastPage = ((favorites.Count + pageSize - 1) / pageSize) - 1;
+
+            if (currentCategoryName == "Enabled Mods")
+            {
+                List<string> enabledMods = new List<string>() { "Exit Enabled Mods" };
+                foreach (ButtonInfo[] buttonlist in Buttons.buttons)
+                {
+                    foreach (ButtonInfo v in buttonlist)
+                    {
+                        if (v.enabled)
+                            enabledMods.Add(v.buttonText);
+                    }
+                }
+                lastPage = ((enabledMods.Count + pageSize - 1) / pageSize) - 1;
             }
+
             if (buttonText == "PreviousPage")
             {
                 pageNumber--;
                 if (pageNumber < 0)
-                {
                     pageNumber = lastPage;
-                }
             }
             else
             {
@@ -2119,28 +2162,31 @@ namespace iiMenu.Menu
                 {
                     pageNumber++;
                     if (pageNumber > lastPage)
-                    {
                         pageNumber = 0;
-                    }
                 }
                 else
                 {
                     ButtonInfo target = GetIndex(buttonText);
                     if (target != null)
                     {
-                        if (leftGrab && target.buttonText != "Exit Favorite Mods")
+                        if (fromMenu && !ignoreForce && ((leftGrab)))
                         {
-                            if (favorites.Contains(target.buttonText))
+                            if (target.buttonText != "Exit Favorite Mods")
                             {
-                                favorites.Remove(target.buttonText);
-                                NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Removed from favorites.");
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(38, GetIndex("Right Hand").enabled, 0.4f);
-                            }
-                            else
-                            {
-                                favorites.Add(target.buttonText);
-                                NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Added to favorites.");
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(40, GetIndex("Right Hand").enabled, 0.4f);
+                                if (favorites.Contains(target.buttonText))
+                                {
+                                    favorites.Remove(target.buttonText);
+
+                                    if (fromMenu)
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Removed from favorites.");
+                                }
+                                else
+                                {
+                                    favorites.Add(target.buttonText);
+
+                                    if (fromMenu)
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Added to favorites.");
+                                }
                             }
                         }
                         else
@@ -2150,35 +2196,33 @@ namespace iiMenu.Menu
                                 target.enabled = !target.enabled;
                                 if (target.enabled)
                                 {
-                                    NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                    if (fromMenu)
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+
                                     if (target.enableMethod != null)
-                                    {
-                                        try { target.enableMethod.Invoke(); } catch { }
-                                    }
+                                        try { target.enableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod enableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
                                 }
                                 else
                                 {
-                                    NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+                                    if (fromMenu)
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+
                                     if (target.disableMethod != null)
-                                    {
-                                        try { target.disableMethod.Invoke(); } catch { }
-                                    }
+                                        try { target.disableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod disableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
                                 }
                             }
                             else
                             {
-                                NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                if (fromMenu)
+                                    NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+
                                 if (target.method != null)
-                                {
-                                    try { target.method.Invoke(); } catch { }
-                                }
+                                    try { target.method.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
                             }
                         }
                     }
                     else
-                    {
-                        UnityEngine.Debug.LogError(buttonText + " does not exist");
-                    }
+                        MelonLoader.MelonLogger.Msg($"{buttonText} does not exist");
                 }
             }
             ReloadMenu();

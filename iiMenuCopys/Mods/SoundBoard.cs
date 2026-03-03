@@ -32,8 +32,7 @@ namespace iiMenu.Mods
 
         public static void LoadSoundboard()
         {
-            Main.pageNumber = 0;
-            Main.buttonsType = 20;
+            Main.currentCategoryName = "Soundboard";
             // Change light to your menu name
             string basePath = Path.Combine("iisStupidMenu", "Sounds", Subdirectory.TrimStart('/').Replace("\\", "/"));
 
@@ -44,7 +43,7 @@ namespace iiMenu.Mods
                 Directory.CreateDirectory(basePath);
 
             List<string> enabledSounds = new List<string>();
-            foreach (ButtonInfo binfo in Buttons.buttons[27])
+            foreach (ButtonInfo binfo in Buttons.buttons[20])
             {
                 if (binfo.enabled)
                     enabledSounds.Add(binfo.overlapText);
@@ -52,7 +51,7 @@ namespace iiMenu.Mods
 
             List<ButtonInfo> soundbuttons = new List<ButtonInfo>
             {
-                new ButtonInfo { buttonText = "<color=red>Exit Soundboard</color>", method = () => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you to main menu." }
+                new ButtonInfo { buttonText = "<color=red>Exit Soundboard</color>", method = () => Main.currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you to main menu." }
             };
 
             int index = 0;
