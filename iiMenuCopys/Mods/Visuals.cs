@@ -544,7 +544,7 @@ namespace iiMenu.Mods
         {
             GameObject left = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             left.transform.parent = GorillaTagger.Instance.leftHandTransform;
-            left.GetComponent<Renderer>().material.color = bgColorA;
+            left.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
             left.transform.localPosition = new Vector3(0f, -0.1f, 0f);
             left.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             UnityEngine.Object.Destroy(left.GetComponent<SphereCollider>());
@@ -552,7 +552,7 @@ namespace iiMenu.Mods
 
             GameObject right = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             right.transform.parent = GorillaTagger.Instance.rightHandTransform;
-            right.GetComponent<Renderer>().material.color = bgColorA;
+            right.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
             right.transform.localPosition = new Vector3(0f, -0.1f, 0f);
             right.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             UnityEngine.Object.Destroy(right.GetComponent<SphereCollider>());
