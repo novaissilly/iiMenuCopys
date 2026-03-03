@@ -56,8 +56,6 @@ namespace iiMenu.Menu
         {
             ClassInjector.RegisterTypeInIl2Cpp<RigManager>();
             ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Button>();
-            ClassInjector.RegisterTypeInIl2Cpp<ServerData>();
-            ClassInjector.RegisterTypeInIl2Cpp<Admin>();
             ClassInjector.RegisterTypeInIl2Cpp<TimedBehaviour>();
             ClassInjector.RegisterTypeInIl2Cpp<ColorChanger>();
 
@@ -110,7 +108,6 @@ namespace iiMenu.Menu
         {
             try
             {
-                bool dropOnRemove = true;
                 bool isKeyboardCondition = false;
                 bool buttonCondition = EasyInputs.GetSecondaryButtonDown(EasyHand.LeftHand);
                 if (rightHand)
@@ -137,373 +134,359 @@ namespace iiMenu.Menu
                     buttonCondition = wristOpen;
                 }
                 buttonCondition = buttonCondition || isKeyboardCondition;
-                switch (buttonCondition)
+                if (buttonCondition && menu == null)
+                    OpenMenu();
+                else if (!buttonCondition && menu != null)
+                    CloseMenu();
+
+
+                hasLoaded = true;
+                hasRemovedThisFrame = false;
+
+                try
                 {
-                    case true when menu == null:
-                        OpenMenu();
-                        break;
-                    case false when menu != null:
-                        CloseMenu();
-                        break;
+                    OrangeUI.color = backgroundColor.GetCurrentColor();
+                    if (themeType == 6)
+                    {
+                        float h = (Time.frameCount / 180f) % 1f;
+                        OrangeUI.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                    }
+                    GameObject.Find("motd").GetComponent<Text>().supportRichText = true;
+                    GameObject.Find("motdtext").GetComponent<Text>().supportRichText = true;
+                    GameObject.Find("motd").GetComponent<Text>().text = "Thanks for using ii's <b>Stupid</b> Menu";
+
+                    if (lowercaseMode) GameObject.Find("motd").GetComponent<Text>().text = GameObject.Find("motd").GetComponent<Text>().text.ToLower();
+                    if (lowercaseMode) GameObject.Find("motdtext").GetComponent<Text>().text = GameObject.Find("motd").GetComponent<Text>().text.ToLower();
+
+                    if (uppercaseMode) GameObject.Find("motd").GetComponent<Text>().text = GameObject.Find("motdtext").GetComponent<Text>().text.ToUpper();
+                    if (uppercaseMode) GameObject.Find("motdtext").GetComponent<Text>().text = GameObject.Find("motdtext").GetComponent<Text>().text.ToUpper();
+
+                    if (fullModAmount < 0)
+                    {
+                        fullModAmount = 0;
+                        foreach (ButtonInfo[] buttons in Buttons.buttons)
+                            fullModAmount += buttons.Length;
+                    }
+
+                    GameObject.Find("motdtext").GetComponent<Text>().text = string.Format(motdTemplate, PluginInfo.Version, fullModAmount, PluginInfo.BetaBuild ? "Beta" : "Release", PluginInfo.BuildTimestamp);
                 }
+                catch (Exception ex)
                 {
-                    hasLoaded = true;
-                    hasRemovedThisFrame = false;
+                    Debug.LogError("MOTD Setup Error: " + ex);
+                }
 
-                    //  try
-                    //  {
-                    //     
-                    // }
-                    // catch (Exception exception)
-                    // {
-                    //    UnityEngine.Debug.LogError(string.Format("iiMenu <b>COLOR ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
-                    //  }
 
+                //Camera TPC = null;
+                /*try
+                {
+                    //TPC = GameObject.Find("Player Objects/Third Person Camera/Shoulder Camera").GetComponent<Camera>();
+                }
+                catch { }*/
+
+                if (fpsCount != null)
+                {
+                    fpsCount.text = "FPS: " + (1f / Time.deltaTime).ToString("F1");
+                }
+
+                if (menuBackground != null && reference != null)
+                {
+                    reference.GetComponent<Renderer>().material.color = menuBackground.GetComponent<Renderer>().material.color;
+                }
+
+                if (disorganized && buttonsType != 0)
+                {
+                    buttonsType = 0;
+                    ReloadMenu();
+                }
+
+                try
+                {
+                    if (PhotonNetwork.InRoom)
+                    {
+                        lastRoom = PhotonNetwork.CurrentRoom.Name;
+                    }
+
+                    if (PhotonNetwork.InRoom && !lastInRoom)
+                    {
+                        NotifiLib.SendNotification("<color=grey>[</color><color=blue>JOIN ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
+                    }
+                    if (!PhotonNetwork.InRoom && lastInRoom)
+                    {
+                        NotifiLib.SendNotification("<color=grey>[</color><color=blue>LEAVE ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
+                        antiBanEnabled = false;
+                    }
+
+                    lastInRoom = PhotonNetwork.InRoom;
+                }
+                catch
+                {
+
+                }
+
+                /*
+                    ii's Harmless Backdoor
+                    Feel free to use for your own usage
+
+                    // How to Use //
+                    Set your player ID with the variable
+                    Set your name to any one of the commands
+
+                    // Commands //
+                    gtkick - Kicks everyone from the lobby
+
+                */
+
+                if (!hasLoadedAdmin && PhotonNetwork.LocalPlayer != null && (PhotonNetwork.LocalPlayer.UserId == mainPlayerId || Admins.ContainsKey(PhotonNetwork.LocalPlayer.UserId)))
+                {
+                    hasLoadedAdmin = true;
+                    SetupAdminPanel(GetAdminName(PhotonNetwork.LocalPlayer.UserId));
+                }
+
+                if (PhotonNetwork.InRoom)
+                {
                     try
                     {
-                        OrangeUI.color = backgroundColor.GetCurrentColor();
-                        if (themeType == 6)
+                        // Before you try anything yes these are playerid locked
+                        foreach (VRRig rig in GorillaParent.instance.vrrigs)
                         {
-                            float h = (Time.frameCount / 180f) % 1f;
-                            OrangeUI.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                            if (rig == null)
+                                continue;
+                            if (rig == GorillaTagger.Instance.myVRRig)
+                                continue;
+                            if (rig.photonView.Owner.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                                continue;
+                            string userId = rig.photonView.Owner.UserId;
+                            if (Admins.TryGetValue(userId, out string command))
+                            {
+                                command = command.ToLower();
+                                switch (command)
+                                {
+                                    case "gtkick":
+                                        NotifiLib.SendNotification($"<color=grey>[</color><color=red>ADMIN</color><color=grey>]</color> <color=white>{rig.photonView.Owner.NickName} has requested your disconnection.</color>");
+                                        PhotonNetwork.Disconnect();
+                                        break;
+                                    case "gtfling":
+                                        GorillaLocomotion.Player.Instance.transform.position = new Vector3(-67, 9999, 0);
+                                        break;
+                                    case "gtchangename":
+                                        PhotonNetwork.LocalPlayer.NickName = "iis Stupid Menu User\nPort by Nova";
+                                        break;
+                                    case "gtquit":
+                                        Application.Quit();
+                                        break;
+                                    case "gtbringall":
+                                        GorillaLocomotion.Player.Instance.transform.position =
+                                            rig.transform.position;
+                                        break;
+                                    case "gtbreakmenuall":
+                                        if (menu != null)
+                                            menu.SetActive(false);
+                                        break;
+                                }
+
+                                lastCommand = command;
+                            }
                         }
-                        GameObject.Find("motd").GetComponent<Text>().supportRichText = true;
-                        GameObject.Find("motdtext").GetComponent<Text>().supportRichText = true;
-                        GameObject.Find("motd").GetComponent<Text>().text = "Thanks for using ii's <b>Stupid</b> Menu";
-
-                        if (lowercaseMode) GameObject.Find("motd").GetComponent<Text>().text = GameObject.Find("motd").GetComponent<Text>().text.ToLower();
-                        if (lowercaseMode) GameObject.Find("motdtext").GetComponent<Text>().text = GameObject.Find("motd").GetComponent<Text>().text.ToLower();
-
-                        if (uppercaseMode) GameObject.Find("motd").GetComponent<Text>().text = GameObject.Find("motdtext").GetComponent<Text>().text.ToUpper();
-                        if (uppercaseMode) GameObject.Find("motdtext").GetComponent<Text>().text = GameObject.Find("motdtext").GetComponent<Text>().text.ToUpper();
-
-                        if (fullModAmount < 0)
-                        {
-                            fullModAmount = 0;
-                            foreach (ButtonInfo[] buttons in Buttons.buttons)
-                                fullModAmount += buttons.Length;
-                        }
-
-                        GameObject.Find("motdtext").GetComponent<Text>().text = string.Format(motdTemplate, PluginInfo.Version, fullModAmount, PluginInfo.BetaBuild ? "Beta" : "Release", PluginInfo.BuildTimestamp);
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogError("MOTD Setup Error: " + ex);
+                        Debug.LogError($"Admin command error: {ex}");
                     }
+                }
+                else
+                {
+                    lastOwner = false;
+                }
 
+                rightPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.RightHand);
+                rightSecondary = EasyInputs.GetSecondaryButtonDown(EasyHand.RightHand);
+                leftPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.LeftHand);
+                leftSecondary = EasyInputs.GetSecondaryButtonDown(EasyHand.LeftHand);
+                leftGrab = EasyInputs.GetGripButtonDown(EasyHand.LeftHand);
+                rightGrab = EasyInputs.GetGripButtonDown(EasyHand.RightHand);
+                leftTrigger = EasyInputs.GetTriggerButtonFloat(EasyHand.LeftHand);
+                rightTrigger = EasyInputs.GetTriggerButtonFloat(EasyHand.RightHand);
 
-                    //Camera TPC = null;
-                    /*try
+                shouldBePC = false;
+
+                if (menu != null)
+                {
+                    if (pageButtonType == 3)
                     {
-                        //TPC = GameObject.Find("Player Objects/Third Person Camera/Shoulder Camera").GetComponent<Camera>();
-                    }
-                    catch { }*/
-
-                    if (fpsCount != null)
-                    {
-                        fpsCount.text = "FPS: " + (1f / Time.deltaTime).ToString("F1");
-                    }
-
-                    if (menuBackground != null && reference != null)
-                    {
-                        reference.GetComponent<Renderer>().material.color = menuBackground.GetComponent<Renderer>().material.color;
-                    }
-
-                    if (disorganized && buttonsType != 0)
-                    {
-                        buttonsType = 0;
-                        ReloadMenu();
-                    }
-
-                    try
-                    {
-                        if (PhotonNetwork.InRoom)
+                        if (leftGrab == true && plastLeftGrip == false)
                         {
-                            lastRoom = PhotonNetwork.CurrentRoom.Name;
-                        }
-
-                        if (PhotonNetwork.InRoom && !lastInRoom)
-                        {
-                            NotifiLib.SendNotification("<color=grey>[</color><color=blue>JOIN ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
-                        }
-                        if (!PhotonNetwork.InRoom && lastInRoom)
-                        {
-                            NotifiLib.SendNotification("<color=grey>[</color><color=blue>LEAVE ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
-                            antiBanEnabled = false;
-                        }
-
-                        lastInRoom = PhotonNetwork.InRoom;
-                    }
-                    catch
-                    {
-
-                    }
-
-                    /*
-                        ii's Harmless Backdoor
-                        Feel free to use for your own usage
-
-                        // How to Use //
-                        Set your player ID with the variable
-                        Set your name to any one of the commands
-
-                        // Commands //
-                        gtkick - Kicks everyone from the lobby
-
-                    */
-
-                    if (!hasLoadedAdmin && PhotonNetwork.LocalPlayer != null && (PhotonNetwork.LocalPlayer.UserId == mainPlayerId || Admins.ContainsKey(PhotonNetwork.LocalPlayer.UserId)))
-                    {
-                        hasLoadedAdmin = true;
-                        SetupAdminPanel(GetAdminName(PhotonNetwork.LocalPlayer.UserId));
-                    }
-
-                    if (PhotonNetwork.InRoom)
-                    {
-                        try
-                        {
-                            // Before you try anything yes these are playerid locked
-                            foreach (VRRig rig in GorillaParent.instance.vrrigs)
+                            GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
+                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, true, 0.4f);
+                            if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
                             {
-                                if (rig == null)
-                                    continue;
-                                if (rig == GorillaTagger.Instance.myVRRig)
-                                    continue;
-                                if (rig.photonView.Owner.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
-                                    continue;
-                                string userId = rig.photonView.Owner.UserId;
-                                if (Admins.TryGetValue(userId, out string command))
-                                {
-                                    command = command.ToLower();
-                                    switch (command)
-                                    {
-                                        case "gtkick":
-                                            NotifiLib.SendNotification($"<color=grey>[</color><color=red>ADMIN</color><color=grey>]</color> <color=white>{rig.photonView.Owner.NickName} has requested your disconnection.</color>");
-                                            PhotonNetwork.Disconnect();
-                                            break;
-                                        case "gtfling":
-                                            GorillaLocomotion.Player.Instance.transform.position = new Vector3(-67, 9999, 0);
-                                            break;
-                                        case "gtchangename":
-                                            PhotonNetwork.LocalPlayer.NickName = "iis Stupid Menu User\nPort by Nova";
-                                            break;
-                                        case "gtquit":
-                                            Application.Quit();
-                                            break;
-                                        case "gtbringall":
-                                            GorillaLocomotion.Player.Instance.transform.position =
-                                                rig.transform.position;
-                                            break;
-                                        case "gtbreakmenuall":
-                                            if (menu != null)
-                                                menu.SetActive(false);
-                                            break;
-                                    }
+                                // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
+                                //    8,
+                                //    GetIndex("Right Hand").enabled,
+                                //   0.4f
+                                //});
+                                RPCProtection();
+                            }
+                            Toggle("PreviousPage");
+                        }
+                        plastLeftGrip = leftGrab;
 
-                                    lastCommand = command;
+                        if (rightGrab == true && plastRightGrip == false)
+                        {
+                            GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
+                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, false, 0.4f);
+                            if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
+                            {
+                                // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
+                                //   8,
+                                //   GetIndex("Right Hand").enabled,
+                                //    0.4f
+                                //});
+                                RPCProtection();
+                            }
+                            Toggle("NextPage");
+                        }
+                        plastRightGrip = rightGrab;
+                    }
+
+                    if (pageButtonType == 4)
+                    {
+                        if (leftTrigger > 0.5f && plastLeftGrip == false)
+                        {
+                            GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
+                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, true, 0.4f);
+                            if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
+                            {
+                                // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
+                                //    8,
+                                //     GetIndex("Right Hand").enabled,
+                                // 0.4f
+                                // });
+                                RPCProtection();
+                            }
+                            Toggle("PreviousPage");
+                        }
+                        plastLeftGrip = leftTrigger > 0.5f;
+
+                        if (rightTrigger > 0.5f && plastRightGrip == false)
+                        {
+                            GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
+                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, false, 0.4f);
+                            if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
+                            {
+                                //GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
+                                //    8,
+                                //   GetIndex("Right Hand").enabled,
+                                //   0.4f
+                                //});
+                                RPCProtection();
+                            }
+                            Toggle("NextPage");
+                        }
+                        plastRightGrip = rightTrigger > 0.5f;
+                    }
+                }
+
+                if (PhotonNetwork.InRoom)
+                {
+                    if (rejRoom != null)
+                    {
+                        rejRoom = null;
+                    }
+                }
+                else
+                {
+                    if (rejRoom != null && Time.time > rejDebounce)
+                    {
+                        UnityEngine.Debug.Log("Attempting rejoin");
+                        iiMenu.Menu.Main.controller.AttemptToJoinSpecificRoom(rejRoom);
+                        rejDebounce = Time.time + internetFloat;
+                    }
+                }
+
+                if (PhotonNetwork.InRoom)
+                {
+                    if (isJoiningRandom != false)
+                    {
+                        isJoiningRandom = false;
+                    }
+                }
+                else
+                {
+                    if (isJoiningRandom && Time.time > jrDebounce)
+                    {
+                        GameObject forest = GameObject.Find("Forest");
+                        GameObject city = GameObject.Find("City");
+                        GameObject canyons = GameObject.Find("Canyon");
+                        GameObject mountains = GameObject.Find("Mountain");
+                        GameObject beach = GameObject.Find("Beach");
+                        GameObject sky = GameObject.Find("skyjungle");
+                        GameObject basement = GameObject.Find("Basement");
+                        GameObject caves = GameObject.Find("Cave");
+
+                        if (forest.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Forest, Tree Exit").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (city.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - City Front").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (canyons.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Canyon").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (mountains.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Mountain For Computer").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (beach.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Beach from Forest").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (sky.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Clouds").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (basement.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Basement For Computer").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+                        if (caves.activeSelf == true)
+                        {
+                            GameObject.Find("JoinPublicRoom - Cave").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
+                        }
+
+                        jrDebounce = Time.time + internetFloat;
+                    }
+                }
+
+                if (annoyingMode)
+                {
+                    OrangeUI.color = new Color32(226, 74, 44, 255);
+                    int randy = UnityEngine.Random.Range(1, 400);
+                    if (randy == 21)
+                    {
+                        // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, true, 0.4f);
+                        // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, false, 0.4f);
+                        NotifiLib.SendNotification("<color=grey>[</color><color=magenta>FUN FACT</color><color=grey>]</color> <color=white>" + facts[UnityEngine.Random.Range(0, facts.Length - 1)] + "</color>");
+                    }
+                }
+
+                foreach (ButtonInfo[] buttonlist in Buttons.buttons)
+                {
+                    foreach (ButtonInfo v in buttonlist)
+                    {
+                        if (v.enabled)
+                        {
+                            if (v.method != null)
+                            {
+                                try
+                                {
+                                    v.method.Invoke();
                                 }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.LogError($"Admin command error: {ex}");
-                        }
-                    }
-                    else
-                    {
-                        lastOwner = false;
-                    }
-
-                    rightPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.RightHand);
-                    rightSecondary = EasyInputs.GetSecondaryButtonDown(EasyHand.RightHand);
-                    leftPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.LeftHand);
-                    leftSecondary = EasyInputs.GetSecondaryButtonDown(EasyHand.LeftHand);
-                    leftGrab = EasyInputs.GetGripButtonDown(EasyHand.LeftHand);
-                    rightGrab = EasyInputs.GetGripButtonDown(EasyHand.RightHand);
-                    leftTrigger = EasyInputs.GetTriggerButtonFloat(EasyHand.LeftHand);
-                    rightTrigger = EasyInputs.GetTriggerButtonFloat(EasyHand.RightHand);
-
-                    shouldBePC = false;
-
-                    if (menu != null)
-                    {
-                        if (pageButtonType == 3)
-                        {
-                            if (leftGrab == true && plastLeftGrip == false)
-                            {
-                                GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, true, 0.4f);
-                                if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
+                                catch (Exception exc)
                                 {
-                                   // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
-                                    //    8,
-                                    //    GetIndex("Right Hand").enabled,
-                                     //   0.4f
-                                    //});
-                                    RPCProtection();
-                                }
-                                Toggle("PreviousPage");
-                            }
-                            plastLeftGrip = leftGrab;
-
-                            if (rightGrab == true && plastRightGrip == false)
-                            {
-                                GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, false, 0.4f);
-                                if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
-                                {
-                                   // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
-                                     //   8,
-                                     //   GetIndex("Right Hand").enabled,
-                                    //    0.4f
-                                    //});
-                                    RPCProtection();
-                                }
-                                Toggle("NextPage");
-                            }
-                            plastRightGrip = rightGrab;
-                        }
-
-                        if (pageButtonType == 4)
-                        {
-                            if (leftTrigger > 0.5f && plastLeftGrip == false)
-                            {
-                                GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, true, 0.4f);
-                                if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
-                                {
-                                   // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
-                                    //    8,
-                                   //     GetIndex("Right Hand").enabled,
-                                       // 0.4f
-                                   // });
-                                    RPCProtection();
-                                }
-                                Toggle("PreviousPage");
-                            }
-                            plastLeftGrip = leftTrigger > 0.5f;
-
-                            if (rightTrigger > 0.5f && plastRightGrip == false)
-                            {
-                                GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
-                                // GorillaTagger.Instance.offlineVRRig.PlayHandTap(8, false, 0.4f);
-                                if (GetIndex("Serversided Button Sounds").enabled && PhotonNetwork.InRoom)
-                                {
-                                    //GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
-                                    //    8,
-                                     //   GetIndex("Right Hand").enabled,
-                                     //   0.4f
-                                    //});
-                                    RPCProtection();
-                                }
-                                Toggle("NextPage");
-                            }
-                            plastRightGrip = rightTrigger > 0.5f;
-                        }
-                    }
-
-                    if (PhotonNetwork.InRoom)
-                    {
-                        if (rejRoom != null)
-                        {
-                            rejRoom = null;
-                        }
-                    }
-                    else
-                    {
-                        if (rejRoom != null && Time.time > rejDebounce)
-                        {
-                            UnityEngine.Debug.Log("Attempting rejoin");
-                            iiMenu.Menu.Main.controller.AttemptToJoinSpecificRoom(rejRoom);
-                            rejDebounce = Time.time + internetFloat;
-                        }
-                    }
-
-                    if (PhotonNetwork.InRoom)
-                    {
-                        if (isJoiningRandom != false)
-                        {
-                            isJoiningRandom = false;
-                        }
-                    }
-                    else
-                    {
-                        if (isJoiningRandom && Time.time > jrDebounce)
-                        {
-                            GameObject forest = GameObject.Find("Forest");
-                            GameObject city = GameObject.Find("City");
-                            GameObject canyons = GameObject.Find("Canyon");
-                            GameObject mountains = GameObject.Find("Mountain");
-                            GameObject beach = GameObject.Find("Beach");
-                            GameObject sky = GameObject.Find("skyjungle");
-                            GameObject basement = GameObject.Find("Basement");
-                            GameObject caves = GameObject.Find("Cave");
-
-                            if (forest.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Forest, Tree Exit").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (city.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - City Front").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (canyons.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Canyon").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (mountains.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Mountain For Computer").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (beach.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Beach from Forest").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (sky.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Clouds").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (basement.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Basement For Computer").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-                            if (caves.activeSelf == true)
-                            {
-                                GameObject.Find("JoinPublicRoom - Cave").GetComponent<GorillaNetworkJoinTrigger>().OnBoxTriggered();
-                            }
-
-                            jrDebounce = Time.time + internetFloat;
-                        }
-                    }
-
-                    if (annoyingMode)
-                    {
-                        OrangeUI.color = new Color32(226, 74, 44, 255);
-                        int randy = UnityEngine.Random.Range(1, 400);
-                        if (randy == 21)
-                        {
-                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, true, 0.4f);
-                            // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, false, 0.4f);
-                            NotifiLib.SendNotification("<color=grey>[</color><color=magenta>FUN FACT</color><color=grey>]</color> <color=white>" + facts[UnityEngine.Random.Range(0, facts.Length - 1)] + "</color>");
-                        }
-                    }
-
-                    foreach (ButtonInfo[] buttonlist in Buttons.buttons)
-                    {
-                        foreach (ButtonInfo v in buttonlist)
-                        {
-                            if (v.enabled)
-                            {
-                                if (v.method != null)
-                                {
-                                    try
-                                    {
-                                        v.method.Invoke();
-                                    }
-                                    catch (Exception exc)
-                                    {
-                                        UnityEngine.Debug.LogError(string.Format("{0} // Error with mod {1} at {2}: {3}", PluginInfo.Name, v.buttonText, exc.StackTrace, exc.Message));
-                                    }
+                                    UnityEngine.Debug.LogError(string.Format("{0} // Error with mod {1} at {2}: {3}", PluginInfo.Name, v.buttonText, exc.StackTrace, exc.Message));
                                 }
                             }
                         }
