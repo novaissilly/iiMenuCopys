@@ -1,4 +1,5 @@
-﻿using ExitGames.Client.Photon;
+﻿using easyInputs;
+using ExitGames.Client.Photon;
 using GorillaNetworking;
 using Photon.Pun;
 using UnityEngine;
@@ -14,6 +15,14 @@ namespace iiMenu.Mods
 {
     internal class Important
     {
+        public static void Turning()
+        {
+            if (EasyInputs.GetThumbStick2DAxis(EasyHand.RightHand).x > 0.6f)
+                GorillaLocomotion.Player.Instance.Turn(6f);
+            if (EasyInputs.GetThumbStick2DAxis(EasyHand.RightHand).x < -0.6f)
+                GorillaLocomotion.Player.Instance.Turn(-6f);
+        }
+
         public static void Disconnect()
         {
             if ((GetIndex("Primary Room Mods").enabled && rightPrimary) || !GetIndex("Primary Room Mods").enabled)
