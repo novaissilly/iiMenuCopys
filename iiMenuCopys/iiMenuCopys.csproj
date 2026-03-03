@@ -58,6 +58,7 @@
     <Compile Include="Mods\Safety.cs" />
     <Compile Include="Mods\Settings.cs" />
     <Compile Include="Mods\Sound.cs" />
+    <Compile Include="Mods\SoundBoard.cs" />
     <Compile Include="Mods\Visuals.cs" />
     <Compile Include="Notifications\Library.cs" />
     <Compile Include="Notifications\PlayerJoin.cs" />

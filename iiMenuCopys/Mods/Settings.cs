@@ -101,51 +101,45 @@ namespace iiMenu.Mods
             pageNumber = 0;
         }
 
-        public static void EnableSpam()
+        public static void EnableSoundSpam()
         {
             buttonsType = 13;
             pageNumber = 0;
         }
 
-        public static void EnableSoundSpam()
+        public static void EnableProjectileSpam()
         {
             buttonsType = 14;
             pageNumber = 0;
         }
 
-        public static void EnableProjectileSpam()
+        public static void EnableMaster()
         {
             buttonsType = 15;
             pageNumber = 0;
         }
 
-        public static void EnableMaster()
+        public static void EnableOverpowered()
         {
             buttonsType = 16;
             pageNumber = 0;
         }
 
-        public static void EnableOverpowered()
+        public static void EnableExperimental()
         {
             buttonsType = 17;
             pageNumber = 0;
         }
 
-        public static void EnableExperimental()
+        public static void EnableFavorites()
         {
             buttonsType = 18;
             pageNumber = 0;
         }
 
-        public static void EnableFavorites()
-        {
-            buttonsType = 19;
-            pageNumber = 0;
-        }
-
         public static void EnableAdmin()
         {
-            Main.buttonsType = 20;
+            Main.buttonsType = 19;
             Main.pageNumber = 0;
         }
 

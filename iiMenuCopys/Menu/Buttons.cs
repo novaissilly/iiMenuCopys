@@ -26,7 +26,8 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Advantage Mods", method =() => Settings.EnableAdvantage(), isTogglable = false, toolTip = "Opens the advantage giving mods."},
                 new ButtonInfo { buttonText = "Visual Mods", method =() => Settings.EnableVisual(), isTogglable = false, toolTip = "Opens the visual mods."},
                 new ButtonInfo { buttonText = "Fun Mods", method =() => Settings.EnableFun(), isTogglable = false, toolTip = "Opens the fun mods."},
-                new ButtonInfo { buttonText = "Spam Mods", method =() => Settings.EnableSpam(), isTogglable = false, toolTip = "Opens the spam mods."},
+                new ButtonInfo { buttonText = "Sound Mods", method =() => Settings.EnableSoundSpam(), isTogglable = false, toolTip = "Opens the sound mods."},
+                new ButtonInfo { buttonText = "Projectile Mods", method =() => Settings.EnableProjectileSpam(), isTogglable = false, toolTip = "Opens the projectile mods."},
                 new ButtonInfo { buttonText = "Master Mods", method =() => Settings.EnableMaster(), isTogglable = false, toolTip = "Opens the master mods."},
                 new ButtonInfo { buttonText = "Overpowered Mods", method =() => Settings.EnableOverpowered(), isTogglable = false, toolTip = "Opens the overpowered mods."},
                 new ButtonInfo { buttonText = "Experimental Mods", method =() => Settings.EnableExperimental(), isTogglable = false, toolTip = "Opens the experimental mods."},
@@ -322,15 +323,10 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Grab Player Info", method =() => Miscellaneous.GrabPlayerInfo(), isTogglable = false, toolTip = "Saves every player's name, color, and player ID as a text file and opens it." },
             },
 
-            new ButtonInfo[] { // Spam Mods [13]
-                new ButtonInfo { buttonText = "Exit Spam Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page."},
+            new ButtonInfo[] { // Sound Spam Mods [13]
+                new ButtonInfo { buttonText = "Exit Sound Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the sound page."},
 
-                new ButtonInfo { buttonText = "Sound Mods", method =() => Settings.EnableSoundSpam(), isTogglable = false, toolTip = "Opens the sound mods."},
-                new ButtonInfo { buttonText = "Projectile Mods", method =() => Settings.EnableProjectileSpam(), isTogglable = false, toolTip = "Opens the projectile mods."},
-            },
-
-            new ButtonInfo[] { // Sound Spam Mods [14]
-                new ButtonInfo { buttonText = "Exit Sound Mods", method =() => Settings.EnableSpam(), isTogglable = false, toolTip = "Returns you back to the sound page."},
+                new ButtonInfo { buttonText = "Soundboard", method =() => SoundBoard.LoadSoundboard(), isTogglable = false, toolTip = "A working, customizable soundboard that lets you play audios through your microphone."},
 
                 new ButtonInfo { buttonText = "Random Sound Spam <color=grey>[</color><color=green>G</color><color=grey>]</color>", method =() => Sound.RandomSoundSpam(), toolTip = "Plays random sounds when holding grip." },
                 new ButtonInfo { buttonText = "Bass Sound Spam <color=grey>[</color><color=green>G</color><color=grey>]</color>", method =() => Sound.BassSoundSpam(), toolTip = "Plays the loud drum sound when holding grip." },
@@ -346,13 +342,13 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Custom Sound Spam", overlapText = "Custom Sound Spam <color=grey>[</color><color=green>0</color><color=grey>]</color>", method =() => Sound.CustomSoundSpam(), toolTip = "Plays the selected sound when holding grip." },
             },
 
-            new ButtonInfo[] { // Projectile Spam Mods [15]
-                new ButtonInfo { buttonText = "Exit Projectile Mods", method =() => Settings.EnableSpam(), isTogglable = false, toolTip = "Returns you back to the projectile page."},
+            new ButtonInfo[] { // Projectile Spam Mods [14]
+                new ButtonInfo { buttonText = "Exit Projectile Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the projectile page."},
                 new ButtonInfo { buttonText = "Projectile Spam <color=grey>[</color><color=green>G</color><color=grey>]</color>", method =() => Projectiles.ProjectileSpam(), toolTip = "Spams projectiles when holding <color=green>grip</color>." },
                 new ButtonInfo { buttonText = "Give Projectile Spam Gun", method =() => Projectiles.GiveProjectileSpamGun(), toolTip = "Gives the person you shoot at projectile spam when they hold right grip." },
             },
 
-            new ButtonInfo[] { // Master Mods [16]
+            new ButtonInfo[] { // Master Mods [15]
                 new ButtonInfo { buttonText = "Exit Master Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page."},
 
                 new ButtonInfo { buttonText = "Untag Self", method =() => Advantages.UntagSelf(), isTogglable = false, toolTip = "Removes you from the list of tagged players."},
@@ -389,7 +385,7 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Kick All <color=grey>[</color><color=red>Stump</color><color=grey>]</color> <color=grey>[</color><color=red>Private</color><color=grey>]</color>", method =() => Overpowered.KickAll(), isTogglable = false, toolTip = "Kicks everyone inside of stump to a random public." },
             },
 
-            new ButtonInfo[] { // Overpowered Mods [17]
+            new ButtonInfo[] { // Overpowered Mods [16]
                 new ButtonInfo { buttonText = "Exit Overpowered Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page."},
 
                 new ButtonInfo { buttonText = "Set Master", method = () => Experimental.SetMaster(), isTogglable = false, toolTip = "Sets you as master client." },
@@ -403,15 +399,15 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Destroy Gun", method =() => Overpowered.DestroyGun(), toolTip = "Makes new players not see whoever your hand desires." },
                 new ButtonInfo { buttonText = "Destroy All", method =() => Overpowered.DestroyAll(), isTogglable = false, toolTip = "Every player that joins after you will not be able to see anyone." },
 
-                //new ButtonInfo { buttonText = "Spawn Blue Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Gong, false), isTogglable = false, toolTip = "Spawns the ghost Blue Lucy in forest."},
-                //new ButtonInfo { buttonText = "Spawn Red Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Gong, true), isTogglable = false, toolTip = "Spawns the ghost Red Lucy in forest."},
-                //new ButtonInfo { buttonText = "Despawn Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Dormant, true), isTogglable = false, toolTip = "Despawns the ghost Lucy in forest."},
+                new ButtonInfo { buttonText = "Spawn Blue Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Gong, false), isTogglable = false, toolTip = "Spawns the ghost Blue Lucy in forest."},
+                new ButtonInfo { buttonText = "Spawn Red Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Gong, true), isTogglable = false, toolTip = "Spawns the ghost Red Lucy in forest."},
+                new ButtonInfo { buttonText = "Despawn Lucy", method =() => Experimental.SpawnLucy(HalloweenGhostChaser.ChaseState.Dormant, true), isTogglable = false, toolTip = "Despawns the ghost Lucy in forest."},
 
                 //new ButtonInfo { buttonText = "Break Audio Gun", method =() => Overpowered.BreakAudioGun(), toolTip = "Attempts to break the audio of whoever your hand desires." },
                 //new ButtonInfo { buttonText = "Break Audio All", method =() => Overpowered.BreakAudioAll(), toolTip = "Attempts to breaks everyone's audio." },
             },
 
-            new ButtonInfo[] { // Experimental Mods [18]
+            new ButtonInfo[] { // Experimental Mods [17]
                 new ButtonInfo { buttonText = "Exit Experimental Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page."},
 
                 new ButtonInfo { buttonText = "Experimental RPC Protection", enabled = true, toolTip = "Uses an experimental method of protecting your RPCs. Credits to Kante."},
@@ -421,11 +417,11 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Ban All [TEST]", method =() => Experimental.BanAll(), isTogglable = false, toolTip = "Test of ban all."},
             },
 
-            new ButtonInfo[] { // Favorite Mods [19]
+            new ButtonInfo[] { // Favorite Mods [18]
                 new ButtonInfo { buttonText = "Exit Favorite Mods", method =() => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page."},
             },
 
-            new ButtonInfo[] { // Admin Mods [20]
+            new ButtonInfo[] { // Admin Mods [19]
                 new ButtonInfo { buttonText = "Exit Admin Mods", method = () => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you back to the main page." },
                 new ButtonInfo { buttonText = "Admin Kick All Using", enableMethod = () => Experimental.KickAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 new ButtonInfo { buttonText = "Admin Fling All Using", enableMethod = () => Experimental.FlingAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
@@ -433,6 +429,10 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Admin Quit All Using", enableMethod = () => Experimental.QuitAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 new ButtonInfo { buttonText = "Admin Bring All Using", enableMethod = () => Experimental.BringAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 //new ButtonInfo { buttonText = "Break Menu All Using", enableMethod = () => Experimental.KickAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
+            },
+
+            new ButtonInfo[] { // Soundboard [20]
+                new ButtonInfo { buttonText = "<color=red>Exit Soundboard</color>", method = () => Settings.ReturnToMain(), isTogglable = false, toolTip = "Returns you to main menu." }
             },
 
             new ButtonInfo[] { // External hidden from user
