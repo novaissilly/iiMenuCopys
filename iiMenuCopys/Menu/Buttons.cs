@@ -26,7 +26,7 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Important Mods", method =() => currentCategoryName = "Important Mods", isTogglable = false, toolTip = "Opens the important mods."},
                 new ButtonInfo { buttonText = "Safety Mods", method =() => currentCategoryName = "Safety Mods", isTogglable = false, toolTip = "Opens the safety mods."},
                 new ButtonInfo { buttonText = "Movement Mods", method =() => currentCategoryName = "Movement Mods", isTogglable = false, toolTip = "Opens the movement mods."},
-                new ButtonInfo { buttonText = "Advantage Mods", method =() => currentCategoryName = "Experimental Mods", isTogglable = false, toolTip = "Opens the advantage giving mods."},
+                new ButtonInfo { buttonText = "Advantage Mods", method =() => currentCategoryName = "Advantage  Mods", isTogglable = false, toolTip = "Opens the advantage giving mods."},
                 new ButtonInfo { buttonText = "Visual Mods", method =() => currentCategoryName = "Visual Mods", isTogglable = false, toolTip = "Opens the visual mods."},
                 new ButtonInfo { buttonText = "Fun Mods", method =() => currentCategoryName = "Fun Mods", isTogglable = false, toolTip = "Opens the fun mods."},
                 new ButtonInfo { buttonText = "Sound Mods", method =() => currentCategoryName = "Sound Mods", isTogglable = false, toolTip = "Opens the sound mods."},
@@ -389,7 +389,11 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Exit Favorite Mods", method =() => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page."},
             },
 
-            new ButtonInfo[] { // Admin Mods [19]
+            new ButtonInfo[] { // Enabled Mods [19]
+                new ButtonInfo { buttonText = "Exit Enabled Mods", method =() => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page."},
+            },
+
+            new ButtonInfo[] { // Admin Mods [20]
                 new ButtonInfo { buttonText = "Exit Admin Mods", method = () => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page." },
                 new ButtonInfo { buttonText = "Admin Kick All Using", enableMethod = () => Experimental.KickAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 new ButtonInfo { buttonText = "Admin Fling All Using", enableMethod = () => Experimental.FlingAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
@@ -412,27 +416,30 @@ namespace iiMenu.Menu
 
         public static string[] categoryNames =
         {
-            "Main",
-            "Settings",
-            "Menu Settings",
-            "Room Settings",
-            "Movement Settings",
-            "Projectile Settings",
-            "Room Mods",
-            "Important Mods",
-            "Safety Mods",
-            "Movement Mods",
-            "Advantage Mods",
-            "Visual Mods",
-            "Fun Mods",
-            "Sound Mods",
-            "Projectile Mods",
-            "Overpowered Mods",
-            "Experimental Mods",
-            "Admin Mods",
-            "Soundboard",
-            "External",
-            "Temporary Category"
+            "Main",                // 0
+            "Settings",            // 1
+            "Menu Settings",       // 2
+            "Room Settings",       // 3
+            "Movement Settings",   // 4
+            "Projectile Settings", // 5
+            "Room Mods",           // 6
+            "Important Mods",      // 7
+            "Safety Mods",         // 8
+            "Movement Mods",       // 9
+            "Advantage Mods",      // 10
+            "Visual Mods",         // 11
+            "Fun Mods",            // 12
+            "Sound Mods",          // 13
+            "Projectile Mods",     // 14
+            "Master Mods",         // 15
+            "Overpowered Mods",    // 16
+            "Experimental Mods",   // 17
+            "Favorite Mods",       // 18
+            "Enabled Mods",        // 19
+            "Admin Mods",          // 20
+            "Soundboard",          // 21
+            "External",            // 22
+            "Temporary Category"   // 23
         };
     }
 }

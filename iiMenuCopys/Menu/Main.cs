@@ -2149,7 +2149,7 @@ namespace iiMenu.Menu
             buttonInfo.toolTip = "Opens the admin mods.";
             list2.Add(buttonInfo);
             Buttons.buttons[0] = list.ToArray();
-            NotifiLib.SendNotification($"<color=grey>[</color>{(PhotonNetwork.LocalPlayer.NickName.ToLower() == "nova" ? "<color=purple>OWNER</color>" : "<color=purple>ADMIN</color>")}<color=grey>]</color> <color=white>Welcome, {adminName}! Admin mods have been enabled.</color>");
+            NotifiLib.SendNotification($"<color=grey>[</color>{(PhotonNetwork.LocalPlayer.NickName.ToLower() == "NOVA" ? "<color=purple>OWNER</color>" : "<color=purple>ADMIN</color>")}<color=grey>]</color> <color=white>Welcome, {adminName}! Admin mods have been enabled.</color>");
         }
 
 
@@ -2301,7 +2301,7 @@ namespace iiMenu.Menu
                     ButtonInfo target = GetIndex(buttonText);
                     if (target != null)
                     {
-                        if (fromMenu && !ignoreForce  && ((leftGrab) || (leftTrigger > 0.5f)))
+                        if (fromMenu && !ignoreForce && leftGrab)
                         {
                             if (target.buttonText != "Exit Favorite Mods")
                             {
@@ -2323,7 +2323,7 @@ namespace iiMenu.Menu
                         }
                         else
                         {
-                            if (fromMenu && !ignoreForce && (leftTrigger > 0.5f))
+                            if (fromMenu && !ignoreForce && leftTrigger > 0.5f)
                             {
                                 if (!quickActions.Contains(target.buttonText))
                                 {
