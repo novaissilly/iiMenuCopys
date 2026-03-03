@@ -13,26 +13,26 @@ using static iiMenu.Menu.Main;
 
 namespace iiMenu.Patches
 {
-	[HarmonyPatch(typeof(MonoBehaviourPunCallbacks), "OnPlayerLeftRoom")]
-	internal class LeavePatch : MonoBehaviour
-	{
-		private static void Prefix(Player otherPlayer)
-		{
-			if (otherPlayer != PhotonNetwork.LocalPlayer && otherPlayer != a)
-			{
-				NotifiLib.SendNotification("<color=grey>[</color><color=red>LEAVE</color><color=grey>]</color> <color=white>Name: " + otherPlayer.NickName + "</color>");
-				if (customSoundOnJoin)
-				{
-					if (!Directory.Exists("iisStupidMenu"))
-					{
-						Directory.CreateDirectory("iisStupidMenu");
-					}
-					File.WriteAllText("iisStupidMenu/iiMenu_CustomSoundOnJoin.txt", "PlayerLeave");
-				}
-				a = otherPlayer;
-			}
-		}
+    [HarmonyPatch(typeof(MonoBehaviourPunCallbacks), "OnPlayerLeftRoom")]
+    internal class LeavePatch : MonoBehaviour
+    {
+        private static void Prefix(Player otherPlayer)
+        {
+            if (otherPlayer != PhotonNetwork.LocalPlayer && otherPlayer != a)
+            {
+                NotifiLib.SendNotification("<color=grey>[</color><color=red>LEAVE</color><color=grey>]</color> <color=white>Name: " + otherPlayer.NickName + "</color>");
+                if (customSoundOnJoin)
+                {
+                    if (!Directory.Exists("iisStupidMenu"))
+                    {
+                        Directory.CreateDirectory("iisStupidMenu");
+                    }
+                    File.WriteAllText("iisStupidMenu/iiMenu_CustomSoundOnJoin.txt", "PlayerLeave");
+                }
+                a = otherPlayer;
+            }
+        }
 
-		private static Player a;
-	}
+        private static Player a;
+    }
 }

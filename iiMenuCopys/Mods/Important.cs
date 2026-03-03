@@ -139,7 +139,7 @@ namespace iiMenu.Mods
 
         public static void JoinDiscord()
         {
-            Application.OpenURL("https://discord.gg/dtQdz59FJG");
+            Application.OpenURL("https://discord.gg/PeTVxBVvaj");
         }
 
         public static void EnableAntiAFK()

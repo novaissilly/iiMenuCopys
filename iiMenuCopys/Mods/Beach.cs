@@ -60,11 +60,11 @@ namespace iiMenu.Mods
 
         public static void DisableAirSwim()
         {
-           // if (airSwimPart != null)
-           // {
+            // if (airSwimPart != null)
+            // {
             //    UnityEngine.Object.Destroy(airSwimPart);
             //    GorillaLocomotion.Player.Instance.audioManager.UnsetMixerSnapshot(0.1f);
-           // }
+            // }
         }
 
         public static void FastSwim()

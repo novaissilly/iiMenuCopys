@@ -37,17 +37,17 @@ namespace iiMenu.Mods
 
         public static void SpinHeadX()
         {
-           // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.x += 10f;
+            // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.x += 10f;
         }
 
         public static void SpinHeadY()
         {
-           // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.y += 10f;
+            // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.y += 10f;
         }
 
         public static void SpinHeadZ()
         {
-           // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.z =+ GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.z+ 10f;
+            // GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.z =+ GorillaTagger.Instance.myVRRig.head.trackingRotationOffset.z+ 10f;
         }
 
         public static void FlipHands()
@@ -269,7 +269,7 @@ namespace iiMenu.Mods
                 }
 
                 GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                NewPointer.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                NewPointer.GetComponent<Renderer>().material.color = bgColorA;
                 NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 NewPointer.transform.position = Ray.point;
                 UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());
@@ -529,7 +529,7 @@ namespace iiMenu.Mods
                 }
 
                 GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                NewPointer.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                NewPointer.GetComponent<Renderer>().material.color = bgColorA;
                 NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 NewPointer.transform.position = Ray.point;
                 UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());

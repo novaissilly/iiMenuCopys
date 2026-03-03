@@ -101,10 +101,27 @@ namespace iiMenu.Mods
                     leftplat.transform.rotation = GorillaTagger.Instance.leftHandTransform.rotation;
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             leftplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            leftplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (GetIndex("Stick Long Arms").enabled)
@@ -172,10 +189,27 @@ namespace iiMenu.Mods
                 {
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             leftplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            leftplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (platformMode == 2)
@@ -233,10 +267,27 @@ namespace iiMenu.Mods
                     rightplat.transform.rotation = GorillaTagger.Instance.rightHandTransform.rotation;
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             rightplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            rightplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (GetIndex("Stick Long Arms").enabled)
@@ -304,10 +355,27 @@ namespace iiMenu.Mods
                 {
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             rightplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            rightplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (platformMode == 2)
@@ -368,10 +436,27 @@ namespace iiMenu.Mods
                     leftplat.transform.rotation = GorillaTagger.Instance.leftHandTransform.rotation;
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             leftplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            leftplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (GetIndex("Stick Long Arms").enabled)
@@ -439,10 +524,27 @@ namespace iiMenu.Mods
                 {
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             leftplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            leftplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (platformMode == 2)
@@ -500,10 +602,27 @@ namespace iiMenu.Mods
                     rightplat.transform.rotation = GorillaTagger.Instance.rightHandTransform.rotation;
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             rightplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            rightplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (GetIndex("Stick Long Arms").enabled)
@@ -571,10 +690,27 @@ namespace iiMenu.Mods
                 {
                     if (platformMode != 5)
                     {
+                        GradientColorKey[] array = new GradientColorKey[3];
+                        array[0].color = bgColorA;
+                        array[0].time = 0f;
+                        array[1].color = bgColorB;
+                        array[1].time = 0.5f;
+                        array[2].color = bgColorA;
+                        array[2].time = 1f;
+
+                        Gradient bg = new Gradient
+                        {
+                            colorKeys = array
+                        };
+
                         if (themeType == 6)
                         {
                             float h = (Time.frameCount / 180f) % 1f;
                             rightplat.GetComponent<Renderer>().material.color = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
+                        }
+                        else
+                        {
+                            rightplat.GetComponent<Renderer>().material.color = bg.Evaluate((Time.time / 2f) % 1);
                         }
                     }
                     if (platformMode == 2)
@@ -658,7 +794,7 @@ namespace iiMenu.Mods
                 {
                     GameObject platform = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     UnityEngine.Object.Destroy(platform.GetComponent<BoxCollider>());
-                    platform.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    platform.GetComponent<Renderer>().material.color = bgColorA;
                     platform.GetComponent<Renderer>().material.shader = Shader.Find("Standard");
                     platform.transform.localScale = new Vector3(0.025f, 0.3f, 0.4f);
                     platform.transform.position = GunPointer.transform.position;
@@ -822,7 +958,7 @@ namespace iiMenu.Mods
 
                 GameObject line = new GameObject("Line");
                 LineRenderer liner = line.AddComponent<LineRenderer>();
-                UnityEngine.Color thecolor = backgroundColor.GetCurrentColor();
+                UnityEngine.Color thecolor = bgColorA;
                 liner.startColor = thecolor; liner.endColor = thecolor; liner.startWidth = 0.025f; liner.endWidth = 0.025f; liner.positionCount = 2; liner.useWorldSpace = true;
                 liner.SetPosition(0, GorillaTagger.Instance.leftHandTransform.position);
                 liner.SetPosition(1, leftgrapplePoint);
@@ -857,7 +993,7 @@ namespace iiMenu.Mods
 
                 GameObject line = new GameObject("Line");
                 LineRenderer liner = line.AddComponent<LineRenderer>();
-                UnityEngine.Color thecolor = backgroundColor.GetCurrentColor();
+                UnityEngine.Color thecolor = bgColorA;
                 liner.startColor = thecolor; liner.endColor = thecolor; liner.startWidth = 0.025f; liner.endWidth = 0.025f; liner.positionCount = 2; liner.useWorldSpace = true;
                 liner.SetPosition(0, GorillaTagger.Instance.rightHandTransform.position);
                 liner.SetPosition(1, rightgrapplePoint);
@@ -1078,13 +1214,13 @@ namespace iiMenu.Mods
             {
                 if (rightPrimary)
                 {
-                    CheckPoint.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    CheckPoint.GetComponent<Renderer>().material.color = bgColorA;
                     GorillaTagger.Instance.GetComponent<Rigidbody>().transform.position = CheckPoint.transform.position;
                     GorillaTagger.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
                 else
                 {
-                    CheckPoint.GetComponent<Renderer>().material.color = buttonColors[0].GetCurrentColor();
+                    CheckPoint.GetComponent<Renderer>().material.color = buttonDefaultA;
                 }
             }
         }
@@ -1128,7 +1264,7 @@ namespace iiMenu.Mods
                 }
                 else
                 {
-                    BombObject.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    BombObject.GetComponent<Renderer>().material.color = buttonDefaultA;
                 }
             }
         }
@@ -1156,7 +1292,7 @@ namespace iiMenu.Mods
 
         public static void Noclip()
         {
-            if (rightTrigger > 0.5f )
+            if (rightTrigger > 0.5f)
             {
                 if (noclip == false)
                 {
@@ -1202,8 +1338,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1244,8 +1380,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1288,8 +1424,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1323,8 +1459,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1365,8 +1501,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1421,8 +1557,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1461,8 +1597,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1501,8 +1637,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1548,8 +1684,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1594,8 +1730,8 @@ namespace iiMenu.Mods
                 r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                l.GetComponent<Renderer>().material.color = bgColorA;
+                r.GetComponent<Renderer>().material.color = bgColorA;
 
                 UnityEngine.Object.Destroy(l, Time.deltaTime);
                 UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1652,8 +1788,8 @@ namespace iiMenu.Mods
             r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-            l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-            r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+            l.GetComponent<Renderer>().material.color = bgColorA;
+            r.GetComponent<Renderer>().material.color = bgColorA;
 
             UnityEngine.Object.Destroy(l, Time.deltaTime);
             UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -1962,8 +2098,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -2028,8 +2164,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -2094,8 +2230,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -2160,8 +2296,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);
@@ -2226,8 +2362,8 @@ namespace iiMenu.Mods
                     r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
 
-                    l.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
-                    r.GetComponent<Renderer>().material.color = backgroundColor.GetCurrentColor();
+                    l.GetComponent<Renderer>().material.color = bgColorA;
+                    r.GetComponent<Renderer>().material.color = bgColorA;
 
                     UnityEngine.Object.Destroy(l, Time.deltaTime);
                     UnityEngine.Object.Destroy(r, Time.deltaTime);

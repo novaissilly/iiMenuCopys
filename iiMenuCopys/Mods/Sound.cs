@@ -142,7 +142,7 @@ namespace iiMenu.Mods.Spammers
         {
             if (rightGrab)
             {
-                
+
                 RPCProtection();
             }
         }
@@ -180,7 +180,7 @@ namespace iiMenu.Mods.Spammers
             {
                 //GorillaTagger.Instance.myVRRig.RPC("PlayTagSound", RpcTarget.All, new object[]
                 //{
-               //     2,
+                //     2,
                 //    999999f
                 //});
                 RPCProtection();

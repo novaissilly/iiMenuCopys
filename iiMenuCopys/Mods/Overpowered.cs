@@ -121,7 +121,7 @@ namespace iiMenu.Mods
 
         public static void BlindGun()
         {
-            
+
         }
 
         public static void CrashAll()
@@ -166,14 +166,14 @@ namespace iiMenu.Mods
 
         public static void KickGun()
         {
-            
+
         }
 
         public static void KickAll()
         {
             if (PhotonNetwork.InRoom && !PhotonNetwork.CurrentRoom.IsVisible)
             {
-               
+
             }
         }
         /*
@@ -544,17 +544,17 @@ namespace iiMenu.Mods
 
         public static void BreakAudioGun()
         {
-            
+
         }
 
         public static void BreakAudioAll()
         {
-           // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
+            // GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.Others, new object[]{
             //    213,
-             ////   false,
-                //999999f
-             //   0.01f
-           // });
+            ////   false,
+            //999999f
+            //   0.01f
+            // });
         }
     }
 }

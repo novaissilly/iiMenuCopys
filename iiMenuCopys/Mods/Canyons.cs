@@ -1,6 +1,6 @@
 ﻿/*
- *  HEY SKIDDERS
- *  you can take the code ig
+*  HEY SKIDDERS
+*  you can take the code ig
 */
 
 namespace iiMenu.Mods
@@ -9,21 +9,21 @@ namespace iiMenu.Mods
     {
         public static void CanyonsRopeControl()
         {
-           /* Vector2 joy = ControllerInputPoller.instance.rightControllerPrimary2DAxis;
+            /* Vector2 joy = ControllerInputPoller.instance.rightControllerPrimary2DAxis;
 
-            if (Mathf.Abs(joy.x) > 0.3 || Mathf.Abs(joy.y) > 0.3)
-            {
-                foreach (GorillaRopeSwing rope in GameObject.FindObjectsOfType(typeof(GorillaRopeSwing)))
-                {
-                    rope.photonView.RPC("SetVelocity", RpcTarget.All, new object[]
-                    {
-                        1,
-                        new Vector3(joy.x*50f, joy.y*50f, 0f),
-                        true
-                    });
-                    RPCProtection();
-                }
-            }*/
+             if (Mathf.Abs(joy.x) > 0.3 || Mathf.Abs(joy.y) > 0.3)
+             {
+                 foreach (GorillaRopeSwing rope in GameObject.FindObjectsOfType(typeof(GorillaRopeSwing)))
+                 {
+                     rope.photonView.RPC("SetVelocity", RpcTarget.All, new object[]
+                     {
+                         1,
+                         new Vector3(joy.x*50f, joy.y*50f, 0f),
+                         true
+                     });
+                     RPCProtection();
+                 }
+             }*/
         }
     }
 }

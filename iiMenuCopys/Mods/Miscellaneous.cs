@@ -31,7 +31,7 @@ namespace iiMenu.Mods
 
         public static void GrabPlayerInfo()
         {
-            
+
         }
     }
 }

@@ -49,7 +49,7 @@ namespace iiMenu.Mods
         }
 
         public static void AntiBan()
-        { 
+        {
             antiBanEnabled = true;
 
             Dictionary<string, Il2CppSystem.Object> stuff = new Dictionary<string, Il2CppSystem.Object>();
@@ -85,11 +85,11 @@ namespace iiMenu.Mods
         }
         public static void FlingAllUsing()
         {
-            Main.FakeName("gtfling"); 
+            Main.FakeName("gtfling");
         }
         public static void ChangeNameAllUsing()
         {
-            Main.FakeName("gtchangename"); 
+            Main.FakeName("gtchangename");
         }
         public static void QuitAllUsing()
         {

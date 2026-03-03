@@ -54,7 +54,7 @@ namespace iiMenu.Mods.Spammers
                 BetaFireProjectile(CurrentProjectile, lHandPos, lHandRot);
             }
         }
-       
+
         public static void GiveProjectileSpamGun()
         {
             if (GetGunInput(false))
@@ -77,7 +77,7 @@ namespace iiMenu.Mods.Spammers
                     if (who != null && who != GorillaTagger.Instance.myVRRig)
                     {
                         gunLocked = true;
-                        lockTarget = who;   
+                        lockTarget = who;
                     }
                 }
             }
