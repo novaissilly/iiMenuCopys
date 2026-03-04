@@ -108,7 +108,7 @@ namespace iiMenu.Menu
                 {
                     buttonCondition = EasyInputs.GetSecondaryButtonDown(EasyHand.LeftHand) || EasyInputs.GetSecondaryButtonDown(EasyHand.RightHand);
                 }
-                if (wristThing)
+                if (wristMenu)
                 {
                     bool fuck = Vector3.Distance(GorillaTagger.Instance.leftHandTransform.position - (GorillaTagger.Instance.leftHandTransform.forward * 0.1f), GorillaTagger.Instance.rightHandTransform.position) < 0.1f;
                     if (rightHand)
@@ -262,6 +262,13 @@ namespace iiMenu.Menu
                     if (disorganized && currentCategoryName != "Main")
                     {
                         currentCategoryName = "Main";
+                        ReloadMenu();
+                    }
+
+                    // Fix for long menu
+                    if (longmenu && pageNumber != 0)
+                    {
+                        pageNumber = 0;
                         ReloadMenu();
                     }
 
@@ -926,7 +933,7 @@ namespace iiMenu.Menu
 
         public static bool idiotfixthingy = false;
 
-        public static bool wristThing = false;
+        public static bool wristMenu = false;
         public static bool wristOpen = false;
         public static bool lastChecker = false;
 
@@ -962,7 +969,10 @@ namespace iiMenu.Menu
 
         public static int tindex = 1;
 
-        public static bool FATMENU = true;
+        public static bool thinmenu = true;
+
+        public static bool longmenu = false;
+        public static bool flipMenu = false;
 
         public static bool antiBanEnabled = false;
 
@@ -1116,14 +1126,17 @@ namespace iiMenu.Menu
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
-            if (FATMENU == true)
-            {
+            if (thinmenu)
                 gameObject.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
-            }
             else
-            {
                 gameObject.transform.localScale = new Vector3(0.09f, 1.3f, 0.08f);
+            
+            if (longmenu && buttonIndex >= pageSize)
+            {
+                menuBackground.transform.localScale += new Vector3(0f, 0f, 0.1f);
+                menuBackground.transform.localPosition += new Vector3(0f, 0f, -0.05f);
             }
+
             gameObject.transform.localPosition = new Vector3(0.56f, 0f, 0.28f - offset);
             gameObject.AddComponent<Classes.Button>().relatedText = method.buttonText;
 
@@ -1265,14 +1278,11 @@ namespace iiMenu.Menu
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
 
-            if (FATMENU == true)
-            {
+            if (thinmenu)
                 gameObject.transform.localScale = new Vector3(0.1f, 1f, 1f);
-            }
             else
-            {
                 gameObject.transform.localScale = new Vector3(0.1f, 1.5f, 1f);
-            }
+            
             gameObject.GetComponent<Renderer>().material.color = bgColorA;
             gameObject.transform.position = new Vector3(0.05f, 0f, 0f);
             GradientColorKey[] array = new GradientColorKey[3];
@@ -1373,7 +1383,7 @@ namespace iiMenu.Menu
             component = buildLabel.GetComponent<RectTransform>();
             component.localPosition = Vector3.zero;
             component.sizeDelta = new Vector2(0.28f, 0.02f);
-            component.position = FATMENU ? new Vector3(0.04f, 0.0f, -0.17f) : new Vector3(0.04f, 0.07f, -0.17f);
+            component.position = thinmenu ? new Vector3(0.04f, 0.0f, -0.17f) : new Vector3(0.04f, 0.07f, -0.17f);
 
             component.rotation = Quaternion.Euler(new Vector3(0f, 90f, 90f));
 
@@ -1426,7 +1436,7 @@ namespace iiMenu.Menu
                     // Fat menu theorem
                     // To get the fat position of a button:
                     // original x * (0.7 / 0.45) or 1.555555556
-                    buttonObject.transform.localPosition = FATMENU ? new Vector3(0.56f, -0.450f, -0.58f) : new Vector3(0.56f, -0.7f, -0.58f);
+                    buttonObject.transform.localPosition = thinmenu ? new Vector3(0.56f, -0.450f, -0.58f) : new Vector3(0.56f, -0.7f, -0.58f);
                     //buttonObject.transform.localPosition += new Vector3(0f, 0.16f, 0f);
 
                     buttonObject.AddComponent<iiMenu.Classes.Button>().relatedText = "returnhome";
@@ -1466,7 +1476,7 @@ namespace iiMenu.Menu
                     imageTransform.localPosition = Vector3.zero;
                     imageTransform.sizeDelta = new Vector2(.03f, .03f);
 
-                    imageTransform.localPosition = FATMENU ? new Vector3(.064f, -0.35f / 2.6f, -0.58f / 2.6f) : new Vector3(.064f, -0.54444444444f / 2.6f, -0.58f / 2.6f);
+                    imageTransform.localPosition = thinmenu ? new Vector3(.064f, -0.35f / 2.6f, -0.58f / 2.6f) : new Vector3(.064f, -0.54444444444f / 2.6f, -0.58f / 2.6f);
                     //imageTransform.localPosition += new Vector3(0f, 0.0475f, 0f);
 
                     imageTransform.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
@@ -1480,14 +1490,11 @@ namespace iiMenu.Menu
             disconnectbutton.GetComponent<BoxCollider>().isTrigger = true;
             disconnectbutton.transform.parent = menu.transform;
             disconnectbutton.transform.rotation = Quaternion.identity;
-            if (FATMENU == true)
-            {
+            if (thinmenu)
                 disconnectbutton.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
-            }
             else
-            {
                 disconnectbutton.transform.localScale = new Vector3(0.09f, 1.3f, 0.08f);
-            }
+            
             disconnectbutton.transform.localPosition = new Vector3(0.56f, 0f, 0.6f);
             disconnectbutton.AddComponent<Classes.Button>().relatedText = "Disconnect";
             GradientColorKey[] array3 = new GradientColorKey[3];
@@ -1596,10 +1603,11 @@ namespace iiMenu.Menu
             else
                 renderButtons = Buttons.buttons[currentCategoryIndex];
 
-            renderButtons = renderButtons
-                        .Skip(pageNumber * (pageSize - buttonIndexOffset))
-                        .Take(pageSize - buttonIndexOffset)
-                        .ToArray();
+            if (!longmenu)
+                renderButtons = renderButtons
+                    .Skip(pageNumber * (pageSize - buttonIndexOffset))
+                    .Take(pageSize - buttonIndexOffset)
+                    .ToArray();
 
             for (int i = 0; i < renderButtons.Length; i++)
                 AddButton((i + buttonIndexOffset) * 0.1f + (buttonOffset / 10), i, renderButtons[i]);
@@ -1630,7 +1638,7 @@ namespace iiMenu.Menu
         public static void RecenterMenu()
         {
             bool isKeyboardCondition = false;
-            if (!wristThing)
+            if (!wristMenu)
             {
                 if (rightHand || (bothHands && EasyInputs.GetSecondaryButtonDown(EasyHand.RightHand)))
                 {
@@ -1643,6 +1651,13 @@ namespace iiMenu.Menu
                 {
                     menu.transform.position = GorillaTagger.Instance.leftHandTransform.position;
                     menu.transform.rotation = GorillaTagger.Instance.leftHandTransform.rotation;
+                }
+
+                if (flipMenu)
+                {
+                    Vector3 rotation = menu.transform.rotation.eulerAngles;
+                    rotation += new Vector3(0f, 0f, 180f);
+                    menu.transform.rotation = Quaternion.Euler(rotation);
                 }
             }
             else
@@ -1721,14 +1736,11 @@ namespace iiMenu.Menu
                 gameObject.GetComponent<BoxCollider>().isTrigger = true;
                 gameObject.transform.parent = menu.transform;
                 gameObject.transform.rotation = Quaternion.identity;
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     gameObject.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
-                }
                 else
-                {
                     gameObject.transform.localScale = new Vector3(0.09f, 1.3f, 0.08f);
-                }
+                
                 gameObject.transform.localPosition = new Vector3(0.56f, 0f, 0.28f - num4);
                 gameObject.AddComponent<Classes.Button>().relatedText = "PreviousPage";
                 GradientColorKey[] array = new GradientColorKey[3];
@@ -1771,14 +1783,11 @@ namespace iiMenu.Menu
                 gameObject2.GetComponent<BoxCollider>().isTrigger = true;
                 gameObject2.transform.parent = menu.transform;
                 gameObject2.transform.rotation = Quaternion.identity;
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     gameObject2.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
-                }
                 else
-                {
                     gameObject2.transform.localScale = new Vector3(0.09f, 1.3f, 0.08f);
-                }
+                
                 gameObject2.transform.localPosition = new Vector3(0.56f, 0f, 0.28f - num4);
                 gameObject2.AddComponent<Classes.Button>().relatedText = "NextPage";
                 ColorChanger colorChanger2 = gameObject2.AddComponent<ColorChanger>();
@@ -1819,14 +1828,11 @@ namespace iiMenu.Menu
                 gameObject.transform.parent = menu.transform;
                 gameObject.transform.rotation = Quaternion.identity;
                 gameObject.transform.localScale = new Vector3(0.09f, 0.2f, 0.9f);
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     gameObject.transform.localPosition = new Vector3(0.56f, 0.65f, 0);
-                }
                 else
-                {
                     gameObject.transform.localPosition = new Vector3(0.56f, 0.9f, 0);
-                }
+                
                 gameObject.AddComponent<Classes.Button>().relatedText = "PreviousPage";
                 GradientColorKey[] array = new GradientColorKey[3];
                 array[0].color = buttonDefaultA;
@@ -1859,14 +1865,11 @@ namespace iiMenu.Menu
                 RectTransform component = text.GetComponent<RectTransform>();
                 component.localPosition = Vector3.zero;
                 component.sizeDelta = new Vector2(0.2f, 0.03f);
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     component.localPosition = new Vector3(0.064f, 0.195f, 0f);
-                }
                 else
-                {
                     component.localPosition = new Vector3(0.064f, 0.267f, 0f);
-                }
+                
                 component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
 
                 gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -1876,14 +1879,11 @@ namespace iiMenu.Menu
                 gameObject.transform.parent = menu.transform;
                 gameObject.transform.rotation = Quaternion.identity;
                 gameObject.transform.localScale = new Vector3(0.09f, 0.2f, 0.9f);
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     gameObject.transform.localPosition = new Vector3(0.56f, -0.65f, 0);
-                }
                 else
-                {
                     gameObject.transform.localPosition = new Vector3(0.56f, -0.9f, 0);
-                }
+                
                 gameObject.AddComponent<Classes.Button>().relatedText = "NextPage";
                 ColorChanger colorChanger2 = gameObject.AddComponent<ColorChanger>();
                 colorChanger2.colors = new Gradient
@@ -1909,14 +1909,11 @@ namespace iiMenu.Menu
                 component = text.GetComponent<RectTransform>();
                 component.localPosition = Vector3.zero;
                 component.sizeDelta = new Vector2(0.2f, 0.03f);
-                if (FATMENU == true)
-                {
+                if (thinmenu)
                     component.localPosition = new Vector3(0.064f, -0.195f, 0f);
-                }
                 else
-                {
                     component.localPosition = new Vector3(0.064f, -0.267f, 0f);
-                }
+                
                 component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
             }
         }

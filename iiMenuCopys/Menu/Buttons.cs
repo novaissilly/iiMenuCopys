@@ -48,8 +48,10 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Exit Menu Settings", method =() => currentCategoryName = "Settings", isTogglable = false, toolTip = "Brings you back to the settings menu."},
                 new ButtonInfo { buttonText = "Right Hand", enableMethod =() => rightHand = true, disableMethod =() => rightHand = false, toolTip = "Puts the menu on your right hand."},
                 new ButtonInfo { buttonText = "Both Hands", enableMethod =() => bothHands = true, disableMethod =() => bothHands = false, toolTip = "Puts the menu on your both of your hands."},
-                new ButtonInfo { buttonText = "Wrist Menu", enableMethod =() => wristThing = true, disableMethod =() => wristThing = false, toolTip = "Makes the menu like a weird wrist watch, click your hand to open it."},
-                new ButtonInfo { buttonText = "Thick Menu", enableMethod =() => FATMENU = true, disableMethod =() => FATMENU = false, toolTip = "Makes the menu thick."},
+                new ButtonInfo { buttonText = "Wrist Menu", enableMethod =() => wristMenu = true, disableMethod =() => wristMenu = false, toolTip = "Makes the menu like a weird wrist watch, click your hand to open it."},
+                new ButtonInfo { buttonText = "Thick Menu", enableMethod =() => thinmenu = true, disableMethod =() => thinmenu = false, toolTip = "Makes the menu thick."},
+                new ButtonInfo { buttonText = "Long Menu", enableMethod =() => longmenu = true, disableMethod =() => longmenu = false, toolTip = "Makes the menu long."},
+                new ButtonInfo { buttonText = "Flip Menu", enableMethod =() => flipMenu = true, disableMethod =() => flipMenu = false, toolTip = "Flips the menu to the back of your hand."},
 
                 new ButtonInfo { buttonText = "Change Menu Theme", method =() => Settings.ChangeMenuTheme(), isTogglable = false, toolTip = "Changes the theme of the menu."},
                 new ButtonInfo { buttonText = "Change Page Type", method =() => Settings.ChangePageType(), isTogglable = false, toolTip = "Changes the type of page buttons."},
