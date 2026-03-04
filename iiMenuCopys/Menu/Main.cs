@@ -1483,61 +1483,6 @@ namespace iiMenu.Menu
                 }
             }
 
-
-            GameObject disconnectbutton = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-            UnityEngine.Object.Destroy(disconnectbutton.GetComponent<Rigidbody>());
-            disconnectbutton.GetComponent<BoxCollider>().isTrigger = true;
-            disconnectbutton.transform.parent = menu.transform;
-            disconnectbutton.transform.rotation = Quaternion.identity;
-            if (thinmenu)
-                disconnectbutton.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
-            else
-                disconnectbutton.transform.localScale = new Vector3(0.09f, 1.3f, 0.08f);
-            
-            disconnectbutton.transform.localPosition = new Vector3(0.56f, 0f, 0.6f);
-            disconnectbutton.AddComponent<Classes.Button>().relatedText = "Disconnect";
-            GradientColorKey[] array3 = new GradientColorKey[3];
-            array3[0].color = buttonDefaultA;
-            array3[0].time = 0f;
-            array3[1].color = buttonDefaultB;
-            array3[1].time = 0.5f;
-            array3[2].color = buttonDefaultA;
-            array3[2].time = 1f;
-            ColorChanger colorChanger2 = disconnectbutton.AddComponent<ColorChanger>();
-            colorChanger2.colors = new Gradient
-            {
-                colorKeys = array3
-            };
-            colorChanger2.Start();
-            disconnectbutton.GetComponent<Renderer>().material.color = buttonDefaultA;
-            Text discontext = new GameObject
-            {
-                transform =
-                {
-                    parent = canvasObj.transform
-                }
-            }.AddComponent<Text>();
-            discontext.font = activeFont;
-            discontext.text = "Disconnect";
-
-            if (lowercaseMode)
-                discontext.text = discontext.text.ToLower();
-
-            if (uppercaseMode)
-                discontext.text = discontext.text.ToUpper();
-
-            discontext.fontSize = 1;
-            discontext.color = textColor;
-            discontext.alignment = TextAnchor.MiddleCenter;
-            discontext.resizeTextForBestFit = true;
-            discontext.resizeTextMinSize = 0;
-            RectTransform rectt = discontext.GetComponent<RectTransform>();
-            rectt.localPosition = Vector3.zero;
-            rectt.sizeDelta = new Vector2(0.2f, 0.03f);
-            rectt.localPosition = new Vector3(0.064f, 0f, 0.23f);
-            rectt.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
-
             AddPageButtons();
 
             float hkbStartTime = -0.3f;
