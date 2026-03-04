@@ -741,7 +741,9 @@ namespace iiMenu.Menu
 
         public static bool homeButton = true;
         public static bool fpsCounter = false;
+        public static bool disableDisconnectButton = false;
         public static bool disableNotifications = false;
+        public static bool highQualityText = false;
 
         public static int pageSize = 6;
 
@@ -1290,7 +1292,7 @@ namespace iiMenu.Menu
             CanvasScaler canvasScaler = canvasObj.AddComponent<CanvasScaler>();
             canvasObj.AddComponent<GraphicRaycaster>();
             canvas.renderMode = RenderMode.WorldSpace;
-            canvasScaler.dynamicPixelsPerUnit = 1000f;
+            canvasScaler.dynamicPixelsPerUnit = highQualityText ? 2500 : 1000f;
 
             Text text = new GameObject
             {
@@ -1528,6 +1530,11 @@ namespace iiMenu.Menu
             AddPageButtons();
 
             float hkbStartTime = -0.3f;
+            if (!disableDisconnectButton)
+            {
+                AddButton(-0.3f, -1, GetIndex("Disconnect"));
+                hkbStartTime -= 0.1f;
+            }
 
             if (quickActions.Count > 0)
             {

@@ -58,6 +58,9 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Disable Notifications", enableMethod =() => Settings.DisableNotifications(), disableMethod =() => Settings.EnableNotifications(), toolTip = "Disables all notifications."},
                 new ButtonInfo { buttonText = "Enable FPS Counter", enableMethod =() => Settings.DisableFPSCounter(), disableMethod =() => Settings.EnableFPSCounter(), toolTip = "Disables the fps counter."},
                 new ButtonInfo { buttonText = "Disable Home Button", enableMethod =() => Settings.DisableHomeButton(), disableMethod =() => Settings.EnableHomeButton(), toolTip = "Disables the home button on the menu."},
+                new ButtonInfo { buttonText = "Disable Disconnect Button", enableMethod =() => disableDisconnectButton = true, disableMethod =() => disableDisconnectButton = false, toolTip = "Disables the disconnect button at the top of the menu."},
+
+                new ButtonInfo { buttonText = "High Quality Text", enableMethod =() => highQualityText = true, disableMethod =() => highQualityText = false, toolTip = "Makes the menu's text really high quality."},
 
                 new ButtonInfo { buttonText = "Annoying Mode", enableMethod =() => annoyingMode = true, disableMethod = Settings.AnnoyingModeOff, toolTip = "Turns on the April Fools 2024 settings."},
                 new ButtonInfo { buttonText = "Lowercase Mode", enableMethod =() => lowercaseMode = true, disableMethod =() => lowercaseMode = false, toolTip = "Makes the entire menu's text lowercase."},

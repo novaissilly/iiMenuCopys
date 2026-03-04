@@ -22,7 +22,7 @@ namespace iiMenu.Classes
             if (Main.menu == null)
                 return;
             ButtonCooldown = Time.time + 0.2f;
-            Main.Toggle(relatedText);
+            Main.Toggle(relatedText, true);
         }
     }
 }
