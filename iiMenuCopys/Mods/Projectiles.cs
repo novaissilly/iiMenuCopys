@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using easyInputs;
+using Photon.Pun;
+using UnhollowerBaseLib;
 using UnityEngine;
 using static iiMenu.Menu.Main;
 
@@ -55,6 +57,11 @@ namespace iiMenu.Mods.Spammers
             }
         }
 
+        public static void Aura()
+        {
+            BetaFireProjectile(CurrentProjectile, GorillaTagger.Instance.myVRRig.headMesh.transform.position, Quaternion.Euler(40f, 2f, 40f));
+        }
+
         public static void GiveProjectileSpamGun()
         {
             if (GetGunInput(false))
@@ -88,6 +95,77 @@ namespace iiMenu.Mods.Spammers
                     gunLocked = false;
                 }
             }
+        }
+
+        public static void Slingshot()
+        {
+            if (EasyInputs.GetGripButtonDown(EasyHand.RightHand))
+            {
+                SendCSProjectile(-820530352, GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.up + GorillaTagger.Instance.rightHandTransform.forward * 15f);
+            }
+            if (EasyInputs.GetGripButtonDown(EasyHand.LeftHand))
+            {
+                SendCSProjectile(-820530352, GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.up + GorillaTagger.Instance.leftHandTransform.forward * 15f);
+            }
+        }
+
+        public static void Snowball()
+        {
+            if (EasyInputs.GetGripButtonDown(EasyHand.RightHand))
+            {
+                SendCSProjectile(-675036877, GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.up + GorillaTagger.Instance.rightHandTransform.forward * 15f);
+            }
+            if (EasyInputs.GetGripButtonDown(EasyHand.LeftHand))
+            {
+                SendCSProjectile(-675036877, GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.up + GorillaTagger.Instance.leftHandTransform.forward * 15f);
+            }
+        }
+
+        public static void Cloud()
+        {
+            if (EasyInputs.GetGripButtonDown(EasyHand.RightHand))
+            {
+                SendCSProjectile(1511318966, GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.up + GorillaTagger.Instance.rightHandTransform.forward * 15f);
+            }
+            if (EasyInputs.GetGripButtonDown(EasyHand.LeftHand))
+            {
+                SendCSProjectile(1511318966, GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.up + GorillaTagger.Instance.leftHandTransform.forward * 15f);
+            }
+        }
+
+        public static void Cupid()
+        {
+            if (EasyInputs.GetGripButtonDown(EasyHand.RightHand))
+            {
+                SendCSProjectile(825718363, GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.up + GorillaTagger.Instance.rightHandTransform.forward * 15f);
+            }
+            if (EasyInputs.GetGripButtonDown(EasyHand.LeftHand))
+            {
+                SendCSProjectile(825718363, GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.up + GorillaTagger.Instance.leftHandTransform.forward * 15f);
+            }
+        }
+        public static void Deadshot()
+        {
+            if (EasyInputs.GetGripButtonDown(EasyHand.RightHand))
+            {
+                SendCSProjectile(693334698, GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.up + GorillaTagger.Instance.rightHandTransform.forward * 15f);
+            }
+            if (EasyInputs.GetGripButtonDown(EasyHand.LeftHand))
+            {
+                SendCSProjectile(693334698, GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.up + GorillaTagger.Instance.leftHandTransform.forward * 15f);
+            }
+        }
+
+
+        public static void SendCSProjectile(int projHash, Vector3 position, Vector3 velocity)
+        {
+            GameObject sling = ObjectPools.instance.Instantiate(projHash);
+            SlingshotProjectile sling2 = sling.gameObject.GetComponent<SlingshotProjectile>();
+            Rigidbody rb = sling2.GetComponent<Rigidbody>();
+            sling2.transform.position = position;
+            rb.velocity = velocity;
+            GameObject.Destroy(sling, 10f);
+            GameObject.Destroy(sling2.gameObject, 10f);
         }
     }
 }

@@ -325,7 +325,13 @@ namespace iiMenu.Menu
             new ButtonInfo[] { // Projectile Spam Mods [14]
                 new ButtonInfo { buttonText = "Exit Projectile Mods", method =() => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the projectile page."},
                 new ButtonInfo { buttonText = "Projectile Spam <color=grey>[</color><color=green>G</color><color=grey>]</color>", method =() => Projectiles.ProjectileSpam(), toolTip = "Spams projectiles when holding <color=green>grip</color>." },
+                new ButtonInfo { buttonText = "Projectile Aura", method =() => Projectiles.Aura(), toolTip = "Spams projectiles inside a aura." },
                 new ButtonInfo { buttonText = "Give Projectile Spam Gun", method =() => Projectiles.GiveProjectileSpamGun(), toolTip = "Gives the person you shoot at projectile spam when they hold right grip." },
+                new ButtonInfo { buttonText = "Snowball Spam <color=cyan[G, SPRING, CS]</color>", method =() => Projectiles.Snowball(), toolTip = "awawawawawaawawaw." },
+                new ButtonInfo { buttonText = "Deadshot Spam <color=cyan[G, SPRING, CS]</color>", method =() => Projectiles.Deadshot(), toolTip = "awawawawawaawawaw." },
+                new ButtonInfo { buttonText = "Slingshot Spam <color=cyan[G, SPRING, CS]</color>", method =() => Projectiles.Slingshot(), toolTip = "awawawawawaawawaw." },
+                new ButtonInfo { buttonText = "Cloud Spam <color=cyan[G, SPRING, CS]</color>", method =() => Projectiles.Cloud(), toolTip = "awawawawawaawawaw." },
+                new ButtonInfo { buttonText = "Cupid Spam <color=cyan[G, SPRING, CS]</color>", method =() => Projectiles.Cupid(), toolTip = "awawawawawaawawaw." },
             },
 
             new ButtonInfo[] { // Master Mods [15]
