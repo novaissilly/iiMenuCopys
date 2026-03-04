@@ -23,36 +23,6 @@ namespace iiMenu.Mods
             ChangeMenuTheme();
         }
 
-        public static void RightHand()
-        {
-            rightHand = true;
-        }
-
-        public static void LeftHand()
-        {
-            rightHand = false;
-        }
-
-        public static void BothHandsOn()
-        {
-            bothHands = true;
-        }
-
-        public static void BothHandsOff()
-        {
-            bothHands = false;
-        }
-
-        public static void WristThingOn()
-        {
-            wristThing = true;
-        }
-
-        public static void WristThingOff()
-        {
-            wristThing = false;
-            wristOpen = false;
-        }
 
         public static void ChangeMenuTheme()
         {
@@ -243,35 +213,6 @@ namespace iiMenu.Mods
             GetIndex("Join Random").isTogglable = false;
         }
 
-        public static void DisableHomeButton()
-        {
-            homeButton = false;
-        }
-        public static void EnableHomeButton()
-        {
-            homeButton = true;
-        }
-
-        public static void DisableFPSCounter()
-        {
-            fpsCounter = true;
-        }
-
-        public static void EnableFPSCounter()
-        {
-            fpsCounter = false;
-        }
-
-        public static void DisableNotifications()
-        {
-            disableNotifications = true;
-        }
-
-        public static void EnableNotifications()
-        {
-            disableNotifications = false;
-        }
-
         public static void SavePreferences()
         {
             string text = "";
@@ -373,15 +314,6 @@ namespace iiMenu.Mods
             NotifiLib.ClearAllNotifications();
         }
 
-        public static void ThinMenuOn()
-        {
-            FATMENU = false;
-        }
-
-        public static void ThinMenuOff()
-        {
-            FATMENU = true;
-        }
 
         public static void CrashAmount()
         {

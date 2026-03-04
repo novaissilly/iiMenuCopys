@@ -138,7 +138,10 @@ namespace iiMenu.Menu
                         {
                             reference.transform.parent = GorillaTagger.Instance.rightHandTransform;
                         }
-                        reference.GetComponent<Renderer>().material.color = bgColorA;
+                        if (hidePointer)
+                            reference.GetComponent<Renderer>().enabled = false;
+                        else
+                            reference.GetComponent<Renderer>().material.color = bgColorA;
                         reference.transform.localPosition = Settings.makeThisThePointerPos;
                         reference.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                         buttonCollider = reference.GetComponent<SphereCollider>();
@@ -744,6 +747,7 @@ namespace iiMenu.Menu
         public static bool disableDisconnectButton = false;
         public static bool disableNotifications = false;
         public static bool highQualityText = false;
+        public static bool hidePointer = false;
 
         public static int pageSize = 6;
 
