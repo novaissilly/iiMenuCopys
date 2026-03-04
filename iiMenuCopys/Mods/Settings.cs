@@ -2161,30 +2161,25 @@ namespace iiMenu.Mods
                 arrowType = arrowTypes.Length - 1;
         }
 
-        public static void ChangePageType()
+        public static void ChangePageType(bool positive = true)
         {
-            pageButtonType++;
-            if (pageButtonType > 4)
-            {
+            if (positive)
+                pageButtonType++;
+            else
+                pageButtonType--;
+
+            if (pageButtonType > 6)
                 pageButtonType = 1;
-            }
+
+            if (pageButtonType < 1)
+                pageButtonType = 6;
 
             if (pageButtonType == 1)
-            {
-                pageSize = 6;
                 buttonOffset = 2;
-            }
-            if (pageButtonType == 2)
-            {
-                pageSize = 8;
+            else
                 buttonOffset = 0;
-            }
-            if (pageButtonType == 3)
-            {
-                pageSize = 8;
-                buttonOffset = 0;
-            }
         }
+
 
 
         public static Vector3 makeThisThePointerPos = new Vector3(0.013f, -0.025f, 0.1f);

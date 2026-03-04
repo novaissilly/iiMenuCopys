@@ -54,9 +54,9 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Flip Menu", enableMethod =() => flipMenu = true, disableMethod =() => flipMenu = false, toolTip = "Flips the menu to the back of your hand."},
 
                 new ButtonInfo { buttonText = "Change Menu Theme", method =() => Settings.ChangeMenuTheme(), enableMethod =() => Settings.ChangeMenuTheme(), disableMethod =() => Settings.ChangeMenuTheme(false), incremental = true, isTogglable = false, toolTip = "Changes the theme of the menu."},
-                new ButtonInfo { buttonText = "Change Page Type", method =() => Settings.ChangePageType(), isTogglable = false, toolTip = "Changes the type of page buttons."},
+                new ButtonInfo { buttonText = "Change Page Type", method =() => Settings.ChangePageType(), enableMethod =() => Settings.ChangePageType(), disableMethod =() => Settings.ChangePageType(false), incremental = true, isTogglable = false, toolTip = "Changes the type of page buttons."},
                 new ButtonInfo { buttonText = "Change Arrow Type", method =() => Settings.ChangeArrowType(), enableMethod =() => Settings.ChangeArrowType(), disableMethod =() => Settings.ChangeArrowType(false), incremental = true, isTogglable = false, toolTip = "Changes the type of arrows on the page buttons."},
-                new ButtonInfo { buttonText = "Change Font Type", method =() => Settings.ChangeFontType(), isTogglable = false, toolTip = "Changes the type of font."},
+                //new ButtonInfo { buttonText = "Change Font Type", method =() => Settings.ChangeFontType(), isTogglable = false, toolTip = "Changes the type of font."},
                 new ButtonInfo { buttonText = "Change Pointer Position", enableMethod =() => Settings.ChangePointerPosition(), method =() => Settings.ChangePointerPosition(), isTogglable = false, toolTip = "Changes the position of the pointer."},
                 new ButtonInfo { buttonText = "Disorganize Menu", method =() => Settings.DisorganizeMenu(), isTogglable = false, toolTip = "Disorganizes the entire menu. This cannot be undone."},
                 new ButtonInfo { buttonText = "Disable Notifications", enableMethod =() => disableNotifications = true, disableMethod =() => disableNotifications = false, toolTip = "Disables all notifications."},
