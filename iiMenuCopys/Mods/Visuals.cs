@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using iiMenu.Classes;
+using System.Linq;
 using UnityEngine;
 using static iiMenu.Menu.Main;
 
@@ -557,6 +558,25 @@ namespace iiMenu.Mods
             right.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             UnityEngine.Object.Destroy(right.GetComponent<SphereCollider>());
             UnityEngine.Object.Destroy(right, Time.deltaTime);
+        }
+
+        public static void ConsoleBeacon(string id, string version, string menuName)
+        {
+            Photon.Realtime.Player sender = RigManager.GetPlayerFromID(id);
+            VRRig vrrig = RigManager.GetVRRigFromPlayer(sender);
+
+            Color userColor = Color.red;
+
+            NotificationManager.SendNotification("<color=grey>[</color><color=purple>ADMIN</color><color=grey>]</color> " + sender.NickName + " is using " + menuName + " version " + version + ".", 3000);
+            
+            GameObject line = new GameObject("Line");
+            LineRenderer liner = line.AddComponent<LineRenderer>();
+            liner.startColor = userColor; liner.endColor = userColor; liner.startWidth = 0.25f; liner.endWidth = 0.25f; liner.positionCount = 2; liner.useWorldSpace = true;
+
+            liner.SetPosition(0, vrrig.transform.position + new Vector3(0f, 9999f, 0f));
+            liner.SetPosition(1, vrrig.transform.position - new Vector3(0f, 9999f, 0f));
+            liner.material.shader = Shader.Find("GUI/Text Shader");
+            Object.Destroy(line, 3f);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using iiMenu.Notifications;
-using Photon.Pun;
+﻿using Photon.Pun;
 using System.IO;
 using UnityEngine;
 using static iiMenu.Classes.RigManager;
@@ -41,7 +40,7 @@ namespace iiMenu.Mods
                             if (R < 0.45f || L < 0.45f)
                             {
                                 PhotonNetwork.Disconnect();
-                                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected.</color>");
+                                NotificationManager.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected.</color>");
                             }
                         }
                     }
@@ -67,7 +66,7 @@ namespace iiMenu.Mods
                                 rejRoom = PhotonNetwork.CurrentRoom.Name;
                                 rejDebounce = Time.time + 2f;
                                 PhotonNetwork.Disconnect();
-                                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be reconnected shortly.</color>");
+                                NotificationManager.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be reconnected shortly.</color>");
                             }
                         }
                     }
@@ -93,7 +92,7 @@ namespace iiMenu.Mods
                                 PhotonNetwork.Disconnect();
                                 isJoiningRandom = true;
                                 jrDebounce = Time.time + internetFloat;
-                                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be connected to a random lobby shortly.</color>");
+                                NotificationManager.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be connected to a random lobby shortly.</color>");
                             }
                         }
                     }
@@ -156,7 +155,7 @@ namespace iiMenu.Mods
                     }
                     catch { }
                     PhotonNetwork.Disconnect();
-                    NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>There was a moderator in your lobby, you have been disconnected. Their Player ID and Room Code have been saved to a file.</color>");
+                    NotificationManager.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>There was a moderator in your lobby, you have been disconnected. Their Player ID and Room Code have been saved to a file.</color>");
                 }
             }
         }

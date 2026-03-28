@@ -1,4 +1,5 @@
 ﻿using easyInputs;
+using iiMenu.Classes;
 using Photon.Pun;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,12 @@ namespace iiMenu.Mods
 {
     internal class Movement
     {
+        public static void TeleportToPlayer(Photon.Realtime.Player plr)
+        {
+            Vector3 pos = RigManager.GetVRRigFromPlayer(plr).transform.position;
+            GorillaLocomotion.Player.Instance.transform.position = pos;
+        }
+
         public static void DisableJoystick()
         {
 

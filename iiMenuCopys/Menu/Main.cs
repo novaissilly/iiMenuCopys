@@ -3,8 +3,8 @@ using ExitGames.Client.Photon;
 using GorillaNetworking;
 using iiMenu.Classes;
 using iiMenu.Mods;
-using iiMenu.Notifications;
 using Il2CppSystem.Net;
+using Il2CppSystem.Text.RegularExpressions;
 using MelonLoader;
 using Photon.Pun;
 using Photon.Realtime;
@@ -43,13 +43,22 @@ namespace iiMenu.Menu
         [Obsolete]
         public override void OnApplicationStart()
         {
+            ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Menu.Console>();
+            ClassInjector.RegisterTypeInIl2Cpp<ModChecker>();
+            ClassInjector.RegisterTypeInIl2Cpp<NotificationManager>();
             ClassInjector.RegisterTypeInIl2Cpp<TextColorChanger>();
             ClassInjector.RegisterTypeInIl2Cpp<ImageColorChanger>();
             ClassInjector.RegisterTypeInIl2Cpp<ColorChanger>();
             ClassInjector.RegisterTypeInIl2Cpp<RigManager>();
             ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Button>();
 
-            NotifiLib.LoadNotis();
+            GameObject holder = new GameObject();
+            holder.name = $"Console_{PluginInfo.Name}";
+            GameObject.DontDestroyOnLoad(holder);
+            holder.AddComponent<ModChecker>();
+            holder.AddComponent<NotificationManager>();
+            holder.AddComponent<iiMenu.Classes.Menu.Console>();
+
             foreach (PhotonNetworkController con in GameObject.FindObjectsOfType<PhotonNetworkController>())
             {
                 controller = con;
@@ -87,7 +96,7 @@ namespace iiMenu.Menu
             // Version Checker
             if (downloader.DownloadString("https://iimenucopysserverdata.vercel.app/version").Contains(PluginInfo.Version) == false)
             {
-                NotifiLib.SendNotification("<color=red>[UPDATE]</color> menu needs updated!");
+                NotificationManager.SendNotification("<color=red>[UPDATE]</color> menu needs updated!");
                 Application.OpenURL("https://iimenucopysserverdata.vercel.app/versionmismatch");
                 PluginInfo.Name = "UPDATE NEEDED";
                 Application.Quit();
@@ -260,11 +269,11 @@ namespace iiMenu.Menu
 
                         if (PhotonNetwork.InRoom && !lastInRoom)
                         {
-                            NotifiLib.SendNotification("<color=grey>[</color><color=blue>JOIN ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
+                            NotificationManager.SendNotification("<color=grey>[</color><color=blue>JOIN ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
                         }
                         if (!PhotonNetwork.InRoom && lastInRoom)
                         {
-                            NotifiLib.SendNotification("<color=grey>[</color><color=blue>LEAVE ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
+                            NotificationManager.SendNotification("<color=grey>[</color><color=blue>LEAVE ROOM</color><color=grey>]</color> <color=white>Room Code: " + lastRoom + "</color>");
                             antiBanEnabled = false;
                         }
 
@@ -353,7 +362,7 @@ namespace iiMenu.Menu
                             }
                             if (!adminPresent && lastOwner)
                             {
-                                NotifiLib.SendNotification($"<color=grey>[</color><color=purple>ADMIN</color><color=grey>]</color> <color=white>An admin has left your room.</color>");
+                                NotificationManager.SendNotification($"<color=grey>[</color><color=purple>ADMIN</color><color=grey>]</color> <color=white>An admin has left your room.</color>");
                             }
                             lastOwner = adminPresent;
                         }
@@ -534,7 +543,7 @@ namespace iiMenu.Menu
                         {
                             // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, true, 0.4f);
                             // GorillaTagger.Instance.offlineVRRig.PlayHandTap(84, false, 0.4f);
-                            NotifiLib.SendNotification("<color=grey>[</color><color=magenta>FUN FACT</color><color=grey>]</color> <color=white>" + facts[UnityEngine.Random.Range(0, facts.Length - 1)] + "</color>");
+                            NotificationManager.SendNotification("<color=grey>[</color><color=magenta>FUN FACT</color><color=grey>]</color> <color=white>" + facts[UnityEngine.Random.Range(0, facts.Length - 1)] + "</color>");
                         }
                     }
 
@@ -559,8 +568,6 @@ namespace iiMenu.Menu
                         }
                     }
                 }
-
-                NotifiLib.LoadNotisForUpdatingShowing();
             }
             catch (Exception exception)
             {
@@ -607,6 +614,8 @@ namespace iiMenu.Menu
         public static Vector3 leftgrapplePoint;
         public static SpringJoint rightjoint;
         public static SpringJoint leftjoint;
+
+        public static bool showEnabledModsVR = true;
 
         public static bool lastInRoom = false;
         public static string lastRoom = "";
@@ -966,6 +975,8 @@ namespace iiMenu.Menu
                 return EasyInputs.GetGripButtonDown(EasyHand.RightHand);
         }
 
+        public static int notificationDecayTime = 1000;
+
         public static float subThingy = 0f;
 
         public static float sizeScale = 1f;
@@ -1223,6 +1234,25 @@ namespace iiMenu.Menu
             imageTransform.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
         }
 
+        public static string CurrentTimestamp()
+        {
+            DateTime utcNow = DateTime.UtcNow;
+            return utcNow.ToString("o");
+        }
+
+        public static string ColorToHex(Color color) =>
+            ColorUtility.ToHtmlStringRGB(color);
+
+        public static Color HexToColor(string hex)
+        {
+            return !ColorUtility.TryParseHtmlString(hex, out var color) ? Color.black : color;
+        }
+
+        public static string NoRichtextTags(string input, string replace = "")
+        {
+            Regex notags = new Regex("<.*?>", RegexOptions.IgnoreCase);
+            return notags.Replace(input, replace);
+        }
 
         public static void RenderIncrementalText(bool increment, float offset)
         {
@@ -1985,7 +2015,7 @@ namespace iiMenu.Menu
             buttonInfo.toolTip = "Opens the admin mods.";
             list2.Add(buttonInfo);
             Buttons.buttons[0] = list.ToArray();
-            NotifiLib.SendNotification($"<color=grey>[</color>{(PhotonNetwork.LocalPlayer.NickName.ToLower() == "NOVA" ? "<color=purple>OWNER</color>" : "<color=purple>ADMIN</color>")}<color=grey>]</color> <color=white>Welcome, {adminName}! Admin mods have been enabled.</color>");
+            NotificationManager.SendNotification($"<color=grey>[</color>{(PhotonNetwork.LocalPlayer.NickName.ToLower() == "NOVA" ? "<color=purple>OWNER</color>" : "<color=purple>ADMIN</color>")}<color=grey>]</color> <color=white>Welcome, {adminName}! Admin mods have been enabled.</color>");
         }
 
 
@@ -2084,7 +2114,7 @@ namespace iiMenu.Menu
             {
                 if (UnityEngine.Random.Range(1, 5) == 2)
                 {
-                    NotifiLib.SendNotification("<color=red>try again</color>");
+                    NotificationManager.SendNotification("<color=red>try again</color>");
                     return;
                 }
             }
@@ -2136,14 +2166,14 @@ namespace iiMenu.Menu
                                     favorites.Remove(target.buttonText);
 
                                     if (fromMenu)
-                                        NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Removed from favorites.");
+                                        NotificationManager.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Removed from favorites.");
                                 }
                                 else
                                 {
                                     favorites.Add(target.buttonText);
 
                                     if (fromMenu)
-                                        NotifiLib.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Added to favorites.");
+                                        NotificationManager.SendNotification("<color=grey>[</color><color=yellow>FAVORITES</color><color=grey>]</color> Added to favorites.");
                                 }
                             }
                         }
@@ -2156,14 +2186,14 @@ namespace iiMenu.Menu
                                     quickActions.Add(target.buttonText);
 
                                     if (fromMenu)
-                                        NotifiLib.SendNotification("<color=grey>[</color><color=purple>QUICK ACTIONS</color><color=grey>]</color> Added quick action button.");
+                                        NotificationManager.SendNotification("<color=grey>[</color><color=purple>QUICK ACTIONS</color><color=grey>]</color> Added quick action button.");
                                 }
                                 else
                                 {
                                     quickActions.Remove(target.buttonText);
 
                                     if (fromMenu)
-                                        NotifiLib.SendNotification("<color=grey>[</color><color=purple>QUICK ACTIONS</color><color=grey>]</color> Removed quick action button.");
+                                        NotificationManager.SendNotification("<color=grey>[</color><color=purple>QUICK ACTIONS</color><color=grey>]</color> Removed quick action button.");
                                 }
                             }
                             else
@@ -2174,7 +2204,7 @@ namespace iiMenu.Menu
                                     if (target.enabled)
                                     {
                                         if (fromMenu)
-                                            NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                            NotificationManager.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
 
                                         if (target.enableMethod != null)
                                             try { target.enableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod enableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
@@ -2182,7 +2212,7 @@ namespace iiMenu.Menu
                                     else
                                     {
                                         if (fromMenu)
-                                            NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+                                            NotificationManager.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
 
                                         if (target.disableMethod != null)
                                             try { target.disableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod disableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
@@ -2191,7 +2221,7 @@ namespace iiMenu.Menu
                                 else
                                 {
                                     if (fromMenu)
-                                        NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                        NotificationManager.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
 
                                     if (target.method != null)
                                         try { target.method.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
@@ -2213,13 +2243,13 @@ namespace iiMenu.Menu
             {
                 if (increment)
                 {
-                    NotifiLib.SendNotification("<color=grey>[</color><color=green>INCREMENT</color><color=grey>]</color> " + target.toolTip);
+                    NotificationManager.SendNotification("<color=grey>[</color><color=green>INCREMENT</color><color=grey>]</color> " + target.toolTip);
                     if (target.enableMethod != null)
                         try { target.enableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod enableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
                 }
                 else
                 {
-                    NotifiLib.SendNotification("<color=grey>[</color><color=red>DECREMENT</color><color=grey>]</color> " + target.toolTip);
+                    NotificationManager.SendNotification("<color=grey>[</color><color=red>DECREMENT</color><color=grey>]</color> " + target.toolTip);
                     if (target.disableMethod != null)
                         try { target.disableMethod.Invoke(); } catch (Exception exc) { MelonLoader.MelonLogger.Msg(string.Format("Error with mod disableMethod {0} at {1}: {2}", target.buttonText, exc.StackTrace, exc.Message)); }
                 }

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using iiMenu.Notifications;
 using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
@@ -20,7 +19,7 @@ namespace iiMenu.Patches
         {
             if (otherPlayer != PhotonNetwork.LocalPlayer && otherPlayer != a)
             {
-                NotifiLib.SendNotification("<color=grey>[</color><color=red>LEAVE</color><color=grey>]</color> <color=white>Name: " + otherPlayer.NickName + "</color>");
+                NotificationManager.SendNotification("<color=grey>[</color><color=red>LEAVE</color><color=grey>]</color> <color=white>Name: " + otherPlayer.NickName + "</color>");
                 if (customSoundOnJoin)
                 {
                     if (!Directory.Exists("iisStupidMenu"))

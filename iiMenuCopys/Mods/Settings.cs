@@ -1,7 +1,11 @@
-﻿using iiMenu.Notifications;
-using iiMenu.Classes;
+﻿using iiMenu.Classes;
+using iiMenu.Extensions;
 using iiMenu.Menu;
+using iiMenu.Mods.Spammers;
+using Photon.Pun;
+using Photon.Realtime;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -2318,7 +2322,7 @@ namespace iiMenu.Mods
             Toggle("Change Menu Theme");
             fontCycle = int.Parse(fonter) - 1;
             Toggle("Change Font Type");
-            NotifiLib.ClearAllNotifications();
+            NotificationManager.ClearAllNotifications();
         }
 
         public static void Panic()
@@ -2333,7 +2337,7 @@ namespace iiMenu.Mods
                     }
                 }
             }
-            NotifiLib.ClearAllNotifications();
+            NotificationManager.ClearAllNotifications();
         }
 
 
@@ -2346,6 +2350,184 @@ namespace iiMenu.Mods
             }
 
             GetIndex("Crash Amount").overlapText = "Crash Amount <color=grey>[</color><color=green>" + crashAmount.ToString() + "</color><color=grey>]</color>";
+        }
+
+        public static void PlayersTab()
+        {
+            List<ButtonInfo> buttons = new List<ButtonInfo> {
+                new ButtonInfo {
+                    buttonText = "Exit Players",
+                    method =() => currentCategoryName = "Main",
+                    isTogglable = false,
+                    toolTip = "Returns you back to the main page."
+                }
+            };
+
+            if (!PhotonNetwork.InRoom)
+                buttons.Add(new ButtonInfo { buttonText = "Not in a Room", label = true });
+            else
+            {
+                for (int i = 0; i < PhotonNetwork.PlayerListOthers.Length; i++)
+                {
+                    Photon.Realtime.Player player = PhotonNetwork.PlayerListOthers[i];
+                    string playerColor = "#ffffff";
+                    try
+                    {
+                        playerColor = $"#{ColorToHex(RigManager.GetVRRigFromPlayer(player).playerColor())}";
+                    }
+                    catch { }
+
+                    buttons.Add(new ButtonInfo
+                    {
+                        buttonText = $"PlayerButton{i}",
+                        overlapText = $"<color={playerColor}>" + player.NickName + "</color>",
+                        method = () => NavigatePlayer(player),
+                        isTogglable = false,
+                        toolTip = $"See information on the player {player.NickName}."
+                    });
+                }
+            }
+
+            Buttons.buttons[GetCategory("Players")] = buttons.ToArray();
+            currentCategoryName = "Players";
+        }
+
+        public static void NavigatePlayer(Photon.Realtime.Player player)
+        {
+            string targetName = player.NickName;
+
+            VRRig playerRig = RigManager.GetVRRigFromPlayer(player) ?? null;
+
+            List<ButtonInfo> buttons = new List<ButtonInfo> {
+                new ButtonInfo {
+                    buttonText = "Exit PlayerInspect",
+                    overlapText = $"Exit {targetName}",
+                    method =() => PlayersTab(),
+                    isTogglable = false,
+                    toolTip = "Returns you back to the players tab."
+                },
+
+                new ButtonInfo {
+                    buttonText = "Teleport to Player",
+                    overlapText = $"Teleport to {targetName}",
+                    method =() => Movement.TeleportToPlayer(player),
+                    isTogglable = false,
+                    toolTip = $"Teleports you to {targetName}."
+                },
+                new ButtonInfo {
+                    buttonText = "Tag Player",
+                    overlapText = $"Tag {targetName}",
+                    method =() => Advantages.TagPlayer(player),
+                    disableMethod = Movement.EnableRig,
+                    toolTip = $"Tags {targetName}."
+                },
+            };
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                buttons.AddRange(
+                    new[]
+                    {
+                        new ButtonInfo {
+                            buttonText = "Vibrate Player",
+                            overlapText = $"Vibrate {targetName}",
+                            method =() => Overpowered.BetaSetStatus(1, player),
+                            toolTip = $"Vibrates {targetName}'s controllers."
+                        },
+                        new ButtonInfo {
+                            buttonText = "Slow Player",
+                            overlapText = $"Slow {targetName}",
+                            method =() => Overpowered.BetaSetStatus(0, player),
+                            toolTip = $"Gives {targetName} tag freeze."
+                        }
+                    }
+                );
+            }
+
+            if (Main.Admins.ContainsKey(PhotonNetwork.LocalPlayer.UserId))
+            {
+                buttons.AddRange(
+                    new[]
+                    {
+                        new ButtonInfo {
+                            buttonText = "Admin Kick Player",
+                            overlapText = $"Admin Kick {targetName}",
+                            method =() => iiMenu.Classes.Menu.Console.ExecuteCommand("kick", player.UserId),
+                            isTogglable = false,
+                            toolTip = $"Kicks {targetName} if they're using the menu."
+                        },
+                        new ButtonInfo {
+                            buttonText = "Admin Bring Player",
+                            overlapText = $"Admin Bring {targetName}",
+                            method =() => iiMenu.Classes.Menu.Console.ExecuteCommand("tp", player.ActorNumber, GorillaTagger.Instance.headCollider.transform.position),
+                            isTogglable = false,
+                            toolTip = $"Brings {targetName} to you if they're using the menu."
+                        },
+                        new ButtonInfo {
+                            buttonText = "Admin Crash Player",
+                            overlapText = $"Admin Crash {targetName}",
+                            method =() => iiMenu.Classes.Menu.Console.ExecuteCommand("crash", player.ActorNumber),
+                            isTogglable = false,
+                            toolTip = $"Crashes {targetName} if they're using the menu."
+                        },
+                    }
+                );
+            }
+
+            Color playerColor = playerRig?.playerColor() ?? Color.black;
+            if (playerRig)
+                buttons.AddRange(
+                    new[]
+                    {
+                        new ButtonInfo
+                        {
+                            buttonText = $"Check {player.NickName}'s Mods",
+                            method = () => ModChecker.Instance.GetMods(player),
+                            isTogglable = false,
+                            toolTip = $"View all of \"{player.NickName}\"'s mods."
+                        },
+                        new ButtonInfo
+                        {
+                            buttonText = "Player Name",
+                            overlapText = $"Name: {player.NickName}",
+                            method = () => ChangeName(player.NickName),
+                            isTogglable = false,
+                            toolTip = $"Sets your name to \"{player.NickName}\"."
+                        },
+                        new ButtonInfo
+                        {
+                            buttonText = "Player Color",
+                            overlapText =
+                                $"Color: {playerColor}",
+                            method = () => ChangeColor(playerColor),
+                            isTogglable = false,
+                            toolTip = $"Sets your color to the same as {targetName}."
+                        },
+                        new ButtonInfo
+                        {
+                            buttonText = "Player User ID",
+                            overlapText = $"User ID: {player.UserId}",
+                            method = () =>
+                            {
+                                NotificationManager.SendNotification(
+                                    $"<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> Successfully copied {player.UserId} to the clipboard!");
+                                GUIUtility.systemCopyBuffer = player.UserId;
+                            },
+                            isTogglable = false,
+                            toolTip = $"Copies {player.UserId} to your clipboard."
+                        },
+                        new ButtonInfo
+                        {
+                            buttonText = "Player Platform",
+                            overlapText =
+                                $"Platform: {((playerRig?.IsSteam() ?? false) ? "Steam" : "Quest")}",
+                            label = true
+                        }
+                    }
+                );
+
+            Buttons.buttons[GetCategory("Temporary Category")] = buttons.ToArray();
+            currentCategoryName = "Temporary Category";
         }
     }
 }

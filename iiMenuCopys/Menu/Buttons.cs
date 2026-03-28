@@ -17,7 +17,9 @@ namespace iiMenu.Menu
         {
             new ButtonInfo[] { // Main Stuff [0]
                 new ButtonInfo { buttonText = "Join Discord", method =() => Important.JoinDiscord(), isTogglable = false, toolTip = "Invites you to join the ii's <b>Stupid</b> Mods Discord server."},
+
                 new ButtonInfo { buttonText = "Settings", method =() => currentCategoryName = "Settings", isTogglable = false, toolTip = "Opens the settings menu."},
+                new ButtonInfo { buttonText = "Players", method = Settings.PlayersTab, isTogglable = false, toolTip = "Opens the players tab."},
 
                 new ButtonInfo { buttonText = "Favorite Mods", method =() => currentCategoryName = "Favorite Mods", isTogglable = false, toolTip = "Opens your favorite mods. Favorite mods with left grip."},
                 new ButtonInfo { buttonText = "Enabled Mods", method =() => currentCategoryName = "Enabled Mods", isTogglable = false, toolTip = "Opens your enabled mods."},
@@ -62,6 +64,7 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Disable Notifications", enableMethod =() => disableNotifications = true, disableMethod =() => disableNotifications = false, toolTip = "Disables all notifications."},
                 new ButtonInfo { buttonText = "Enable FPS Counter", enableMethod =() => fpsCounter = true, disableMethod =() => fpsCounter = false, toolTip = "Disables the fps counter."},
                 new ButtonInfo { buttonText = "Disable Home Button", enableMethod =() => homeButton = false, disableMethod =() => homeButton = true, toolTip = "Disables the home button on the menu."},
+                new ButtonInfo { buttonText = "Disable Enabled GUI", overlapText = "Disable Arraylist GUI", enableMethod =() => showEnabledModsVR = false, disableMethod =() => showEnabledModsVR = true, toolTip = "Disables the GUI that shows the enabled mods."},
                 new ButtonInfo { buttonText = "Disable Incremental Buttons", enableMethod =() => incrementalButtons = false, disableMethod =() => incrementalButtons = true, toolTip = "Disables the buttons with the increment and decrement buttons next to it."},
                 new ButtonInfo { buttonText = "Disable Disconnect Button", enableMethod =() => disableDisconnectButton = true, disableMethod =() => disableDisconnectButton = false, toolTip = "Disables the disconnect button at the top of the menu."},
 
@@ -410,6 +413,8 @@ namespace iiMenu.Menu
 
             new ButtonInfo[] { // Admin Mods [20]
                 new ButtonInfo { buttonText = "Exit Admin Mods", method = () => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page." },
+                new ButtonInfo { buttonText = "Get Menu Users", enableMethod = () => ModChecker.Instance.admingetmenuusers = true, disableMethod = () =>ModChecker.Instance.admingetmenuusers = false, toolTip = "Gets everyone using the menu in your current room." },
+
                 new ButtonInfo { buttonText = "Admin Kick All Using", enableMethod = () => Experimental.KickAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 new ButtonInfo { buttonText = "Admin Fling All Using", enableMethod = () => Experimental.FlingAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },
                 new ButtonInfo { buttonText = "Admin Change Name All Using", enableMethod = () => Experimental.ChangeNameAllUsing(), disableMethod = () => Experimental.FixName(), toolTip = "Kicks everyone using the menu." },

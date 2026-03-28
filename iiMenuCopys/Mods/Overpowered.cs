@@ -15,14 +15,27 @@ namespace iiMenu.Mods
 {
     internal class Overpowered
     {
-        public static void BetaSetStatus(int state, RaiseEventOptions balls)
+        public static void SetMasterClient()
         {
-            object[] statusSendData = new object[1];
-            statusSendData[0] = state;
-            object[] sendEventData = new object[3];
-            sendEventData[0] = PhotonNetwork.ServerTimestamp;
-            sendEventData[1] = (byte)2;
-            sendEventData[2] = statusSendData;
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            GorillaNot.instance.rpcErrorMax = int.MaxValue;
+            GorillaNot.instance.currentMasterClient = PhotonNetwork.LocalPlayer;
+            GorillaNot.instance.OnMasterClientSwitched(PhotonNetwork.LocalPlayer);
+            GorillaGameManager.instance.currentMasterClient = PhotonNetwork.LocalPlayer;
+        }
+
+        public static void BetaSetStatus(int state, Photon.Realtime.Player plr)
+        {
+            switch (state)
+            {
+                case 0:
+                    GorillaTagger.Instance.myVRRig.photonView.RPC("SetTaggedTime", plr, null);
+                    GorillaTagger.Instance.myVRRig.photonView.RPC("SetSlowedTime", plr, null);
+                    break;
+                case 1:
+                    GorillaTagger.Instance.myVRRig.photonView.RPC("SetJoinTaggedTime", plr, null);
+                    break;
+            }
         }
 
         public static void SlowGun()
@@ -62,13 +75,12 @@ namespace iiMenu.Mods
         {
             if (Time.time > kgDebounce)
             {
-                /*foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+                foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
                 {
-                GorillaGameManager.instance.FindVRRigForPlayer(player).RPC("SetTaggedTime", player, null);*/
-                BetaSetStatus(0, new RaiseEventOptions { Receivers = ReceiverGroup.Others });
-                RPCProtection();
-                kgDebounce = Time.time + 0.5f;
-                //}
+                    BetaSetStatus(0, player);
+                    RPCProtection();
+                    kgDebounce = Time.time + 0.5f;
+                }
             }
         }
 
@@ -93,6 +105,7 @@ namespace iiMenu.Mods
                     {
                         gunLocked = true;
                         lockTarget = who;
+                        BetaSetStatus(1, lockTarget.photonView.Owner);
                     }
                 }
             }
@@ -109,13 +122,12 @@ namespace iiMenu.Mods
         {
             if (Time.time > kgDebounce)
             {
-                /*foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+                foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
                 {
-                GorillaTagger.Instance.myVRRig.RPC("SetJoinTaggedTime", player, null);*/
-                BetaSetStatus(1, new RaiseEventOptions { Receivers = ReceiverGroup.Others });
-                RPCProtection();
-                kgDebounce = Time.time + 0.5f;
-                //}
+                    BetaSetStatus(1, player);
+                    RPCProtection();
+                    kgDebounce = Time.time + 0.5f;
+                }
             }
         }
 

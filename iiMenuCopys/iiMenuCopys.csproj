@@ -32,14 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\ButtonCollider.cs" />
-    <Compile Include="Classes\ButtonInfo.cs" />
-    <Compile Include="Classes\ColorChanger.cs" />
-    <Compile Include="Classes\ExtGradient.cs" />
-    <Compile Include="Classes\FixedColliders.cs" />
-    <Compile Include="Classes\ImageColorChanger.cs" />
-    <Compile Include="Classes\RigManager.cs" />
+    <Compile Include="Classes\Menu\ButtonCollider.cs" />
+    <Compile Include="Classes\Menu\ButtonInfo.cs" />
+    <Compile Include="Classes\Menu\ColorChanger.cs" />
+    <Compile Include="Classes\Menu\Console.cs" />
+    <Compile Include="Classes\Menu\ExtGradient.cs" />
+    <Compile Include="Classes\Menu\FixedColliders.cs" />
+    <Compile Include="Classes\Menu\ImageColorChanger.cs" />
+    <Compile Include="Classes\Mods\ModChecker.cs" />
+    <Compile Include="Classes\Mods\RigManager.cs" />
     <Compile Include="Extenstions\ComponentExtensions.cs" />
+    <Compile Include="Extenstions\TextMeshProExtensions.cs" />
+    <Compile Include="Extenstions\VRRigExtensions.cs" />
     <Compile Include="Menu\Buttons.cs" />
     <Compile Include="Menu\Main.cs" />
     <Compile Include="Mods\Advantages.cs" />
@@ -61,7 +65,7 @@
     <Compile Include="Mods\Sound.cs" />
     <Compile Include="Mods\SoundBoard.cs" />
     <Compile Include="Mods\Visuals.cs" />
-    <Compile Include="Notifications\Library.cs" />
+    <Compile Include="Notifications\NotificationManager.cs" />
     <Compile Include="Notifications\PlayerJoin.cs" />
     <Compile Include="Notifications\PlayerLeave.cs" />
     <Compile Include="PluginInfo.cs" />

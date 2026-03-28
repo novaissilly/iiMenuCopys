@@ -1,6 +1,5 @@
 ﻿using iiMenu.Classes;
 using iiMenu.Menu;
-using iiMenu.Notifications;
 using Il2CppSystem.Net;
 using Photon.Voice.Unity;
 using System;
@@ -186,14 +185,14 @@ namespace iiMenu.Mods
         {
             if (!System.IO.File.Exists(soundpath))
             {
-                NotifiLib.SendNotification($"File not found: {soundpath}");
+                NotificationManager.SendNotification($"File not found: {soundpath}");
                 return;
             }
 
             string extension = Path.GetExtension(soundpath).ToLowerInvariant();
             if (extension != ".wav")
             {
-                NotifiLib.SendNotification($"Unsupported file format: {extension}");
+                NotificationManager.SendNotification($"Unsupported file format: {extension}");
                 return;
             }
 
@@ -202,7 +201,7 @@ namespace iiMenu.Mods
             if (clip != null)
                 PlayAudioThroughMicrophone(clip);
             else
-                NotifiLib.SendNotification($"AudioClip is null after WAV conversion.");
+                NotificationManager.SendNotification($"AudioClip is null after WAV conversion.");
         }
 
         private static AudioClip CreateAudioClipFromWav(byte[] wavData, string clipName)
@@ -242,7 +241,7 @@ namespace iiMenu.Mods
             }
             catch (Exception ex)
             {
-                NotifiLib.SendNotification("Error " + ex.Message);
+                NotificationManager.SendNotification("Error " + ex.Message);
                 return null;
             }
         }
@@ -251,7 +250,7 @@ namespace iiMenu.Mods
         {
             if (clip == null)
             {
-                NotifiLib.SendNotification("AudioClip is null.");
+                NotificationManager.SendNotification("AudioClip is null.");
                 return;
             }
 
@@ -260,7 +259,7 @@ namespace iiMenu.Mods
                 Recorder component = GameObject.Find("NetworkVoice")?.GetComponent<Recorder>() ?? GameObject.Find("Photon Manager")?.GetComponent<Recorder>();
                 if (component == null)
                 {
-                    // NotifiLib.SendNotification("red", "Soundboard", "Recorder not found on 'NetworkVoice'.");
+                    // NotificationManager.SendNotification("red", "Soundboard", "Recorder not found on 'NetworkVoice'.");
                     return;
                 }
 
@@ -273,11 +272,11 @@ namespace iiMenu.Mods
                 AudioIsPlaying = true;
                 RecoverTime = Time.time + clip.length + 0.4f;
 
-                // NotifiLib.SendNotification("green", "Soundboard", $"Playing: {clip.name} ({clip.length:F2}s)");
+                // NotificationManager.SendNotification("green", "Soundboard", $"Playing: {clip.name} ({clip.length:F2}s)");
             }
             catch (Exception ex)
             {
-                NotifiLib.SendNotification("Play failed: " + ex.Message);
+                NotificationManager.SendNotification("Play failed: " + ex.Message);
             }
         }
 
@@ -343,13 +342,13 @@ namespace iiMenu.Mods
                     }
                     else
                     {
-                        NotifiLib.SendNotification($"Resource not found: {resourcePath}");
+                        NotificationManager.SendNotification($"Resource not found: {resourcePath}");
                     }
                 }
             }
             catch (Exception)
             {
-                //NotifiLib.SendNotification("red", "[Soundboard]", $"Resource load error: {ex.Message}");
+                //NotificationManager.SendNotification("red", "[Soundboard]", $"Resource load error: {ex.Message}");
             }
             return null;
         }
@@ -368,7 +367,7 @@ namespace iiMenu.Mods
             }
             catch (Exception)
             {
-                //NotifiLib.SendNotification("red", "[Soundboard]", $"Error playing sound: {ex.Message}");
+                //NotificationManager.SendNotification("red", "[Soundboard]", $"Error playing sound: {ex.Message}");
             }
         }
 
@@ -392,7 +391,7 @@ namespace iiMenu.Mods
             sb.AppendLine("=== ALL EMBEDDED RESOURCES ===");
             foreach (string resource in allResources)
                 sb.AppendLine(resource);
-            NotifiLib.SendNotification($"Resouces {sb.ToString()}");
+            NotificationManager.SendNotification($"Resouces {sb.ToString()}");
         }
     }
 }

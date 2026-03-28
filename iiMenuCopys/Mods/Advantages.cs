@@ -1,5 +1,4 @@
 ﻿using ExitGames.Client.Photon;
-using iiMenu.Notifications;
 using Photon.Pun;
 using UnityEngine;
 using static iiMenu.Menu.Main;
@@ -13,6 +12,22 @@ namespace iiMenu.Mods
 {
     internal class Advantages
     {
+        public static void TagPlayer(Photon.Realtime.Player plr)
+        {
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                foreach (GorillaTagManager tagman in GameObject.FindObjectsOfType<GorillaTagManager>())
+                {
+                    tagman.AddInfectedPlayer(plr);
+                    tagman.UpdateInfectionState();
+                }
+            }
+            else
+            {
+                Overpowered.SetMasterClient();
+            }
+        }
+
         public static void TagSelf()
         {
             /*if (!GorillaTagger.Instance.myVRRig.mainSkin.material.name.Contains("fected") && Time.time > delaythinggg)
@@ -24,7 +39,7 @@ namespace iiMenu.Mods
             {
                 if (gorillaTagManager.currentInfected.Contains(PhotonNetwork.LocalPlayer))
                 {
-                    NotifiLib.SendNotification("<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> <color=white>You have been tagged!</color>");
+                    NotificationManager.SendNotification("<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> <color=white>You have been tagged!</color>");
                     GorillaTagger.Instance.myVRRig.enabled = true;
                     GetIndex("Tag Self").enabled = false;
                 }
@@ -180,7 +195,7 @@ namespace iiMenu.Mods
         {
             if (!GorillaTagger.Instance.myVRRig.mainSkin.material.name.Contains("fected"))
             {
-                NotifiLib.SendNotification("<color=grey>[</color><color=red>ERROR</color><color=grey>]</color> <color=white>You must be tagged.</color>");
+                NotificationManager.SendNotification("<color=grey>[</color><color=red>ERROR</color><color=grey>]</color> <color=white>You must be tagged.</color>");
                 GetIndex("Tag All").enabled = false;
             }
             else
@@ -218,7 +233,7 @@ namespace iiMenu.Mods
                 }
                 else
                 {
-                    NotifiLib.SendNotification("<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> <color=white>Everyone is tagged!</color>");
+                    NotificationManager.SendNotification("<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> <color=white>Everyone is tagged!</color>");
                     GorillaTagger.Instance.myVRRig.enabled = true;
                     GetIndex("Tag All").enabled = false;
                 }
