@@ -400,12 +400,6 @@ namespace iiMenu.Menu
 
             new ButtonInfo[] { // Experimental Mods [17]
                 new ButtonInfo { buttonText = "Exit Experimental Mods", method =() => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page."},
-
-                new ButtonInfo { buttonText = "Experimental RPC Protection", enabled = true, toolTip = "Uses an experimental method of protecting your RPCs. Credits to Kante."},
-
-                new ButtonInfo { buttonText = "Fling Gun", method =() => Overpowered.FlingGun(), isTogglable = true, toolTip = "Test mods"},
-
-                new ButtonInfo { buttonText = "Ban All [TEST]", method =() => Experimental.BanAll(), isTogglable = false, toolTip = "Test of ban all."},
             },
 
             new ButtonInfo[] { // Favorite Mods [18]
