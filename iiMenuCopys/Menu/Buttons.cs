@@ -107,11 +107,16 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Join Random", method =() => Important.JoinRandom(), isTogglable = false, toolTip = "Joins a random public lobby." },
                 new ButtonInfo { buttonText = "Create Public", method =() => Important.CreatePublic(), isTogglable = false, toolTip = "Creates a public lobby."},
 
-                new ButtonInfo { buttonText = "Auto Join Room \"RUN\"", method =() => RoomJoiners.AutoJoinRoomRUN(), isTogglable = false, toolTip = "Automatically attempts to connect to room \"RUN\" every 3 seconds until connected." },
-                new ButtonInfo { buttonText = "Auto Join Room \"DAISY\"", method =() => RoomJoiners.AutoJoinRoomDAISY(), isTogglable = false, toolTip = "Automatically attempts to connect to room \"DAISY\" every 3 seconds until connected." },
-                new ButtonInfo { buttonText = "Auto Join Room \"DAISY09\"", method =() => RoomJoiners.AutoJoinRoomDAISY09(), isTogglable = false, toolTip = "Automatically attempts to connect to room \"DAISY09\" every 3 seconds until connected." },
-                new ButtonInfo { buttonText = "Auto Join Room \"PBBV\"", method =() => RoomJoiners.AutoJoinRoomPBBV(), isTogglable = false, toolTip = "Automatically attempts to connect to room \"PBBV\" every 3 seconds until connected." },
-                new ButtonInfo { buttonText = "Auto Join Room \"BOT\"", method =() => RoomJoiners.AutoJoinRoomBOT(), isTogglable = false, toolTip = "Automatically attempts to connect to room \"BOT\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"1\"", method =() => RoomJoiners.JoinRoom("1"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"1\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"2\"", method =() => RoomJoiners.JoinRoom("2"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"2\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"MODS\"", method =() => RoomJoiners.JoinRoom("MODS"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"MODS\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"MOD\"", method =() => RoomJoiners.JoinRoom("MOD"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"MOD\" every 3 seconds until connected." },
+
+                new ButtonInfo { buttonText = "Auto Join Room \"RUN\"", method =() => RoomJoiners.JoinRoom("RUN"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"RUN\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"DAISY\"", method =() => RoomJoiners.JoinRoom("DAISY"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"DAISY\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"DAISY09\"", method =() => RoomJoiners.JoinRoom("DAISY09"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"DAISY09\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"PBBV\"", method =() => RoomJoiners.JoinRoom("PBBV"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"PBBV\" every 3 seconds until connected." },
+                new ButtonInfo { buttonText = "Auto Join Room \"BOT\"", method =() => RoomJoiners.JoinRoom("BOT"), isTogglable = false, toolTip = "Automatically attempts to connect to room \"BOT\" every 3 seconds until connected." },
             },
 
             new ButtonInfo[] // Important Mods [7]

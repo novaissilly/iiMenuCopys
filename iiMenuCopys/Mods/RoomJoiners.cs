@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GorillaNetworking;
+using UnityEngine;
 using static iiMenu.Mods.Reconnect;
 
 /*
@@ -10,33 +11,9 @@ namespace iiMenu.Mods
 {
     internal class RoomJoiners
     {
-        public static void AutoJoinRoomRUN()
+        public static void JoinRoom(string room)
         {
-            rejRoom = "RUN";
-            rejDebounce = Time.time + 2f;
-        }
-
-        public static void AutoJoinRoomDAISY()
-        {
-            rejRoom = "DAISY";
-            rejDebounce = Time.time + 2f;
-        }
-
-        public static void AutoJoinRoomDAISY09()
-        {
-            rejRoom = "DAISY09";
-            rejDebounce = Time.time + 2f;
-        }
-
-        public static void AutoJoinRoomPBBV()
-        {
-            rejRoom = "PBBV";
-            rejDebounce = Time.time + 2f;
-        }
-
-        public static void AutoJoinRoomBOT()
-        {
-            rejRoom = "BOT";
+            GameObject.Find("Photon Manager").GetComponent<PhotonNetworkController>().AttemptToJoinSpecificRoom(room);
             rejDebounce = Time.time + 2f;
         }
     }
