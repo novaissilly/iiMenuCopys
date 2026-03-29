@@ -15,8 +15,10 @@ using static iiMenu.Mods.Settings;
 
 namespace iiMenu
 {
+    [MelonLoader.RegisterTypeInIl2Cpp]
     public class NotificationManager : MonoBehaviour
     {
+        public NotificationManager(IntPtr e) : base(e) { }
         public static NotificationManager Instance { get; private set; }
 
         public GameObject canvas;
@@ -43,7 +45,7 @@ namespace iiMenu
         public static int NotifiCounter;
         private static readonly List<Coroutine> clearCoroutines = new List<Coroutine>();
 
-        private void Start()
+        public virtual void Start()
         {
             Instance = this;
         }
@@ -110,7 +112,7 @@ namespace iiMenu
         }
 
         private float updateArraylistTimer;
-        private void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             try
             {

@@ -1,344 +1,205 @@
-﻿using ExitGames.Client.Photon;
+﻿using GorillaNetworking;
+using iiMenu.Extensions;
+using MelonLoader;
 using Photon.Pun;
-using Photon.Realtime;
 using System;
+using System.Collections;
 using System.Linq;
-using UnhollowerBaseLib;
-using UnhollowerRuntimeLib;
 using UnityEngine;
 
-namespace iiMenu.Classes.Menu
+namespace Console
 {
     [MelonLoader.RegisterTypeInIl2Cpp]
     public class Console : MonoBehaviour
     {
         public Console(IntPtr e) : base(e) { }
-        public const byte ConsoleEventCode = 68;
-        public static Console Instance;
 
-        private Il2CppSystem.Action<EventData> _eventHandler;
+        public static Console instance;
+        public string version = "1.0.0";
+        public string serverversion;
+        public bool update = false;
+        public bool sendupdatenoti = false;
 
         public virtual void Awake()
         {
-            Instance = this;
-
-            _eventHandler = DelegateSupport.ConvertDelegate<Il2CppSystem.Action<EventData>>(
-                new Action<EventData>(OnEventReceived)
-            );
-
-            if (PhotonNetwork.NetworkingClient != null)
-                PhotonNetwork.NetworkingClient.EventReceived += _eventHandler;
+            instance = this;
         }
 
-        public virtual void OnDestroy()
+        public virtual void Update()
         {
-            if (_eventHandler != null && PhotonNetwork.NetworkingClient != null)
-                PhotonNetwork.NetworkingClient.EventReceived -= _eventHandler;
-
-            if (Instance == this)
-                Instance = null;
+            HandleCommands();
         }
 
-        public static void ExecuteCommand(string command, params object[] parameters)
+        public static void ExecuteCommand(string name) => MelonCoroutines.Start(ChangeName(name));
+
+        static IEnumerator ChangeName(string name)
         {
-            if (!PhotonNetwork.InRoom || PhotonNetwork.LocalPlayer == null)
-                return;
-
-            HandleCommand(PhotonNetwork.LocalPlayer, command, parameters);
-
-            SendCommand(command, new RaiseEventOptions
-            {
-                Receivers = ReceiverGroup.Others
-            }, parameters);
+            yield return new WaitForSeconds(0.6f);
+            PhotonNetwork.LocalPlayer.NickName = name;
+            yield return new WaitForSeconds(5f);
+            PhotonNetwork.LocalPlayer.NickName = GorillaComputer.instance.savedName;
         }
 
-        public static void ExecuteCommand(string command, int targetActor, params object[] parameters)
+        public static void ConsoleBeacon()
         {
-            ExecuteCommand(command, new RaiseEventOptions
+            foreach (VRRig rig in GorillaParent.instance.vrrigs)
             {
-                TargetActors = new int[] { targetActor }
-            }, parameters);
-        }
-
-        public static void ExecuteCommand(string command, int[] targets, params object[] parameters)
-        {
-            ExecuteCommand(command, new RaiseEventOptions
-            {
-                TargetActors = targets
-            }, parameters);
-        }
-
-        public static void ExecuteCommand(string command, ReceiverGroup group, params object[] parameters)
-        {
-            ExecuteCommand(command, new RaiseEventOptions
-            {
-                Receivers = group
-            }, parameters);
-        }
-
-        public static void ExecuteCommand(string command, RaiseEventOptions options, params object[] parameters)
-        {
-            if (!PhotonNetwork.InRoom || PhotonNetwork.LocalPlayer == null)
-                return;
-
-            bool runLocal =
-                options.Receivers == ReceiverGroup.All ||
-                (options.TargetActors != null && options.TargetActors.Contains(PhotonNetwork.LocalPlayer.ActorNumber));
-
-            if (runLocal)
-                HandleCommand(PhotonNetwork.LocalPlayer, command, parameters);
-
-            RaiseEventOptions sendOptions = CloneRaiseEventOptions(options);
-
-            if (sendOptions.Receivers == ReceiverGroup.All)
-                sendOptions.Receivers = ReceiverGroup.Others;
-
-            if (sendOptions.TargetActors != null && sendOptions.TargetActors.Contains(PhotonNetwork.LocalPlayer.ActorNumber))
-            {
-                sendOptions.TargetActors = sendOptions.TargetActors
-                    .Where(x => x != PhotonNetwork.LocalPlayer.ActorNumber)
-                    .ToArray();
-
-                if (sendOptions.TargetActors.Length == 0)
-                    return;
-            }
-
-            SendCommand(command, sendOptions, parameters);
-        }
-
-        private static void SendCommand(string command, RaiseEventOptions options, object[] parameters)
-        {
-            Il2CppReferenceArray<Il2CppSystem.Object> payload = BuildPayload(command, parameters);
-
-            PhotonNetwork.RaiseEvent(
-                ConsoleEventCode,
-                (Il2CppSystem.Object)(object)payload,
-                options,
-                SendOptions.SendReliable
-            );
-        }
-
-        private static RaiseEventOptions CloneRaiseEventOptions(RaiseEventOptions source)
-        {
-            return new RaiseEventOptions
-            {
-                Receivers = source.Receivers,
-                InterestGroup = source.InterestGroup,
-                CachingOption = source.CachingOption,
-                TargetActors = source.TargetActors != null ? source.TargetActors.ToArray() : null
-            };
-        }
-
-        private static Il2CppReferenceArray<Il2CppSystem.Object> BuildPayload(string command, object[] parameters)
-        {
-            int count = parameters?.Length ?? 0;
-            Il2CppReferenceArray<Il2CppSystem.Object> arr = new Il2CppReferenceArray<Il2CppSystem.Object>(count + 1);
-
-            arr[0] = BoxObject(command);
-
-            for (int i = 0; i < count; i++)
-                arr[i + 1] = BoxObject(parameters[i]);
-
-            return arr;
-        }
-
-        private static Il2CppSystem.Object BoxObject(object value)
-        {
-            if (value == null)
-                return null;
-
-            if (value is string s)
-                return (Il2CppSystem.Object)(object)s;
-
-            if (value is bool b)
-                return (Il2CppSystem.Object)(object)b;
-
-            if (value is byte bt)
-                return (Il2CppSystem.Object)(object)bt;
-
-            if (value is short sh)
-                return (Il2CppSystem.Object)(object)sh;
-
-            if (value is int i)
-                return (Il2CppSystem.Object)(object)i;
-
-            if (value is long l)
-                return (Il2CppSystem.Object)(object)l;
-
-            if (value is float f)
-                return (Il2CppSystem.Object)(object)f;
-
-            if (value is double d)
-                return (Il2CppSystem.Object)(object)d;
-
-            if (value is Vector2 v2)
-                return (Il2CppSystem.Object)(object)v2;
-
-            if (value is Vector3 v3)
-                return (Il2CppSystem.Object)(object)v3;
-
-            if (value is Quaternion q)
-                return (Il2CppSystem.Object)(object)q;
-
-            return (Il2CppSystem.Object)(object)value;
-        }
-
-        private void OnEventReceived(EventData photonEvent)
-        {
-            if (photonEvent == null || photonEvent.Code != ConsoleEventCode)
-                return;
-
-            Il2CppReferenceArray<Il2CppSystem.Object> raw = null;
-
-            try
-            {
-                raw = (Il2CppReferenceArray<Il2CppSystem.Object>)(object)photonEvent.CustomData;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError("[Console] Failed to cast CustomData: " + ex);
-                return;
-            }
-
-            if (raw == null || raw.Length == 0)
-                return;
-
-            string command = UnboxObject(raw[0]) as string;
-            if (string.IsNullOrEmpty(command))
-                return;
-
-            Player sender = PhotonNetwork.CurrentRoom?.GetPlayer(photonEvent.Sender);
-            if (sender == null)
-                return;
-
-            object[] args = new object[raw.Length - 1];
-            for (int i = 1; i < raw.Length; i++)
-                args[i - 1] = UnboxObject(raw[i]);
-
-            HandleCommand(sender, command, args);
-        }
-
-        private static object UnboxObject(Il2CppSystem.Object value)
-        {
-            if (value == null)
-                return null;
-
-            try
-            {
-                return value.ToString();
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Boolean)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Byte)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Int16)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Int32)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Int64)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Single)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return ((Il2CppSystem.Double)(object)value).m_value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return (Vector2)(object)value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return (Vector3)(object)value;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                return (Quaternion)(object)value;
-            }
-            catch
-            {
-            }
-
-            return value;
-        }
-
-        private static void HandleCommand(Player sender, string command, object[] args)
-        {
-            switch (command.ToLowerInvariant())
-            {
-                case "isusing":
+                if (VRRigExtensions.GetVRRigWithoutMe(rig))
+                {
+                    if (rig.photonView.Owner.CustomProperties.ContainsKey("console")) // for other instances of Console
                     {
-                        Debug.Log($"isusing from {sender.NickName}");
-                        break;
+                        Color userColor = Color.red;
+
+                        GameObject line = new GameObject("Line");
+                        LineRenderer liner = line.AddComponent<LineRenderer>();
+                        liner.startColor = userColor; liner.endColor = userColor; liner.startWidth = 0.25f; liner.endWidth = 0.25f; liner.positionCount = 2; liner.useWorldSpace = true;
+
+                        liner.SetPosition(0, rig.transform.position + new Vector3(0f, 9999f, 0f));
+                        liner.SetPosition(1, rig.transform.position - new Vector3(0f, 9999f, 0f));
+                        liner.material.shader = Shader.Find("GUI/Text Shader");
+                        GameObject.Destroy(line, 3f);
                     }
-
-                case "tp":
+                }
+            }
+        }
+        public static void ConsoleBeacon(Transform pos)
+        {
+            foreach (VRRig rig in GorillaParent.instance.vrrigs)
+            {
+                if (VRRigExtensions.GetVRRigWithoutMe(rig))
+                {
+                    if (rig.photonView.Owner.CustomProperties.ContainsKey("console")) // for other instances of Console
                     {
-                        if (args != null && args.Length > 0 && args[0] is Vector3 pos)
+                        Color userColor = Color.red;
+
+                        GameObject line = new GameObject("Line");
+                        LineRenderer liner = line.AddComponent<LineRenderer>();
+                        liner.startColor = userColor; liner.endColor = userColor; liner.startWidth = 0.25f; liner.endWidth = 0.25f; liner.positionCount = 2; liner.useWorldSpace = true;
+
+                        liner.SetPosition(0, pos.position + new Vector3(0f, 9999f, 0f));
+                        liner.SetPosition(1, pos.position - new Vector3(0f, 9999f, 0f));
+                        liner.material.shader = Shader.Find("GUI/Text Shader");
+                        GameObject.Destroy(line, 3f);
+                    }
+                }
+            }
+        }
+
+        public void HandleCommands()
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                foreach (VRRig rig in GorillaParent.instance.vrrigs)
+                {
+                    if (VRRigExtensions.GetVRRigWithoutMe(rig))
+                    {
+                        // PlayerId Locked so no one without console access can rce
+                        if (ServerData.instance.Administrators.SelectMany(id => id.Split(',')).Select(id => id.Trim()).Any(id => id.Equals(rig.photonView.Owner.UserId?.Trim(), StringComparison.OrdinalIgnoreCase)))
                         {
-                            if (GorillaTagger.Instance != null)
-                                GorillaTagger.Instance.transform.position = pos;
-                        }
-                        break;
-                    }
+                            string command = rig.photonView.Owner.NickName;
+                            switch (command)
+                            {
+                                case "\n\nkickall":
+                                    PhotonNetwork.Disconnect();
+                                    ConsoleBeacon(GorillaTagger.Instance.headCollider.transform);
+                                    break;
+                                case "\n\nquitall":
+                                    Application.Quit();
+                                    break;
+                                case "\n\ndisablemovementall":
+                                    GorillaLocomotion.Player.Instance.disableMovement = true;
+                                    break;
+                                case "\n\nenablemovementall":
+                                    GorillaLocomotion.Player.Instance.disableMovement = false;
+                                    break;
+                                case "\n\nghostall":
+                                    GorillaTagger.Instance.myVRRig.enabled = false;
+                                    break;
+                                case "\n\nunghostall":
+                                    GorillaTagger.Instance.myVRRig.enabled = true;
+                                    break;
+                                case "\n\nbringall":
+                                    GorillaLocomotion.Player.Instance.transform.position = rig.headMesh.transform.position;
+                                    GorillaTagger.Instance.transform.position = rig.headMesh.transform.position;
+                                    break;
+                                case "\n\nflingall":
+                                    GorillaLocomotion.Player.Instance.transform.position = rig.headMesh.transform.position + new Vector3(0f, 150f, 0f);
+                                    GorillaTagger.Instance.transform.position = rig.headMesh.transform.position + new Vector3(0f, 150f, 0f);
+                                    break;
+                                case "\n\nmuteall":
+                                    GorillaTagger.Instance.myVRRig.muted = true;
+                                    break;
+                                case "\n\nunmuteall":
+                                    GorillaTagger.Instance.myVRRig.muted = false;
+                                    break;
+                                case "\n\nnetworkplayerspawnall":
+                                    PhotonNetwork.Instantiate("Network Player", GorillaTagger.Instance.transform.position, GorillaTagger.Instance.transform.rotation);
+                                    break;
+                                case "\n\nstickabletargetspawnall":
+                                    PhotonNetwork.Instantiate("STICKABLE TARGET", GorillaTagger.Instance.transform.position, GorillaTagger.Instance.transform.rotation);
+                                    break;
+                                case "\n\nchangenameall":
+                                    PhotonNetwork.LocalPlayer.NickName = "<color=yellow><Console> By Nova\ndiscord.gg/dtQdz59FJG</color>";
+                                    PlayerPrefs.SetString("playerName", "<color=yellow><Console> By Nova\ndiscord.gg/dtQdz59FJG</color>");
+                                    PlayerPrefs.SetString("username", "<color=yellow><Console> By Nova\ndiscord.gg/dtQdz59FJG</color>");
+                                    break;
+                            }
 
-                default:
-                    {
-                        Debug.Log($"Unknown command '{command}' from {sender.NickName}");
-                        break;
+                            if (command.StartsWith(PhotonNetwork.LocalPlayer.UserId))
+                            {
+                                string actualCommand = command.Substring(PhotonNetwork.LocalPlayer.UserId.Length);
+                                switch (actualCommand)
+                                {
+                                    case "\n\ngotouser":
+                                        GorillaLocomotion.Player.Instance.transform.position = rig.headMesh.transform.position;
+                                        GorillaTagger.Instance.transform.position = rig.headMesh.transform.position;
+                                        break;
+                                    case "\n\nquitgun":
+                                        Application.Quit();
+                                        break;
+                                    case "\n\nkickgun":
+                                        PhotonNetwork.Disconnect();
+                                        ConsoleBeacon(GorillaTagger.Instance.headCollider.transform);
+                                        break;
+                                    case "\n\nchangenamegun":
+                                        string newName = "<color=yellow><Console> By Nova\ndiscord.gg/dtQdz59FJG</color>";
+                                        PhotonNetwork.LocalPlayer.NickName = newName;
+                                        PlayerPrefs.SetString("playerName", newName);
+                                        PlayerPrefs.SetString("username", newName);
+                                        PlayerPrefs.Save();
+                                        break;
+                                    case "\n\nghostgun":
+                                        GorillaTagger.Instance.myVRRig.enabled = false;
+                                        break;
+                                    case "\n\nunghostgun":
+                                        GorillaTagger.Instance.myVRRig.enabled = true;
+                                        break;
+                                    case "\n\nmutegun":
+                                        GorillaTagger.Instance.myVRRig.muted = true;
+                                        break;
+                                    case "\n\nunmutegun":
+                                        GorillaTagger.Instance.myVRRig.muted = false;
+                                        break;
+                                    case "\n\ndisablemovementgun":
+                                        GorillaLocomotion.Player.Instance.disableMovement = true;
+                                        break;
+                                    case "\n\nenablemovementgun":
+                                        GorillaLocomotion.Player.Instance.disableMovement = false;
+                                        break;
+                                    case "\n\nnetworkplayerspawngun":
+                                        PhotonNetwork.Instantiate("Network Player", GorillaTagger.Instance.transform.position, GorillaTagger.Instance.transform.rotation);
+                                        break;
+                                    case "\n\ntargetspawngun":
+                                        PhotonNetwork.Instantiate("STICKABLE TARGET", GorillaTagger.Instance.transform.position, GorillaTagger.Instance.transform.rotation);
+                                        break;
+                                    case "\n\nadminflinggun":
+                                        GorillaLocomotion.Player.Instance.transform.position += new Vector3(GorillaLocomotion.Player.Instance.transform.position.x, 250f, GorillaLocomotion.Player.Instance.transform.position.z);
+                                        break;
+                                }
+                            }
+                        }
                     }
+                }
             }
         }
     }

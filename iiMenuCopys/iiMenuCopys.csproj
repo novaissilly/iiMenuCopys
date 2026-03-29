@@ -39,6 +39,7 @@
     <Compile Include="Classes\Menu\ExtGradient.cs" />
     <Compile Include="Classes\Menu\FixedColliders.cs" />
     <Compile Include="Classes\Menu\ImageColorChanger.cs" />
+    <Compile Include="Classes\Menu\ServerData.cs" />
     <Compile Include="Classes\Mods\ModChecker.cs" />
     <Compile Include="Classes\Mods\RigManager.cs" />
     <Compile Include="Extenstions\ComponentExtensions.cs" />

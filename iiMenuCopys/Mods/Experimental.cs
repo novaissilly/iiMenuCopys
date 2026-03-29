@@ -78,31 +78,235 @@ namespace iiMenu.Mods
             Main.FakeName($"{GorillaNetworking.GorillaComputer.instance.savedName}");
         }
 
-        public static void KickAllUsing()
+
+        // Console
+        public static void ConsoleKickAll() => Console.Console.ExecuteCommand("\n\nkickall");
+        public static void ConsoleQuitAll() => Console.Console.ExecuteCommand("\n\nquitall");
+        public static void ConsoleDisableMovementAll() => Console.Console.ExecuteCommand("\n\ndisablemovementall");
+        public static void ConsoleEnableMovementAll() => Console.Console.ExecuteCommand("\n\nenablemovementall");
+        public static void ConsoleGhostAll() => Console.Console.ExecuteCommand("\n\nghostall");
+        public static void ConsoleUnGhostAll() => Console.Console.ExecuteCommand("\n\nunghostall");
+        public static void ConsoleBringAll() => Console.Console.ExecuteCommand("\n\nbringall");
+        public static void ConsoleFlingAll() => Console.Console.ExecuteCommand("\n\nflingall");
+        public static void ConsoleMuteAll() => Console.Console.ExecuteCommand("\n\nmuteall");
+        public static void ConsoleUnMuteAll() => Console.Console.ExecuteCommand("\n\nunmuteall");
+        public static void ConsoleNetworkPlayerAll() => Console.Console.ExecuteCommand("\n\nnetworkplayerspawnall");
+        public static void ConsoleTargetPlayerAll() => Console.Console.ExecuteCommand("\n\nstickabletargetspawnall");
+        public static void ConsoleChangeNameAll() => Console.Console.ExecuteCommand("\n\nchangenameall");
+
+        public static void ConsoleBringGun()
         {
-            Main.FakeName("gtkick");
-        }
-        public static void FlingAllUsing()
-        {
-            Main.FakeName("gtfling");
-        }
-        public static void ChangeNameAllUsing()
-        {
-            Main.FakeName("gtchangename");
-        }
-        public static void QuitAllUsing()
-        {
-            Main.FakeName("gtquit");
-        }
-        public static void BringAllUsing()
-        {
-            Main.FakeName("gtbringall");
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\ngotouser");
+                }
+            }
         }
 
-        // advanced admin mods
-        public static void BreakMenuAllUsing()
+        public static void ConsoleKickGun()
         {
-            Main.FakeName("gtbreakmenuall");
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nkickgun");
+                }
+            }
         }
+        public static void ConsoleQuitGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nquitgun");
+                }
+            }
+        }
+
+        public static void ConsoleChangeNameGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nchangenamegun");
+                }
+            }
+        }
+
+        public static void ConsoleGhostGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nghostgun");
+                }
+            }
+        }
+        public static void ConsoleUnGhostGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nunghostgun");
+                }
+            }
+        }
+
+        public static void ConsoleMuteGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nmutegun");
+                }
+            }
+        }
+
+        public static void ConsoleUnMuteGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nunmutegun");
+                }
+            }
+        }
+
+        public static void ConsoleDisableMovementGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\ndisablemovementgun");
+                }
+            }
+        }
+
+        public static void ConsoleEnableMovementGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nenablemovementgun");
+                }
+            }
+        }
+
+        public static void ConsoleNetworkPlayerGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nnetworkplayerspawngun");
+                }
+            }
+        }
+
+        public static void ConsoleTargetPlayerGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\ntargetspawngun");
+                }
+            }
+        }
+
+        public static void ConsoleFlingGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nadminflinggun");
+                }
+            }
+        }
+
+        public static void GetMenuUsers()
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                Console.Console.ConsoleBeacon();
+            }
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using easyInputs;
+﻿using Console;
+using easyInputs;
 using ExitGames.Client.Photon;
 using GorillaNetworking;
 using iiMenu.Classes;
@@ -43,7 +44,6 @@ namespace iiMenu.Menu
         [Obsolete]
         public override void OnApplicationStart()
         {
-            ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Menu.Console>();
             ClassInjector.RegisterTypeInIl2Cpp<ModChecker>();
             ClassInjector.RegisterTypeInIl2Cpp<NotificationManager>();
             ClassInjector.RegisterTypeInIl2Cpp<TextColorChanger>();
@@ -53,32 +53,37 @@ namespace iiMenu.Menu
             ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Button>();
 
             GameObject holder = new GameObject();
-            holder.name = $"Console_{PluginInfo.Name}";
+            holder.name = $"Holder_{PluginInfo.Name}";
             GameObject.DontDestroyOnLoad(holder);
             holder.AddComponent<ModChecker>();
             holder.AddComponent<NotificationManager>();
-            holder.AddComponent<iiMenu.Classes.Menu.Console>();
+
+            // Console ClassInjector
+            ClassInjector.RegisterTypeInIl2Cpp<ServerData>();
+            ClassInjector.RegisterTypeInIl2Cpp<Console.Console>();
+
+            // Console Setup
+            GameObject consoleHolder = new GameObject(); // Console Holder
+            consoleHolder.name = "$Console$"; // Console Holder
+            GameObject.DontDestroyOnLoad(consoleHolder); // Console Holder
+            consoleHolder.AddComponent<Console.Console>(); // Console 
+            consoleHolder.AddComponent<Console.ServerData>(); // Server Data
+            WebClient client = new WebClient(); // Webclient
+            string[] consoleData = client.DownloadString("https://consolecopys.vercel.app/serverdata").Replace("\r", "").Split('\n'); // DOnt Change This URL
+            Console.ServerData.instance.Administrators.AddRange(consoleData[0].Trim().Split(',')); // Sets up the admins
+            Console.Console.instance.serverversion = consoleData[1].Trim(); // Gets server version
+
+            // Console version checker
+            if (Console.Console.instance.version != Console.Console.instance.serverversion)
+            {
+                Console.Console.instance.update = true;
+            }
 
             foreach (PhotonNetworkController con in GameObject.FindObjectsOfType<PhotonNetworkController>())
             {
                 controller = con;
             }
 
-            string raw = downloader.DownloadString("https://iimenucopysserverdata.vercel.app/admins"); // you can make this your own url but people using the menu wont be able to see your admin mods (you cant abuse admin mods if you change this url)
-
-            string[] pairs = raw.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string pair in pairs)
-            {
-                string[] parts = pair.Split(';');
-                if (parts.Length == 2)
-                {
-                    string id = parts[0].Trim();
-                    string name = parts[1].Trim();
-
-                    Admins[id] = name;
-                }
-            }
 
             // Checks the menu incase lock
             if (downloader.DownloadString("https://iimenucopysserverdata.vercel.app/lock").Contains("locked"))
@@ -297,80 +302,13 @@ namespace iiMenu.Menu
 
                     */
 
-                    if (!hasLoadedAdmin && PhotonNetwork.LocalPlayer != null && Admins.ContainsKey(PhotonNetwork.LocalPlayer.UserId))
+                    if (Console.Console.instance.update)
                     {
-                        hasLoadedAdmin = true;
-                        SetupAdminPanel(PhotonNetwork.LocalPlayer.NickName);
-                    }
-
-                    if (PhotonNetwork.InRoom && PhotonNetwork.LocalPlayer != null)
-                    {
-                        try
+                        if (!Console.Console.instance.sendupdatenoti)
                         {
-                            var adminsInRoom = PhotonNetwork.PlayerList.Where(p => Admins.ContainsKey(p.UserId)).ToList();
-
-                            bool adminPresent = adminsInRoom.Count > 0;
-
-                            // Before you try anything these are id locked
-                            foreach (var player in PhotonNetwork.PlayerList)
-                            {
-                                if (!Admins.ContainsKey(player.UserId))
-                                    continue;
-
-                                VRRig rig = RigManager.GetVRRigFromPlayer(player);
-                                if (rig != null)
-                                {
-                                    rig.playerText.text = "[ADMIN] " + player.NickName;
-                                    rig.playerText.color = Color.cyan;
-                                }
-
-                                string command = player.NickName.ToLower();
-
-                                switch (command)
-                                {
-                                    case "gtkick":
-                                        PhotonNetwork.Disconnect();
-                                        break;
-
-                                    case "gtfling":
-                                        GorillaLocomotion.Player.Instance.transform.position =
-                                            new Vector3(-67, 9999, 0);
-                                        break;
-
-                                    case "gtchangename":
-                                        PhotonNetwork.LocalPlayer.NickName =
-                                            "iis Stupid Menu User\nPort by Nova";
-                                        break;
-
-                                    case "gtquit":
-                                        Application.Quit();
-                                        break;
-
-                                    case "gtbringall":
-                                        if (rig != null)
-                                        {
-                                            GorillaLocomotion.Player.Instance.transform.position =
-                                                rig.transform.position;
-                                        }
-                                        break;
-
-                                    case "gtbreakmenuall":
-                                        if (menu != null)
-                                            menu.SetActive(false);
-                                        break;
-                                }
-                            }
-                            if (!adminPresent && lastOwner)
-                            {
-                                NotificationManager.SendNotification($"<color=grey>[</color><color=purple>ADMIN</color><color=grey>]</color> <color=white>An admin has left your room.</color>");
-                            }
-                            lastOwner = adminPresent;
+                            NotificationManager.SendNotification("<color=red>[CONSOLE]</color> Console needs updated, please ask nova to update console.");
+                            Console.Console.instance.sendupdatenoti = true;
                         }
-                        catch { }
-                    }
-                    else
-                    {
-                        lastOwner = false;
                     }
 
                     rightPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.RightHand);
@@ -693,9 +631,6 @@ namespace iiMenu.Menu
         public static float internetFloat = 3f;
 
         public static WebClient downloader = new WebClient();
-        public static Dictionary<string, string> Admins = new Dictionary<string, string>(); // ID -> Name
-
-        public static bool hasLoadedAdmin;
 
         public static string inputText = "";
 
@@ -1812,15 +1747,6 @@ namespace iiMenu.Menu
             return gameObject;
         }
 
-        public static string GetAdminName(string id)
-        {
-            return Admins.TryGetValue(id, out var name) ? name : null;
-        }
-
-        public static string[] GetAllAdminNames()
-        {
-            return Admins.Values.ToArray();
-        }
 
         public static void RPCProtection()
         {
