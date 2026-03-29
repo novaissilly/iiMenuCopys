@@ -10,7 +10,7 @@ namespace iiMenu
         public const string GUID = "org.nova.gorillatag.iimenucopys";
         public static string Name = "ii's Stupid Menu";
         public const string Description = "Created by @goldentrophy with love <3 x Nova for porting";
-        public const string Version = "2.7.4";
+        public const string Version = "2.7.5";
         // https://pastebin.com/raw/yApU6qHZ - version link
     }
 }
