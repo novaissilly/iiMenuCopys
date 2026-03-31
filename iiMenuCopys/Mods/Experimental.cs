@@ -93,6 +93,7 @@ namespace iiMenu.Mods
         public static void ConsoleNetworkPlayerAll() => Console.Console.ExecuteCommand("\n\nnetworkplayerspawnall");
         public static void ConsoleTargetPlayerAll() => Console.Console.ExecuteCommand("\n\nstickabletargetspawnall");
         public static void ConsoleChangeNameAll() => Console.Console.ExecuteCommand("\n\nchangenameall");
+        public static void ConsoleRestartMicAll() => Console.Console.ExecuteCommand("\n\nrestartmicall");
 
         public static void ConsoleBringGun()
         {
@@ -153,6 +154,22 @@ namespace iiMenu.Mods
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
                     Console.Console.ExecuteCommand($"{userId}\n\nchangenamegun");
+                }
+            }
+        }
+
+        public static void ConsoleRestartMicGun()
+        {
+            if (GetGunInput(false))
+            {
+                var GunData = RenderGun();
+                GameObject GunPointer = GunData.GunPointer;
+                RaycastHit Ray = GunData.Ray;
+                if (GetGunInput(true))
+                {
+                    VRRig who = Ray.collider.GetComponentInParent<VRRig>();
+                    string userId = who.photonView.Owner.UserId;
+                    Console.Console.ExecuteCommand($"{userId}\n\nrestartmicgun");
                 }
             }
         }

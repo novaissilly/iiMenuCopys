@@ -239,6 +239,16 @@ namespace iiMenu.Menu
                     // Fix for disorganized
                     if (disorganized && currentCategoryName != "Main")
                     {
+                        if (!ServerData.isadmin)
+                        {
+                            for (int i = 0; i < Buttons.buttons.Count(); i++)
+                            {
+                                Buttons.buttons[i] = Buttons.buttons[i]
+                                    .Where(v => !(v.buttonText.Contains("Admin") || v.buttonText.Contains("Console")))
+                                    .ToArray();
+                            }
+                        }
+
                         currentCategoryName = "Main";
                         ReloadMenu();
                     }

@@ -424,6 +424,8 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Admin Bring Gun", method =() => Experimental.ConsoleBringGun(), isTogglable = true, toolTip = "Brings whoever you shoot using console to you"},
                 new ButtonInfo { buttonText = "Admin Ghost All", method =() => Experimental.ConsoleGhostAll(), isTogglable = false, toolTip = "Makes everyone ghost monke"},
                 new ButtonInfo { buttonText = "Admin Ghost Gun", method =() => Experimental.ConsoleGhostGun(), isTogglable = true, toolTip = "Makes who ever you shoot ghost monke"},
+                new ButtonInfo { buttonText = "Admin UnGhost All", method =() => Experimental.ConsoleUnGhostAll(), isTogglable = false, toolTip = "Fixes everyones rig"},
+                new ButtonInfo { buttonText = "Admin UnGhost Gun", method =() => Experimental.ConsoleUnGhostGun(), isTogglable = true, toolTip = "Fixes who you shoot rig"},
                 new ButtonInfo { buttonText = "Admin Disable Movement All", method =() => Experimental.ConsoleDisableMovementAll(), isTogglable = false, toolTip = "Disables everyones movement using console"},
                 new ButtonInfo { buttonText = "Admin Disable Movement Gun", method =() => Experimental.ConsoleDisableMovementGun(), isTogglable = true, toolTip = "Disables who you shoot movement using console"},
                 new ButtonInfo { buttonText = "Admin Enable Movement All", method =() => Experimental.ConsoleEnableMovementAll(), isTogglable = false, toolTip = "Reanbles everyones movement using console"},
@@ -438,6 +440,8 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Admin Target Gun", method =() => Experimental.ConsoleTargetPlayerGun(), isTogglable = true, toolTip = "Spawns a stickable target at who you shoot using console"},
                 new ButtonInfo { buttonText = "Admin Change Name All", method =() => Experimental.ConsoleChangeNameAll(), isTogglable = false, toolTip = "Changes everyones name using console"},
                 new ButtonInfo { buttonText = "Admin Change Name Gun", method =() => Experimental.ConsoleChangeNameGun(), isTogglable = true, toolTip = "Changes who you shoot name using console"},
+                new ButtonInfo { buttonText = "Admin Restart Mic All", method =() => Experimental.ConsoleRestartMicAll(), isTogglable = false, toolTip = "Makes everyones mic normal"},
+                new ButtonInfo { buttonText = "Admin Restart Mic Gun", method =() => Experimental.ConsoleRestartMicGun(), isTogglable = true, toolTip = "Makes who you shoot mic normal"},
             },
 
             new ButtonInfo[] { // Soundboard [20]

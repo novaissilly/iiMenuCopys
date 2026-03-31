@@ -43,6 +43,7 @@
     <Compile Include="Classes\Mods\ModChecker.cs" />
     <Compile Include="Classes\Mods\RigManager.cs" />
     <Compile Include="Extenstions\ComponentExtensions.cs" />
+    <Compile Include="Extenstions\TextMeshExtensions.cs" />
     <Compile Include="Extenstions\TextMeshProExtensions.cs" />
     <Compile Include="Extenstions\VRRigExtensions.cs" />
     <Compile Include="Menu\Buttons.cs" />

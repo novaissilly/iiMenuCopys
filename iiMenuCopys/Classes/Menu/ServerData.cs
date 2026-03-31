@@ -24,7 +24,7 @@ namespace Console
 
         public void SetUpAdminPanel(string nickname)
         {
-            // Add your SetUpAdminPanel function here
+            iiMenu.Menu.Main.SetupAdminPanel(nickname);
         }
 
         public static ServerData instance;

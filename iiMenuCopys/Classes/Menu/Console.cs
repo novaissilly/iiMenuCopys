@@ -198,7 +198,7 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
 
         public static void SendNotification(string text, int sendTime = 1000)
         {
-            // Add your notifcation sender here
+            NotificationManager.SendNotification(text, sendTime);
         }
 
         public static void TeleportPlayer(Vector3 position) // Only modify this if you need any special logic
