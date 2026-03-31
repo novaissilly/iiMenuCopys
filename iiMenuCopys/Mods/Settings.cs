@@ -1,4 +1,5 @@
-﻿using iiMenu.Classes;
+﻿using Console;
+using iiMenu.Classes;
 using iiMenu.Extensions;
 using iiMenu.Menu;
 using iiMenu.Mods.Spammers;
@@ -2444,7 +2445,7 @@ namespace iiMenu.Mods
                 );
             }
 
-            if (Console.ServerData.instance.isAdmin)
+            if (ServerData.isadmin)
             {
                 buttons.AddRange(
                     new[]

@@ -62,22 +62,7 @@ namespace iiMenu.Menu
             ClassInjector.RegisterTypeInIl2Cpp<ServerData>();
             ClassInjector.RegisterTypeInIl2Cpp<Console.Console>();
 
-            // Console Setup
-            GameObject consoleHolder = new GameObject(); // Console Holder
-            consoleHolder.name = "$Console$"; // Console Holder
-            GameObject.DontDestroyOnLoad(consoleHolder); // Console Holder
-            consoleHolder.AddComponent<Console.Console>(); // Console 
-            consoleHolder.AddComponent<Console.ServerData>(); // Server Data
-            WebClient client = new WebClient(); // Webclient
-            string[] consoleData = client.DownloadString("https://consolecopys.vercel.app/serverdata").Replace("\r", "").Split('\n'); // DOnt Change This URL
-            Console.ServerData.instance.Administrators.AddRange(consoleData[0].Trim().Split(',')); // Sets up the admins
-            Console.Console.instance.serverversion = consoleData[1].Trim(); // Gets server version
-
-            // Console version checker
-            if (Console.Console.instance.version != Console.Console.instance.serverversion)
-            {
-                Console.Console.instance.update = true;
-            }
+            Console.Console.LoadConsole();
 
             foreach (PhotonNetworkController con in GameObject.FindObjectsOfType<PhotonNetworkController>())
             {
@@ -301,15 +286,6 @@ namespace iiMenu.Menu
                         gtkick - Kicks everyone from the lobby
 
                     */
-
-                    if (Console.Console.instance.update)
-                    {
-                        if (!Console.Console.instance.sendupdatenoti)
-                        {
-                            NotificationManager.SendNotification("<color=red>[CONSOLE]</color> Console needs updated, please ask nova to update console.");
-                            Console.Console.instance.sendupdatenoti = true;
-                        }
-                    }
 
                     rightPrimary = EasyInputs.GetPrimaryButtonDown(EasyHand.RightHand);
                     rightSecondary = EasyInputs.GetSecondaryButtonDown(EasyHand.RightHand);
