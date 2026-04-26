@@ -174,7 +174,7 @@ namespace iiMenu
 
             Renderer r = obj.GetComponent<Renderer>();
             r.material = new Material(Shader.Find("Standard"));
-            r.material.color = Menu.Main.buttonColors[1].GetCurrentColor();
+            r.material.color = Menu.Main.buttonColors[0].GetCurrentColor();
             BoxCollider col = obj.GetComponent<BoxCollider>();
             col.isTrigger = true;
             GameObject textObj = new("Text");
@@ -200,7 +200,7 @@ namespace iiMenu
             bg.transform.localPosition = new Vector3(0, -0.12f, 0f);
             var r = bg.GetComponent<Renderer>();
             r.material = new Material(Shader.Find("Standard"));
-            r.material.color = new Color(0.08f, 0.08f, 0.08f);
+            r.material.color = Menu.Main.backgroundColor.GetCurrentColor();
             UnityEngine.Object.Destroy(bg.GetComponent<Collider>());
         }
 
@@ -281,14 +281,14 @@ namespace iiMenu
         {
             if (Info == null) return;
 
-            Info.Renderer.material.color = Color.cyan;
+            Info.Renderer.material.color = Menu.Main.buttonColors[1].GetCurrentColor();
             Info.Action?.Invoke();
             MelonLoader.MelonCoroutines.Start(Reset(Info.Renderer));
         }
         private System.Collections.IEnumerator Reset(Renderer r)
         {
             yield return new WaitForSeconds(0.15f);
-            r.material.color = new Color(0.12f, 0.25f, 0.55f);
+            r.material.color = Menu.Main.buttonColors[0].GetCurrentColor();
         }
     }
 }
