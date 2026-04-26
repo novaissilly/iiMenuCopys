@@ -174,7 +174,7 @@ namespace iiMenu
 
             Renderer r = obj.GetComponent<Renderer>();
             r.material = new Material(Shader.Find("Standard"));
-            r.material.color = new Color(0.12f, 0.25f, 0.55f);
+            r.material.color = Menu.Main.buttonColors[1].GetCurrentColor();
             BoxCollider col = obj.GetComponent<BoxCollider>();
             col.isTrigger = true;
             GameObject textObj = new("Text");
