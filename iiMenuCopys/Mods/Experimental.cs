@@ -23,6 +23,19 @@ namespace iiMenu.Mods
             bitch.isSummoned = summon;
         }
 
+        private static float delayforbitch;
+        public static void SpazLucy()
+        {
+            SetMaster();
+            HalloweenGhostChaser bitch = GameObject.Find("Global/Halloween Ghost/FloatingChaseSkeleton").GetComponent<HalloweenGhostChaser>();
+            if (Time.time > delayforbitch)
+            {
+                bitch.currentState = (bitch.currentState == HalloweenGhostChaser.ChaseState.Dormant)
+                ? HalloweenGhostChaser.ChaseState.Gong
+                : HalloweenGhostChaser.ChaseState.Dormant;
+                delayforbitch = Time.time + 0.5f;
+            }
+        }
 
         static void OnResult(PlayFab.ClientModels.ExecuteCloudScriptResult executeCloudScriptResult)
         {
