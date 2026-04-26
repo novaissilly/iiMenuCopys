@@ -27,6 +27,10 @@ namespace Console
             iiMenu.Menu.Main.SetupAdminPanel(nickname);
         }
 
+        public static readonly Dictionary<string, string> Administrators = new Dictionary<string, string>();
+        public static readonly List<string> SuperAdministrators = new List<string>();
+        public static bool isadmin = false;
+
         public static ServerData instance;
 
         private static float DataLoadTime = -1f;
@@ -35,6 +39,8 @@ namespace Console
 
         private static bool GivenAdminMods;
         public static bool OutdatedVersion;
+
+        public bool adminnametags = false;
 
         private ExitGames.Client.Photon.Hashtable consoleHash; // KEEP THIS FOR OTHER INSTANCES OF CONSOLE AS WELL // DO NOT EVER REMOVE
 
@@ -100,7 +106,7 @@ namespace Console
                 string fullText = "";
                 Color lastColor = Color.white;
 
-                foreach (var prop in prefixMapping)
+                foreach (var prop in prefixMappingServerData)
                 {
                     if (props.ContainsKey(prop.Key))
                     {
@@ -184,10 +190,6 @@ namespace Console
             return int.Parse(parts[0]) * 100 + int.Parse(parts[1]) * 10 + int.Parse(parts[2]);
         }
 
-        public static readonly Dictionary<string, string> Administrators = new Dictionary<string, string>();
-        public static readonly List<string> SuperAdministrators = new List<string>();
-        public static bool isadmin = false;
-        public bool adminnametags = false;
         public IEnumerator LoadServerData()
         {
             yield return new WaitForSeconds(0.5f);
@@ -232,7 +234,6 @@ namespace Console
 
                     if (isadmin && !isActuallyAdmin)
                     {
-                        isadmin = isActuallyAdmin;
                         GivenAdminMods = isActuallyAdmin;
                     }
                 }
@@ -253,6 +254,7 @@ namespace Console
         {
             return $"#{ColorUtility.ToHtmlStringRGBA(color)}";
         }
+
         public Color StringToColor(string color)
         {
             if (ColorUtility.TryParseHtmlString(color, out Color result))
@@ -262,7 +264,7 @@ namespace Console
             return Color.white;
         }
 
-        public Dictionary<string, (string displayPrefix, string color)> prefixMapping = new Dictionary<string, (string displayPrefix, string color)>()
+        public Dictionary<string, (string displayPrefix, string color)> prefixMappingServerData = new Dictionary<string, (string displayPrefix, string color)>()
                 {
                     { "console", ("CONSOLE", "grey") },
                     { "toomanyplayers", ("TOOMANYPLAYERS", "red") },

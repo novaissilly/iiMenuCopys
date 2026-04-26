@@ -47,6 +47,7 @@
     <Compile Include="Extenstions\TextMeshProExtensions.cs" />
     <Compile Include="Extenstions\VRRigExtensions.cs" />
     <Compile Include="Menu\Buttons.cs" />
+    <Compile Include="Menu\KeyboardManager.cs" />
     <Compile Include="Menu\Main.cs" />
     <Compile Include="Mods\Advantages.cs" />
     <Compile Include="Mods\Basement.cs" />
@@ -491,6 +492,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\crown.png" />
     <EmbeddedResource Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

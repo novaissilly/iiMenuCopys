@@ -9,6 +9,7 @@ using Il2CppSystem.Text.RegularExpressions;
 using MelonLoader;
 using Photon.Pun;
 using Photon.Realtime;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,6 +51,7 @@ namespace iiMenu.Menu
             ClassInjector.RegisterTypeInIl2Cpp<ImageColorChanger>();
             ClassInjector.RegisterTypeInIl2Cpp<ColorChanger>();
             ClassInjector.RegisterTypeInIl2Cpp<RigManager>();
+            ClassInjector.RegisterTypeInIl2Cpp<SphereKeyTrigger>();
             ClassInjector.RegisterTypeInIl2Cpp<iiMenu.Classes.Button>();
 
             GameObject holder = new GameObject();
@@ -59,9 +61,6 @@ namespace iiMenu.Menu
             holder.AddComponent<NotificationManager>();
 
             // Console ClassInjector
-            ClassInjector.RegisterTypeInIl2Cpp<ServerData>();
-            ClassInjector.RegisterTypeInIl2Cpp<Console.Console>();
-
             Console.Console.LoadConsole();
 
             foreach (PhotonNetworkController con in GameObject.FindObjectsOfType<PhotonNetworkController>())
@@ -235,6 +234,8 @@ namespace iiMenu.Menu
                     {
                         reference.GetComponent<Renderer>().material.color = menuBackground.GetComponent<Renderer>().material.color;
                     }
+
+                    KeyboardManager.Update();
 
                     // Fix for disorganized
                     if (disorganized && currentCategoryName != "Main")
@@ -558,13 +559,16 @@ namespace iiMenu.Menu
 
         public static bool customSoundOnJoin = false;
 
-        public static bool homeButton = true;
         public static bool fpsCounter = false;
         public static bool disableDisconnectButton = false;
+        public static bool disableSearchButton = false;
+        public static bool disableReturnButton = false;
         public static bool disableNotifications = false;
         public static bool highQualityText = false;
         public static bool hidePointer = false;
         public static bool incrementalButtons = true;
+
+        public static string keyboardInput = "";
 
         public static int pageSize = 6;
 
@@ -1087,15 +1091,56 @@ namespace iiMenu.Menu
                 ColorChanger colorChanger = buttonObject.AddComponent<ColorChanger>();
                 colorChanger.colors = buttonColors[0];
 
-                ExtGradient grad = backgroundColor.Clone();
-                colorChanger.colors = grad;
-
                 if (increment)
                     buttonObject.transform.localPosition = new Vector3(buttonObject.transform.localPosition.x, -buttonObject.transform.localPosition.y, buttonObject.transform.localPosition.z);
             }
 
             RenderIncrementalText(increment, offset);
         }
+
+        private static void AddSearchButton()
+        {
+            GameObject buttonObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+            buttonObject.GetComponent<BoxCollider>().isTrigger = true;
+            buttonObject.transform.parent = menu.transform;
+            buttonObject.transform.rotation = Quaternion.identity;
+
+            buttonObject.transform.localScale = new Vector3(0.09f, 0.102f, 0.08f);
+            buttonObject.transform.localPosition = thinmenu ? new Vector3(0.56f, -0.450f, -0.58f) : new Vector3(0.56f, -0.7f, -0.58f);
+
+            buttonObject.AddComponent<Button>().relatedText = "Search";
+
+            ColorChanger colorChanger = buttonObject.AddComponent<ColorChanger>();
+            colorChanger.colors = KeyboardManager.KeyboardEnabled ? buttonColors[1] : buttonColors[0];
+
+            Image searchImage = new GameObject
+            {
+                transform =
+                {
+                    parent = canvasObj.transform
+                }
+            }.AddComponent<Image>();
+            if (searchIcon == null)
+                searchIcon = LoadTextureFromResource($"iiMenuCopys.Resources.search.png");
+
+            if (searchMat == null)
+                searchMat = new Material(searchImage.material);
+
+            searchImage.material = searchMat;
+            searchImage.material.SetTexture("_MainTex", searchIcon);
+            searchImage.color = KeyboardManager.KeyboardEnabled ? textColors[1].GetCurrentColor() : textColors[0].GetCurrentColor();
+
+            RectTransform imageTransform = searchImage.GetComponent<RectTransform>();
+            imageTransform.localPosition = Vector3.zero;
+            imageTransform.sizeDelta = new Vector2(.03f, .03f);
+
+            imageTransform.localPosition = thinmenu ? new Vector3(.064f, -0.35f / 2.6f, -0.58f / 2.6f) : new Vector3(.064f, -0.54444444444f / 2.6f, -0.58f / 2.6f);
+
+            imageTransform.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
+        }
+        public static Texture2D searchIcon;
+        public static Material searchMat;
 
         private static void AddReturnButton(bool offcenteredPosition)
         {
@@ -1442,9 +1487,6 @@ namespace iiMenu.Menu
                 hkbStartTime -= 0.1f;
             }
 
-            if (homeButton && currentCategoryName != "Main")
-                AddReturnButton(false);
-
             AddPageButtons();
 
             if (quickActions.Count > 0)
@@ -1463,54 +1505,97 @@ namespace iiMenu.Menu
                 }
             }
 
+            // Search Buttons
+            if (!disableSearchButton)
+            {
+                AddSearchButton();
+                if (!disableReturnButton && currentCategoryName != "Main")
+                    AddReturnButton(true);
+            }
+            else
+            {
+                if (!disableReturnButton && currentCategoryName != "Main")
+                    AddReturnButton(false);
+            }
+
             // Button render code
             int buttonIndexOffset = 0;
             ButtonInfo[] renderButtons = new ButtonInfo[] { };
 
             try
             {
-                if (annoyingMode && UnityEngine.Random.Range(1, 5) == 3)
+                if (KeyboardManager.KeyboardEnabled)
                 {
-                    ButtonInfo disconnectButton = GetIndex("Disconnect");
-                    renderButtons = Enumerable.Repeat(disconnectButton, 15).ToArray();
-                }
-                else if (currentCategoryName == "Favorite Mods")
-                {
-                    foreach (string favoriteMod in favorites)
-                    {
-                        if (GetIndex(favoriteMod) == null)
-                            favorites.Remove(favoriteMod);
-                    }
-
-                    renderButtons = StringsToInfos(favorites.ToArray());
-                }
-                else if (currentCategoryName == "Enabled Mods")
-                {
-                    List<ButtonInfo> enabledMods = new List<ButtonInfo>() { };
+                    List<ButtonInfo> searchedMods = new List<ButtonInfo>();
                     int categoryIndex = 0;
                     foreach (ButtonInfo[] buttonlist in Buttons.buttons)
                     {
                         foreach (ButtonInfo v in buttonlist)
                         {
-                            if (v.enabled)
-                                enabledMods.Add(v);
+                            try
+                            {
+                                if (Buttons.categoryNames[categoryIndex].Contains("Admin Mods"))
+                                    continue;
+
+                                string buttonText = v.buttonText;
+                                if (v.overlapText != null)
+                                    buttonText = v.overlapText;
+
+                                if (buttonText.Replace(" ", "").ToLower().Contains(keyboardInput.Replace(" ", "").ToLower()))
+                                    searchedMods.Add(v);
+                            }
+                            catch { }
                         }
                         categoryIndex++;
                     }
-                    enabledMods = enabledMods.OrderBy(v => v.buttonText).ToList();
-                    enabledMods.Insert(0, GetIndex("Exit Enabled Mods"));
 
-                    renderButtons = enabledMods.ToArray();
+                    buttonIndexOffset += 1;
+                    renderButtons = searchedMods.ToArray();
                 }
                 else
-                    renderButtons = Buttons.buttons[currentCategoryIndex];
+                {
+                    if (annoyingMode && UnityEngine.Random.Range(1, 5) == 3)
+                    {
+                        ButtonInfo disconnectButton = GetIndex("Disconnect");
+                        renderButtons = Enumerable.Repeat(disconnectButton, 15).ToArray();
+                    }
+                    else if (currentCategoryName == "Favorite Mods")
+                    {
+                        foreach (string favoriteMod in favorites)
+                        {
+                            if (GetIndex(favoriteMod) == null)
+                                favorites.Remove(favoriteMod);
+                        }
 
-                if (!longmenu)
-                    renderButtons = renderButtons
-                        .Skip(pageNumber * (pageSize - buttonIndexOffset))
-                        .Take(pageSize - buttonIndexOffset)
-                        .ToArray();
+                        renderButtons = StringsToInfos(favorites.ToArray());
+                    }
+                    else if (currentCategoryName == "Enabled Mods")
+                    {
+                        List<ButtonInfo> enabledMods = new List<ButtonInfo>() { };
+                        int categoryIndex = 0;
+                        foreach (ButtonInfo[] buttonlist in Buttons.buttons)
+                        {
+                            foreach (ButtonInfo v in buttonlist)
+                            {
+                                if (v.enabled)
+                                    enabledMods.Add(v);
+                            }
+                            categoryIndex++;
+                        }
+                        enabledMods = enabledMods.OrderBy(v => v.buttonText).ToList();
+                        enabledMods.Insert(0, GetIndex("Exit Enabled Mods"));
 
+                        renderButtons = enabledMods.ToArray();
+                    }
+                    else
+                        renderButtons = Buttons.buttons[currentCategoryIndex];
+
+                    if (!longmenu)
+                        renderButtons = renderButtons
+                            .Skip(pageNumber * (pageSize - buttonIndexOffset))
+                            .Take(pageSize - buttonIndexOffset)
+                            .ToArray();
+                }
                 for (int i = 0; i < renderButtons.Length; i++)
                     AddButton((i + buttonIndexOffset + buttonOffset) * 0.1f, i, renderButtons[i]);
             }

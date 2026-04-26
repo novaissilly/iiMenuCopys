@@ -35,7 +35,7 @@ namespace iiMenu.Classes
             {
                 if (prop == null) continue;
                 string value = prop.ToString().ToLower();
-                foreach (var kvp in prefixMapping)
+                foreach (var kvp in prefixMappingModChecker)
                 {
                     if (value.Contains(kvp.Key))
                     {
@@ -47,9 +47,10 @@ namespace iiMenu.Classes
             }
         }
 
-        public Dictionary<string, (string displayPrefix, string color)> prefixMapping = new Dictionary<string, (string displayPrefix, string color)>()
+        public Dictionary<string, (string displayPrefix, string color)> prefixMappingModChecker = new Dictionary<string, (string displayPrefix, string color)>()
                 {
                     { "console", ("CONSOLE", "grey") },
+                    { "toomanyplayers", ("TOOMANYPLAYERS", "red") },
                     { "stupid", ("STUPID", "#ffa200") },
                     { "qolossal", ("QCM", "magenta") },
                     { "colossal", ("CCM", "magenta") },
@@ -65,7 +66,7 @@ namespace iiMenu.Classes
                     { "untitled", ("UNTITLED", "blue") },
                     { "pneumonoultramicroscopicsilicovolcanoconiosisz0real", ("KILLER", "#8B0000") },
                     { "272issogoodilove272menu", ("272", "red") },
-                    { "terrormenussohot", ("Terror", "red") },
+                    { "terrormenussohot", ("Terror", "red") }
                 };
     }
 }

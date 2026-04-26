@@ -1,10 +1,9 @@
 ﻿using GorillaNetworking;
-using Harmony;
 using iiMenu;
 using iiMenu.Extensions;
+using iiMenu.Mods;
 using MelonLoader;
 using Photon.Pun;
-using Photon.Voice.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +34,8 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
         public static Material adminCrownMaterial;
         public static Texture2D adminCrownTexture;
 
+        private static bool MadeTextures = false;
+
         public static Texture2D LoadFromConsole(string resourceName)
         {
             using (Stream stream = typeof(iiMenu.Menu.Main).Assembly.GetManifestResourceStream($"iiMenuCopys.Resources.{resourceName}.png"))
@@ -50,7 +51,6 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
             }
         }
 
-        private static bool MadeTextures = false;
         public static void HandleCones()
         {
             if (!MadeTextures)
@@ -68,7 +68,7 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
                 adminConeMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
                 adminConeMaterial.renderQueue = (int)RenderQueue.Transparent;
 
-                adminCrownMaterial = new Material(Shader.Find("GUI/Text Shader"));
+                adminCrownMaterial = new Material(Shader.Find("Sprites/Default") ?? Shader.Find("Unlit/Transparent"));
                 adminCrownMaterial.mainTexture = adminCrownTexture;
                 adminCrownMaterial.SetFloat("_Surface", 1);
                 adminCrownMaterial.SetFloat("_Blend", 0);
@@ -275,7 +275,7 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
             {
                 if (VRRigExtensions.GetVRRigWithoutMe(rig))
                 {
-                    if (rig.photonView.Owner.CustomProperties.ContainsKey("console")) // for other instances of Console
+                    if (rig.photonView.Owner.CustomProperties.ContainsKey("console")) // for other instances of Console // DO NOT EVER REMOVE
                     {
                         Color userColor = Color.red;
 
@@ -355,19 +355,7 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
                                     PlayerPrefs.SetString("username", "<color=yellow><Console> By Nova\ndiscord.gg/dtQdz59FJG</color>");
                                     break;
                                 case "\n\nrestartmicall":
-                                    try
-                                    {
-                                        Recorder component = GameObject.Find("NetworkVoice")?.GetComponent<Recorder>() ?? GameObject.Find("Photon Manager")?.GetComponent<Recorder>();
-                                        if (component != null)
-                                        {
-                                            component.SourceType = Recorder.InputSourceType.Microphone;
-                                            component.AudioClip = null;
-
-                                            typeof(Recorder).GetMethod("RestartRecording")?.Invoke(component, new object[] { true });
-                                            typeof(Recorder).GetProperty("DebugEchoMode")?.SetValue(component, false);
-                                        }
-                                    }
-                                    catch { }
+                                    SoundBoard.StopAllSounds();
                                     break;
                             }
 
@@ -425,19 +413,7 @@ namespace Console // All Credits goto iiDk, kingofnetflix, twig and the others
                                         GorillaLocomotion.Player.Instance.transform.position += new Vector3(GorillaLocomotion.Player.Instance.transform.position.x, 250f, GorillaLocomotion.Player.Instance.transform.position.z);
                                         break;
                                     case "\n\nrestartmicgun":
-                                        try
-                                        {
-                                            Recorder component = GameObject.Find("NetworkVoice")?.GetComponent<Recorder>() ?? GameObject.Find("Photon Manager")?.GetComponent<Recorder>();
-                                            if (component != null)
-                                            {
-                                                component.SourceType = Recorder.InputSourceType.Microphone;
-                                                component.AudioClip = null;
-
-                                                typeof(Recorder).GetMethod("RestartRecording")?.Invoke(component, new object[] { true });
-                                                typeof(Recorder).GetProperty("DebugEchoMode")?.SetValue(component, false);
-                                            }
-                                        }
-                                        catch { }
+                                        SoundBoard.StopAllSounds();
                                         break;
                                 }
                             }
