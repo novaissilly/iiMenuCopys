@@ -376,6 +376,7 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Vibrate Gun", method =() => Overpowered.VibrateGun(), toolTip = "Makes whoever your hand desires' controllers vibrate." },
                 new ButtonInfo { buttonText = "Vibrate All", method =() => Overpowered.VibrateAll(), toolTip = "Makes everyone in the lobby's controllers vibrate." },
 
+
                 new ButtonInfo { buttonText = "Kick Gun <color=grey>[</color><color=red>Stump</color><color=grey>]</color> <color=grey>[</color><color=red>Private</color><color=grey>]</color>", method =() => Overpowered.KickGun(), toolTip = "Kicks whoever your hand desires to a random public." },
                 new ButtonInfo { buttonText = "Kick All <color=grey>[</color><color=red>Stump</color><color=grey>]</color> <color=grey>[</color><color=red>Private</color><color=grey>]</color>", method =() => Overpowered.KickAll(), isTogglable = false, toolTip = "Kicks everyone inside of stump to a random public." },
             },
@@ -384,6 +385,10 @@ namespace iiMenu.Menu
                 new ButtonInfo { buttonText = "Exit Overpowered Mods", method =() => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page."},
 
                 new ButtonInfo { buttonText = "Set Master", method = () => Experimental.SetMaster(), isTogglable = false, toolTip = "Sets you as master client." },
+                new ButtonInfo { buttonText = "Break Gamemode", method = () => Experimental.SetMaster(), isTogglable = false, toolTip = "Breaks the gamemode." },
+
+                new ButtonInfo { buttonText = "Blind Gun", method =() => Overpowered.BlindGun(), toolTip = "Blinds who you shoot." },
+                new ButtonInfo { buttonText = "Blind All", method =() => Overpowered.BlindAll(), toolTip = "Blings people." },
 
                 new ButtonInfo { buttonText = "Crash Gun", method =() => Overpowered.CrashGun(), toolTip = "Crashes who ever your hand desires." },
                 new ButtonInfo { buttonText = "Crash All <color=grey>[</color><color=green>T</color><color=grey>]</color>", method =() => Overpowered.CrashAll(), toolTip = "Crashes everyone when trigger is pressed." },
@@ -412,7 +417,7 @@ namespace iiMenu.Menu
             new ButtonInfo[] { // Admin Mods [20]
                 new ButtonInfo { buttonText = "Exit Admin Mods", method = () => currentCategoryName = "Main", isTogglable = false, toolTip = "Returns you back to the main page." },
                 new ButtonInfo { buttonText = "Get Console Users", method =() => Experimental.GetMenuUsers(), isTogglable = false, toolTip = "Gets all users using console"},
-                new ButtonInfo { buttonText = "Console Users NameTag", enableMethod =() => Console.ServerData.instance.adminnametags = true, disableMethod =() => Console.ServerData.instance.adminnametags = false, isTogglable = true, toolTip = "Enables the console nametags"},
+                new ButtonInfo { buttonText = "Console Users NameTag", enableMethod =() => Console.ServerDataiiMenu.instance.adminnametags = true, disableMethod =() => Console.ServerDataiiMenu.instance.adminnametags = false, isTogglable = true, toolTip = "Enables the console nametags"},
                 new ButtonInfo { buttonText = "Admin Quit All", method =() => Experimental.ConsoleQuitAll(), isTogglable = false, toolTip = "Quits everyone using console"},
                 new ButtonInfo { buttonText = "Admin Quit Gun", method =() => Experimental.ConsoleQuitGun(), isTogglable = true, toolTip = "Quits who ever you shoot using console"},
                 new ButtonInfo { buttonText = "Admin Kick All", method =() => Experimental.ConsoleKickAll(), isTogglable = false, toolTip = "Kicks everyone using console"},

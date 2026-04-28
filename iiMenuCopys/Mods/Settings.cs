@@ -2445,7 +2445,7 @@ namespace iiMenu.Mods
                 );
             }
 
-            if (ServerData.isadmin)
+            if (ServerDataiiMenu.isadmin)
             {
                 buttons.AddRange(
                     new[]
@@ -2453,42 +2453,42 @@ namespace iiMenu.Mods
                         new ButtonInfo {
                             buttonText = "Admin Kick Player",
                             overlapText = $"Admin Kick {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nkickgun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nkickgun"),
                             isTogglable = false,
                             toolTip = $"Kicks {targetName} if they're using the menu."
                         },
                         new ButtonInfo {
                             buttonText = "Admin Quit Player",
                             overlapText = $"Admin Quit {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nquitgun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nquitgun"),
                             isTogglable = false,
                             toolTip = $"Quits {targetName} if they're using the menu."
                         },
                         new ButtonInfo {
                             buttonText = "Admin Fling Player",
                             overlapText = $"Admin Fling {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nflinggun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nflinggun"),
                             isTogglable = false,
                             toolTip = $"Flings {targetName} if they're using the menu."
                         },
                         new ButtonInfo {
                             buttonText = "Admin Bring Player",
                             overlapText = $"Admin Bring {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nbringgun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nbringgun"),
                             isTogglable = false,
                             toolTip = $"Brings {targetName} if they're using the menu."
                         },
                         new ButtonInfo {
                             buttonText = "Admin Ghost Player",
                             overlapText = $"Ghost {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nghostgun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nghostgun"),
                             isTogglable = false,
                             toolTip = $"Ghosts {targetName} if they're using the menu."
                         },
                         new ButtonInfo {
                             buttonText = "Admin UnGhost Player",
                             overlapText = $"UnGhost {targetName}",
-                            method =() => Console.Console.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nunghostgun"),
+                            method =() => Console.ConsoleiiMenu.ExecuteCommand($"{playerRig.photonView.Owner.UserId}\n\nunghostgun"),
                             isTogglable = false,
                             toolTip = $"UnGhost {targetName} if they're using the menu."
                         },

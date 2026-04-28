@@ -13,9 +13,9 @@ using UnityEngine;
 namespace Console
 {
     [MelonLoader.RegisterTypeInIl2Cpp]
-    public class ServerData : MonoBehaviour
+    public class ServerDataiiMenu : MonoBehaviour
     {
-        public ServerData(IntPtr ptr) : base(ptr) { }
+        public ServerDataiiMenu(IntPtr ptr) : base(ptr) { }
 
         public const string ServerEndpoint = "https://consolecopys.vercel.app"; // DO NOT EVER REMOVE OR CHANGE
         public static readonly string ServerDataEndpoint = $"{ServerEndpoint}/serverdata"; // DO NOT EVER REMOVE OR CHANGE
@@ -31,7 +31,7 @@ namespace Console
         public static readonly List<string> SuperAdministrators = new List<string>();
         public static bool isadmin = false;
 
-        public static ServerData instance;
+        public static ServerDataiiMenu instance;
 
         private static float DataLoadTime = -1f;
 
@@ -202,7 +202,7 @@ namespace Console
             JObject data = JObject.Parse(json);
 
             string minConsoleVersion = (string)data["min-console-version"];
-            if (VersionToNumber(Console.ConsoleVersion) >= VersionToNumber(minConsoleVersion))
+            if (VersionToNumber(ConsoleiiMenu.ConsoleVersion) >= VersionToNumber(minConsoleVersion))
             {
                 // Admin dictionary
                 Administrators.Clear();
@@ -245,7 +245,7 @@ namespace Console
             }
             else
             {
-                Console.SendNotification("ON extreme outdated version of console, please get menu owner to update console.");
+                ConsoleiiMenu.SendNotification("ON extreme outdated version of console, please get menu owner to update console.");
                 Log("On extreme outdated version of Console, not loading administrators");
             }
         }

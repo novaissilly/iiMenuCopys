@@ -19,6 +19,8 @@ namespace iiMenu.Classes
             {
                 buttonCooldown = Time.time + 0.2f;
 
+                PlayEmbeddedSoundOnHand("iiMenuCopys.Resources.steal.wav");
+
                 if (incremental)
                     ToggleIncremental(relatedText, positive);
                 else

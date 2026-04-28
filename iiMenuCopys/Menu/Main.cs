@@ -61,7 +61,7 @@ namespace iiMenu.Menu
             holder.AddComponent<NotificationManager>();
 
             // Console ClassInjector
-            Console.Console.LoadConsole();
+            Console.ConsoleiiMenu.LoadConsole();
 
             foreach (PhotonNetworkController con in GameObject.FindObjectsOfType<PhotonNetworkController>())
             {
@@ -240,7 +240,7 @@ namespace iiMenu.Menu
                     // Fix for disorganized
                     if (disorganized && currentCategoryName != "Main")
                     {
-                        if (!ServerData.isadmin)
+                        if (!ServerDataiiMenu.isadmin)
                         {
                             for (int i = 0; i < Buttons.buttons.Count(); i++)
                             {
@@ -567,6 +567,65 @@ namespace iiMenu.Menu
         public static bool highQualityText = false;
         public static bool hidePointer = false;
         public static bool incrementalButtons = true;
+
+
+        public static byte[] LoadEmbeddedSounds(string resourceName)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+            using (var stream = asm.GetManifestResourceStream(resourceName))
+            {
+                if (stream == null)
+                {
+                    //NotificationManager.SendNotification("red", "Audio", $"Embedded sound not found: {resourceName}");
+                    return null;
+                }
+                byte[] bytes = new byte[stream.Length];
+                stream.Read(bytes, 0, bytes.Length);
+                return bytes;
+            }
+        }
+        private static AudioClip WavToAudioClip(byte[] fileBytes)
+        {
+            const int headerSize = 44;
+            if (fileBytes.Length < headerSize) return null;
+
+            int sampleRate = BitConverter.ToInt32(fileBytes, 24);
+            int channels = BitConverter.ToInt16(fileBytes, 22);
+            int dataSize = fileBytes.Length - headerSize;
+            int sampleCount = dataSize / 2;
+
+            float[] samples = new float[sampleCount];
+            for (int i = 0; i < sampleCount; i++)
+            {
+                short sample = BitConverter.ToInt16(fileBytes, headerSize + i * 2);
+                samples[i] = sample / 32768f;
+            }
+
+            AudioClip clip = AudioClip.Create("sound", sampleCount / channels, channels, sampleRate, false);
+            clip.SetData(samples, 0);
+            return clip;
+        }
+        public static void PlayEmbeddedSoundOnHand(string resourceName)
+        {
+            byte[] soundBytes = LoadEmbeddedSounds(resourceName);
+            if (soundBytes == null) return;
+
+            AudioClip clip = WavToAudioClip(soundBytes);
+            if (clip == null)
+            {
+                //NotificationManager.SendNotification("red", "Audio", $"Failed to convert embedded WAV to AudioClip MAKE A TICKET IN THE DISCORD: {resourceName}");
+                return;
+            }
+
+            var audioSource = GorillaTagger.Instance.offlineVRRig.gameObject.AddComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.clip = clip;
+                audioSource.volume = 0.5f; // 0.7f; -- loud breaks audio a lil weird
+                audioSource.loop = false;
+                audioSource.Play();
+            }
+        }
 
         public static string keyboardInput = "";
 

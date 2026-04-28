@@ -86,6 +86,17 @@ namespace iiMenu.Mods
             NotificationManager.SendNotification("<color=grey>[</color><color=purple>ANTI BAN</color><color=grey>]</color> <color=white>You are now master client! This should ONLY be enabled with the anti ban or in modded lobbies.</color>");
         }
 
+        public static void BreakGameMode()
+        {
+            SetMaster();
+            PhotonView gmanView = GorillaGameManager.instance.photonView;
+            gmanView.RequestOwnership();
+            gmanView.TransferOwnership(PhotonNetwork.LocalPlayer.ActorNumber);
+            GameObject.Destroy(GameObject.FindObjectOfType<GorillaTagManager>());
+            GameObject.Destroy(GameObject.FindObjectOfType<GorillaGameManager>());
+            GameObject.Destroy(GameObject.FindObjectOfType<GorillaHuntManager>());
+        }
+
         public static void FixName()
         {
             Main.FakeName($"{GorillaNetworking.GorillaComputer.instance.savedName}");
@@ -93,20 +104,20 @@ namespace iiMenu.Mods
 
 
         // Console
-        public static void ConsoleKickAll() => Console.Console.ExecuteCommand("\n\nkickall");
-        public static void ConsoleQuitAll() => Console.Console.ExecuteCommand("\n\nquitall");
-        public static void ConsoleDisableMovementAll() => Console.Console.ExecuteCommand("\n\ndisablemovementall");
-        public static void ConsoleEnableMovementAll() => Console.Console.ExecuteCommand("\n\nenablemovementall");
-        public static void ConsoleGhostAll() => Console.Console.ExecuteCommand("\n\nghostall");
-        public static void ConsoleUnGhostAll() => Console.Console.ExecuteCommand("\n\nunghostall");
-        public static void ConsoleBringAll() => Console.Console.ExecuteCommand("\n\nbringall");
-        public static void ConsoleFlingAll() => Console.Console.ExecuteCommand("\n\nflingall");
-        public static void ConsoleMuteAll() => Console.Console.ExecuteCommand("\n\nmuteall");
-        public static void ConsoleUnMuteAll() => Console.Console.ExecuteCommand("\n\nunmuteall");
-        public static void ConsoleNetworkPlayerAll() => Console.Console.ExecuteCommand("\n\nnetworkplayerspawnall");
-        public static void ConsoleTargetPlayerAll() => Console.Console.ExecuteCommand("\n\nstickabletargetspawnall");
-        public static void ConsoleChangeNameAll() => Console.Console.ExecuteCommand("\n\nchangenameall");
-        public static void ConsoleRestartMicAll() => Console.Console.ExecuteCommand("\n\nrestartmicall");
+        public static void ConsoleKickAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nkickall");
+        public static void ConsoleQuitAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nquitall");
+        public static void ConsoleDisableMovementAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\ndisablemovementall");
+        public static void ConsoleEnableMovementAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nenablemovementall");
+        public static void ConsoleGhostAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nghostall");
+        public static void ConsoleUnGhostAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nunghostall");
+        public static void ConsoleBringAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nbringall");
+        public static void ConsoleFlingAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nflingall");
+        public static void ConsoleMuteAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nmuteall");
+        public static void ConsoleUnMuteAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nunmuteall");
+        public static void ConsoleNetworkPlayerAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nnetworkplayerspawnall");
+        public static void ConsoleTargetPlayerAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nstickabletargetspawnall");
+        public static void ConsoleChangeNameAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nchangenameall");
+        public static void ConsoleRestartMicAll() => Console.ConsoleiiMenu.ExecuteCommand("\n\nrestartmicall");
 
         public static void ConsoleBringGun()
         {
@@ -119,7 +130,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\ngotouser");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\ngotouser");
                 }
             }
         }
@@ -135,7 +146,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nkickgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nkickgun");
                 }
             }
         }
@@ -150,7 +161,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nquitgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nquitgun");
                 }
             }
         }
@@ -166,7 +177,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nchangenamegun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nchangenamegun");
                 }
             }
         }
@@ -182,7 +193,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nrestartmicgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nrestartmicgun");
                 }
             }
         }
@@ -198,7 +209,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nghostgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nghostgun");
                 }
             }
         }
@@ -213,7 +224,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nunghostgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nunghostgun");
                 }
             }
         }
@@ -229,7 +240,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nmutegun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nmutegun");
                 }
             }
         }
@@ -245,7 +256,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nunmutegun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nunmutegun");
                 }
             }
         }
@@ -261,7 +272,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\ndisablemovementgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\ndisablemovementgun");
                 }
             }
         }
@@ -277,7 +288,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nenablemovementgun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nenablemovementgun");
                 }
             }
         }
@@ -293,7 +304,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nnetworkplayerspawngun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nnetworkplayerspawngun");
                 }
             }
         }
@@ -309,7 +320,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\ntargetspawngun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\ntargetspawngun");
                 }
             }
         }
@@ -325,7 +336,7 @@ namespace iiMenu.Mods
                 {
                     VRRig who = Ray.collider.GetComponentInParent<VRRig>();
                     string userId = who.photonView.Owner.UserId;
-                    Console.Console.ExecuteCommand($"{userId}\n\nadminflinggun");
+                    Console.ConsoleiiMenu.ExecuteCommand($"{userId}\n\nadminflinggun");
                 }
             }
         }
@@ -334,7 +345,7 @@ namespace iiMenu.Mods
         {
             if (PhotonNetwork.InRoom)
             {
-                Console.Console.ConsoleBeacon();
+                Console.ConsoleiiMenu.ConsoleBeacon();
             }
         }
 
