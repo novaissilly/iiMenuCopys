@@ -1,16 +1,9 @@
 ﻿using HarmonyLib;
 using Photon.Pun;
 using Photon.Realtime;
-using System.IO;
 using UnityEngine;
-using static iiMenu.Menu.Main;
 
-/*
- *  HEY SKIDDERS
- *  you can take the code ig
-*/
-
-namespace iiMenu.Patches
+namespace ShibaGTGenesis.Patches
 {
     [HarmonyPatch(typeof(MonoBehaviourPunCallbacks), "OnPlayerLeftRoom")]
     internal class LeavePatch : MonoBehaviour
@@ -20,18 +13,9 @@ namespace iiMenu.Patches
             if (otherPlayer != PhotonNetwork.LocalPlayer && otherPlayer != a)
             {
                 NotificationManager.SendNotification("<color=grey>[</color><color=red>LEAVE</color><color=grey>]</color> <color=white>Name: " + otherPlayer.NickName + "</color>");
-                if (customSoundOnJoin)
-                {
-                    if (!Directory.Exists("iisStupidMenu"))
-                    {
-                        Directory.CreateDirectory("iisStupidMenu");
-                    }
-                    File.WriteAllText("iisStupidMenu/iiMenu_CustomSoundOnJoin.txt", "PlayerLeave");
-                }
                 a = otherPlayer;
             }
         }
-
         private static Player a;
     }
 }

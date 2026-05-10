@@ -1,30 +1,19 @@
-using System;
+﻿using System;
 using UnityEngine;
-using static iiMenu.Menu.Main;
 
-namespace iiMenu.Classes
+namespace ShibaGTGenesis.Classes
 {
     [MelonLoader.RegisterTypeInIl2Cpp]
-    public class Button : MonoBehaviour
+    public class ButtonCollider : MonoBehaviour
     {
-        public Button(IntPtr e) : base(e) { }
+        public ButtonCollider(IntPtr e) : base(e) { }
         public string relatedText;
-
-        public bool incremental;
-        public bool positive;
-
-        public void OnTriggerEnter(Collider collider)
+        public float delay;
+        public virtual void OnTriggerEnter(Collider other)
         {
-            if (Time.time > buttonCooldown && (collider == buttonCollider) && menu != null)
+            if (Time.time > delay && Menu.Menu.Instance.menu != null && other == Menu.Menu.Instance.referencecollider)
             {
-                buttonCooldown = Time.time + 0.2f;
-
-                PlayEmbeddedSoundOnHand("iiMenuCopys.Resources.steal.wav");
-
-                if (incremental)
-                    ToggleIncremental(relatedText, positive);
-                else
-                    Toggle(relatedText, true);
+                Menu.Menu.Instance.Toggle(relatedText);
             }
         }
     }

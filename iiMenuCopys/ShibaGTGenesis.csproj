@@ -7,8 +7,8 @@
     <ProjectGuid>{D6943139-B22E-462D-85AD-6EBB79E8AA7E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>iiMenuCopys</RootNamespace>
-    <AssemblyName>iiMenuCopys</AssemblyName>
+    <RootNamespace>ShibaGTGenesis</RootNamespace>
+    <AssemblyName>ShibaGTGenesis</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <LangVersion>Latest</LangVersion>
     <FileAlignment>512</FileAlignment>
@@ -34,43 +34,13 @@
   <ItemGroup>
     <Compile Include="Classes\Menu\ButtonCollider.cs" />
     <Compile Include="Classes\Menu\ButtonInfo.cs" />
-    <Compile Include="Classes\Menu\ColorChanger.cs" />
-    <Compile Include="Classes\Menu\Console.cs" />
-    <Compile Include="Classes\Menu\ExtGradient.cs" />
-    <Compile Include="Classes\Menu\FixedColliders.cs" />
-    <Compile Include="Classes\Menu\ImageColorChanger.cs" />
-    <Compile Include="Classes\Menu\ServerData.cs" />
-    <Compile Include="Classes\Mods\ModChecker.cs" />
-    <Compile Include="Classes\Mods\RigManager.cs" />
-    <Compile Include="Extenstions\ComponentExtensions.cs" />
-    <Compile Include="Extenstions\TextMeshExtensions.cs" />
-    <Compile Include="Extenstions\TextMeshProExtensions.cs" />
-    <Compile Include="Extenstions\VRRigExtensions.cs" />
+    <Compile Include="Menu\Boards.cs" />
     <Compile Include="Menu\Buttons.cs" />
-    <Compile Include="Menu\KeyboardManager.cs" />
-    <Compile Include="Menu\Main.cs" />
-    <Compile Include="Mods\Advantages.cs" />
-    <Compile Include="Mods\Basement.cs" />
-    <Compile Include="Mods\Battle.cs" />
-    <Compile Include="Mods\Beach.cs" />
-    <Compile Include="Mods\Canyons.cs" />
-    <Compile Include="Mods\Experimental.cs" />
-    <Compile Include="Mods\Fun.cs" />
-    <Compile Include="Mods\Important.cs" />
-    <Compile Include="Mods\Miscellaneous.cs" />
-    <Compile Include="Mods\Movement.cs" />
-    <Compile Include="Mods\Overpowered.cs" />
-    <Compile Include="Mods\Projectiles.cs" />
-    <Compile Include="Mods\Reconnect.cs" />
-    <Compile Include="Mods\RoomJoiners.cs" />
-    <Compile Include="Mods\Safety.cs" />
-    <Compile Include="Mods\Settings.cs" />
-    <Compile Include="Mods\Sound.cs" />
-    <Compile Include="Mods\SoundBoard.cs" />
-    <Compile Include="Mods\Visuals.cs" />
+    <Compile Include="Menu\Menu.cs" />
     <Compile Include="Notifications\NotificationManager.cs" />
     <Compile Include="Notifications\PlayerJoin.cs" />
     <Compile Include="Notifications\PlayerLeave.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -481,10 +451,6 @@
     <Reference Include="WebSocketDotNet">
       <HintPath>..\..\QolossalStuff\Refrences\WebSocketDotNet.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\font" />
-    <EmbeddedResource Include="Resources\iimenu" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\return.png" />

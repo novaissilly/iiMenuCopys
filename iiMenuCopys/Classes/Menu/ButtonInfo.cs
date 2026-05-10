@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace iiMenu.Classes
+namespace ShibaGTGenesis.Classes
 {
     public class ButtonInfo
     {
@@ -15,10 +15,5 @@ namespace iiMenu.Classes
 
         public bool enabled;
         public bool isTogglable = true;
-
-        public bool label;
-        public bool incremental;
-
-        public string customBind;
     }
 }

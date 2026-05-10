@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using iiMenu;
-using iiMenu.Menu;
+using ShibaGTGenesis;
+using ShibaGTGenesis.Menu;
 using MelonLoader;
 
-[assembly: AssemblyTitle("iiMenu")]
+[assembly: AssemblyTitle("ShibaGTGenesis")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("iiMenu")]
+[assembly: AssemblyProduct("ShibaGTGenesis")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -3,14 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using static iiMenu.Menu.Main;
+using static ShibaGTGenesis.Menu.Menu;
 
 /*
  *  HEY SKIDDERS
  *  you can take the code ig
 */
 
-namespace iiMenu
+namespace ShibaGTGenesis
 {
     [MelonLoader.RegisterTypeInIl2Cpp]
     public class NotificationManager : MonoBehaviour
@@ -47,7 +47,7 @@ namespace iiMenu
             }.AddComponent<Text>();
             Testtext.text = "";
             Testtext.fontSize = 30;
-            Testtext.font = Arial;
+            Testtext.font = GameObject.Find("COC Text").GetComponent<Text>().font;
             Testtext.rectTransform.sizeDelta = new Vector2(450f, 210f);
             Testtext.alignment = TextAnchor.LowerLeft;
             Testtext.rectTransform.localScale = new Vector3(0.00333333333f, 0.00333333333f, 0.33333333f);
@@ -122,7 +122,6 @@ namespace iiMenu
 
         public static void ClearAllNotifications()
         {
-            //NotifiLib.NotifiText.text = "<color=grey>[</color><color=green>SUCCESS</color><color=grey>]</color> <color=white>Notifications cleared.</color>" + Environment.NewLine;
             NotifiText.text = "";
         }
 
@@ -153,5 +152,6 @@ namespace iiMenu
         static bool HasInit;
         static Text NotifiText;
         public static bool IsEnabled = true;
+        public static bool disableNotifications = false;
     }
 }
