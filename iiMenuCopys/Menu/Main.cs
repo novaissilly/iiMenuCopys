@@ -1422,7 +1422,7 @@ namespace iiMenu.Menu
                 }
             }.AddComponent<Text>();
             title.font = activeFont;
-            title.text = "ii's <b>Stupid</b> Menu"; // ShibaGT Genesis V1
+            title.text = "ShibaGT Genesis V1";
 
             if (annoyingMode)
             {
