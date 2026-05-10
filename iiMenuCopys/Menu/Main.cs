@@ -1181,7 +1181,7 @@ namespace iiMenu.Menu
                 }
             }.AddComponent<Image>();
             if (searchIcon == null)
-                searchIcon = LoadTextureFromResource($"iiMenuCopys.Resources.search.png");
+                searchIcon = LoadTextureFromResource($"iiMenuCopys.Resources.search.png"); // ShibaGTGenesis.Resources.search.png
 
             if (searchMat == null)
                 searchMat = new Material(searchImage.material);
@@ -1235,7 +1235,7 @@ namespace iiMenu.Menu
             }.AddComponent<Image>();
 
             if (returnIcon == null)
-                returnIcon = LoadTextureFromResource("iiMenuCopys.Resources.return.png");
+                returnIcon = LoadTextureFromResource("iiMenuCopys.Resources.return.png"); // ShibaGTGenesis.Resources.return.png
 
             if (returnMat == null)
                 returnMat = new Material(returnImage.material);
@@ -1422,7 +1422,7 @@ namespace iiMenu.Menu
                 }
             }.AddComponent<Text>();
             title.font = activeFont;
-            title.text = "ii's <b>Stupid</b> Menu";
+            title.text = "ii's <b>Stupid</b> Menu"; // ShibaGT Genesis V1
 
             if (annoyingMode)
             {
