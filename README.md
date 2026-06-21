@@ -1,1 +1,3 @@
-THIS MENU IS ON LTS, THERE WILL BE NO MORE UPDATES TO THE FUTURE OF THIS MENU FOR ANY NEW UPDATES YOU WANT JOIN THE DISCORD (https://discord.gg/dtQdz59FJG) OR USE GENESIS (https://github.com/novaissilly/ShibaGTGenesisCopys)
+**ii's Stupid Menu** Ported for Gorilla Tag Copys.
+
+Join the discord: discord.gg/dtQdz59FJG
